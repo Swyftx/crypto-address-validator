@@ -2,7 +2,7 @@
   "author": "Roman Shtylman <shtylman@gmail.com>",
   "name": "bitcoin-address",
   "description": "bitcoin address verification and other related functions",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/shtylman/bitcoin-address",
   "repository": {
     "type": "git",
