@@ -1,0 +1,25 @@
+{
+  "author": "Roman Shtylman <shtylman@gmail.com>",
+  "name": "bitcoin-address",
+  "description": "bitcoin address verification and other related functions",
+  "version": "0.0.0",
+  "homepage": "https://github.com/shtylman/bitcoin-address",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shtylman/bitcoin-address.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "int": "0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "1.1.x"
+  },
+  "main": "index",
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
