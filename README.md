@@ -1,6 +1,6 @@
-# address [![Build Status](https://secure.travis-ci.org/shtylman/bitcoin-address.png)](http://travis-ci.org/shtylman/bitcoin-address) #
+# bitcoin-address [![Build Status](https://secure.travis-ci.org/shtylman/bitcoin-address.png)](http://travis-ci.org/shtylman/bitcoin-address) #
 
-Provides utility functions for working with bitcoin addresses
+Functions for working with bitcoin addresses
 
 ## install ##
 
