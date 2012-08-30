@@ -16,5 +16,11 @@ test('valid', function() {
     validate('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs');
     validate('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez');
     validate('116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd');
+    
+    // p2sh addresses
+    validate('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt');
+    validate('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'prod');
+    validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7');
+    validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'testnet');
 });
 

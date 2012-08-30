@@ -10,15 +10,16 @@ var address_types = {
     testnet: '6f'
 };
 
+var p2sh_types = {
+    prod: '05',
+    testnet: 'c4'
+};
+
 /// check if a wallet address is valid
 /// if address_type is supplied
 /// also checks that the address matches that expected version
 /// return {boolean} true if valid, false otherwise
 function validate(address, address_type) {
-
-    if (address.length !== 34 && address.length !== 33) {
-        return false;
-    }
 
     var decoded_hex = base58.decode(address);
 
@@ -41,9 +42,12 @@ function validate(address, address_type) {
     }
 
     // check that the address type is correct if requested
-    if(address_type &&
-       decoded_hex.slice(0, 2) !== address_types[address_type]) {
-        return false;
+    if (address_type) {
+        var type = decoded_hex.slice(0, 2);
+        if (type !== address_types[address_type] &&
+            type !== p2sh_types[address_type]) {
+            return false;
+        }
     }
 
     return true;
