@@ -10,5 +10,8 @@ test('invalid', function() {
     invalid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhe');
     invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'testnet');
     invalid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'prod');
+
+    // invalid base58 string
+    invalid('%%@');
 });
 

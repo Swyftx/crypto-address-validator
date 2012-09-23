@@ -20,9 +20,12 @@ function decode(payload) {
     for (var i=0; i<length ; ++i) {
         var char = payload[i];
         var p = positions[char];
+
+        // if we encounter an invalid character, decoding fails
         if (p === undefined) {
-            return '0';
+            throw new Error('invalid base58 string: ' + payload);
         }
+
         num = num.mul(base).add(p);
 
         if (char == '1' && !seen_other) {

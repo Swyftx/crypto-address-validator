@@ -21,10 +21,16 @@ var p2sh_types = {
 /// return {boolean} true if valid, false otherwise
 function validate(address, address_type) {
 
-    var decoded_hex = base58.decode(address);
+    try {
+        var decoded_hex = base58.decode(address);
+    } catch (e) {
+        // if decoding fails, assume invalid address
+        return false;
+    }
 
     // make a usable buffer from the decoded data
     var decoded = new Buffer(decoded_hex, 'hex');
+
 
     // should be 25 bytes per btc address spec
     if (decoded.length != 25) {
