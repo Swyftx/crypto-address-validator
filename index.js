@@ -20,6 +20,8 @@ var p2sh_types = {
 /// also checks that the address matches that expected version
 /// return {boolean} true if valid, false otherwise
 function validate(address, address_type) {
+    // default is to check that address is regular production address
+    address_type = address_type || 'prod';
 
     try {
         var decoded_hex = base58.decode(address);
@@ -30,7 +32,6 @@ function validate(address, address_type) {
 
     // make a usable buffer from the decoded data
     var decoded = new Buffer(decoded_hex, 'hex');
-
 
     // should be 25 bytes per btc address spec
     if (decoded.length != 25) {

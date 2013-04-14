@@ -8,7 +8,6 @@ test('valid', function() {
 
     validate('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa');
     validate('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'prod');
-    validate('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef');
     validate('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'testnet');
 
     validate('12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP');
@@ -16,11 +15,10 @@ test('valid', function() {
     validate('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs');
     validate('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez');
     validate('116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd');
-    
+
     // p2sh addresses
     validate('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt');
     validate('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'prod');
-    validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7');
     validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'testnet');
 });
 
