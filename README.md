@@ -1,4 +1,4 @@
-# bitcoin-address [![Build Status](https://secure.travis-ci.org/shtylman/bitcoin-address.png)](http://travis-ci.org/shtylman/bitcoin-address) #
+# bitcoin-address [![Build Status](https://secure.travis-ci.org/defunctzombie/bitcoin-address.png)](http://travis-ci.org/defunctzombie/bitcoin-address) #
 
 Functions for working with bitcoin addresses
 
