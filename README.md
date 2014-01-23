@@ -15,13 +15,16 @@ Functions for working with altcoin addresses, forked from defunctzombie
 
 ### Address types ###
 
-* BTC
-* LTC
-* PPC
-* DOGE
-* FRC
-* PTS
-* MEC
-* XPM
-* FTC
+* BTC  (bitcoin)
+* LTC  (litecoin)
+* PPC  (peercoin)
+* DOGE (dogecoin)
+* FRC  (freicoin)
+* PTS  (protoshares)
+* MEC  (megacoin)
+* XPM  (primecoin)
+* FTC  (feathercoin)
 
+>This will work for both BIP-0016 P2SH addresses and regular addresses.
+>
+>To check the validity of a testnet address for any of the listed coins just append 'Testnet'
