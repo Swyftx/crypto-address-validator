@@ -43,6 +43,12 @@ function decode(payload) {
         hex = '0' + hex;
     }
 
+    // strings starting with only ones need to be adjusted
+    // e.g. '1' should map to '00' and not '0000'
+    if (leading_zero && !seen_other) {
+      --leading_zero;
+    }
+
     while (leading_zero-- > 0) {
         hex = '00' + hex;
     }
