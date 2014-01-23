@@ -17,10 +17,13 @@ var address_types = {
     freicoin: '00', 		//  0 Decimal 1 prefix
     freicoin-testnet: '6f'	//111 Decimal m-n prefix
     protoshares: '38',		// 56 Decimal P prefix
-    protoshares-testnet:
-    megacoin: '',
+    protoshares-testnet: '6f' //111 Decimal m-n prefix
+    megacoin: '32',		// 50 Decimal M prefix
+    megacoin-testnet: '6f',	//111 Decimal m-n prefix
     primecoin: '17', 		// 23 Decimal A prefix
+    primecoin-testnet: '6f',	//111 Decimal m-n prefix
     feathercoin: '0E' 		// 14 Decimal 5-6 prefix
+    feathercoin-testnet: '6f' //111 Decimal m-n prefix
     //That's all for now, to add more just send a pull request
 };
 
@@ -35,10 +38,14 @@ var p2sh_types = {
     dogecoin-testnet: 'c4',	//196 Decimal 2 prefix
     freicoin: '05',		//  5 Decimal 3 prefix
     freicoin-testnet: 'c4', 	//196 Decimal 2 prefix
-    protoshares: '',
-    megacoin: '',
-    primecoin: '',
-    feathercoin: ''
+    protoshares: '05',		//  5 Decimal 3 prefix
+    protoshares-testnet: 'c4',//196 Decimal 2 prefix
+    megacoin: '05',		//  5 Decimal 3 prefix
+    megacoin-testnet: 'c4', 	//196 Decimal 2 prefix
+    primecoin: '53',		// 83 Decimal a prefix
+    primecoin-testnet: 'c4',  //196 Decimal 2 prefix
+    feathercoin: '05',		//  5 Decimal 3 prefix
+    feathercoin-testnet: 'c4' //196 Decimal 2 prefix
 };
 
 /// return address type if valid base58 address, otherwise null
