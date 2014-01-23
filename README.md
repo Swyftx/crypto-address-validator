@@ -31,7 +31,7 @@ Functions for working with altcoin addresses, forked from defunctzombie
 
 ### Example
 
-'''javascript
+```javascript
 var altcoin = require('altcoin-address');
 
 var valid = altcoin.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin');
@@ -39,4 +39,4 @@ if(valid)
 	console.log('This is a valid address');
 else
 	console.log('Address INVALID');
-'''
+```
