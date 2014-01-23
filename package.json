@@ -1,13 +1,9 @@
 {
-  "author": "Roman Shtylman <shtylman@gmail.com>",
-  "name": "bitcoin-address",
-  "description": "bitcoin address verification and other related functions",
-  "version": "0.2.0",
-  "homepage": "https://github.com/defunctzombie/bitcoin-address",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/defunctzombie/bitcoin-address.git"
-  },
+  "author": "Ryan Ralph <ryanralph1991@gmail.com>",
+  "name": "altcoin-address",
+  "description": "altcoin address verification and other related functions",
+  "version": "1.0.0",
+  "homepage": "",
   "scripts": {
     "test": "mocha"
   },

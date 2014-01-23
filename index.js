@@ -6,13 +6,32 @@ var crypto = require('crypto');
 var base58 = require('./base58');
 
 var address_types = {
-    prod: '00',
-    testnet: '6f'
+    bitcoin: '00', /* 0 Decimal 1 prefix */ bitcoin-testnet: '6f', //
+    litecoin: '30', //48 Decimal L prefix
+    peercoin: '37', //55 Decimal P prefix
+    namecoin: '34', //52 Decimal N prefix
+    dogecoin: '1e', //30 Decimal D prefix
+    mastercoin: '00', //Same as bitcoin
+    freicoin: '00', //Same as bitcoin
+    protoshares: '38',
+    megacoin: '',
+    primecoin: '17', //23 Decimal A prefix
+    feathercoin: 'E' //14 Decimal 5-6 prefix
+    //That's all for now, to add more just send a pull request
 };
 
 var p2sh_types = {
-    prod: '05',
-    testnet: 'c4'
+    bitcoin: '05', bitcoin-testnet: 'c4',
+    litecoin: '',
+    peercoin: '',
+    namecoin: '',
+    dogecoin: '',
+    mastercoin: '',
+    freicoin: '',
+    protoshares: '',
+    megacoin: '',
+    primecoin: '',
+    feathercoin: ''
 };
 
 /// return address type if valid base58 address, otherwise null
@@ -48,7 +67,7 @@ module.exports.get_address_type = get_address_type;
 /// return {boolean} true if valid, false otherwise
 function validate(address, address_type) {
     // default is to check that address is regular production address
-    address_type = address_type || 'prod';
+    address_type = address_type || 'btc';
 
     var type = get_address_type(address);
     if (type === null) {
