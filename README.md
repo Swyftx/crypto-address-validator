@@ -39,4 +39,23 @@ if(valid)
 	console.log('This is a valid address');
 else
 	console.log('Address INVALID');
+//This should return that 'This is a valid address'
 ```
+
+```javascript
+var altcoin = require('altcoin-address');
+
+var valid = altcoin.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoinTestnet');
+if(valid)
+      console.log('This is a valid address');
+else
+      console.log('Address INVALID');
+
+
+//As this is a valid bitcoin address response will be 'Address INVALID'
+```
+
+###Donations
+
+If you've found this useful feel free to send me a tip
+>1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck
