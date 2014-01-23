@@ -7,7 +7,10 @@
   "scripts": {
     "test": "mocha"
   },
-  "repository": "https://github.com/ryanralph/altcoin-address",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanralph/altcoin-address.git"
+  },
   "dependencies": {
     "int": "0.1.1"
   },
