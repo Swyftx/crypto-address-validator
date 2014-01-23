@@ -6,28 +6,35 @@ var crypto = require('crypto');
 var base58 = require('./base58');
 
 var address_types = {
-    bitcoin: '00', /* 0 Decimal 1 prefix */ bitcoin-testnet: '6f', //
-    litecoin: '30', //48 Decimal L prefix
-    peercoin: '37', //55 Decimal P prefix
-    namecoin: '34', //52 Decimal N prefix
-    dogecoin: '1e', //30 Decimal D prefix
-    mastercoin: '00', //Same as bitcoin
-    freicoin: '00', //Same as bitcoin
-    protoshares: '38',
+    bitcoin: '00', 		//  0 Decimal 1 prefix
+    bitcoin-testnet: '6f', 	//111 Decimal m-n prefix
+    litecoin: '30', 		// 48 Decimal L prefix
+    litecoin-testnet: '6f' 	//111 Decimal m-n prefix
+    peercoin: '37', 		// 55 Decimal P prefix
+    peercoin-testnet: '6f' 	//111 Decimal m-n prefix
+    dogecoin: '1e', 		// 30 Decimal D prefix
+    dogecoin-testnet: '71' 	//113 Decimal n prefix
+    freicoin: '00', 		//  0 Decimal 1 prefix
+    freicoin-testnet: '6f'	//111 Decimal m-n prefix
+    protoshares: '38',		// 56 Decimal P prefix
+    protoshares-testnet:
     megacoin: '',
-    primecoin: '17', //23 Decimal A prefix
-    feathercoin: 'E' //14 Decimal 5-6 prefix
+    primecoin: '17', 		// 23 Decimal A prefix
+    feathercoin: '0E' 		// 14 Decimal 5-6 prefix
     //That's all for now, to add more just send a pull request
 };
 
 var p2sh_types = {
-    bitcoin: '05', bitcoin-testnet: 'c4',
-    litecoin: '',
-    peercoin: '',
-    namecoin: '',
-    dogecoin: '',
-    mastercoin: '',
-    freicoin: '',
+    bitcoin: '05', 		//  5 Decimal 3 prefix
+    bitcoin-testnet: 'c4', 	//196 Decimal 2 prefix
+    litecoin: '05',		//  5 Decimal 3 prefix
+    litecoin-testnet: 'c4',	//196 Decimal 2 prefix
+    peercoin: '75',		//117 Decimal p prefix
+    peercoin-testnet: 'c4',	//196 Decimal 2 prefix
+    dogecoin: '16',		//22 Decimal 9-A prefix
+    dogecoin-testnet: 'c4',	//196 Decimal 2 prefix
+    freicoin: '05',		//  5 Decimal 3 prefix
+    freicoin-testnet: 'c4', 	//196 Decimal 2 prefix
     protoshares: '',
     megacoin: '',
     primecoin: '',
