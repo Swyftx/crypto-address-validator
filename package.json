@@ -3,10 +3,11 @@
   "name": "altcoin-address",
   "description": "altcoin address verification and other related functions",
   "version": "1.0.0",
-  "homepage": "",
+  "homepage": "https://github.com/ryanralph/altcoin-address",
   "scripts": {
     "test": "mocha"
   },
+  "repository": "https://github.com/ryanralph/altcoin-address",
   "dependencies": {
     "int": "0.1.1"
   },
