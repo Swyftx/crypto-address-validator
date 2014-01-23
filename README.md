@@ -15,13 +15,13 @@ Functions for working with altcoin addresses, forked from defunctzombie
 
 ### Address types ###
 
-*BTC
-*LTC
-*PPC
-*DOGE
-*FRC
-*PTS
-*MEC
-*XPM
-*FTC
+* BTC
+* LTC
+* PPC
+* DOGE
+* FRC
+* PTS
+* MEC
+* XPM
+* FTC
 
