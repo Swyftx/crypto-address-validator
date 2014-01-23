@@ -39,6 +39,8 @@ if(valid)
 	console.log('This is a valid address');
 else
 	console.log('Address INVALID');
+
+
 //This should return that 'This is a valid address'
 ```
 
