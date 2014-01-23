@@ -28,3 +28,15 @@ Functions for working with altcoin addresses, forked from defunctzombie
 >This will work for both BIP-0016 P2SH addresses and regular addresses.
 >
 >To check the validity of a testnet address for any of the listed coins just append 'Testnet'
+
+### Example
+
+'''javascript
+var altcoin = require('altcoin-address');
+
+var valid = altcoin.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin');
+if(valid)
+	console.log('This is a valid address');
+else
+	console.log('Address INVALID');
+'''
