@@ -22,8 +22,6 @@ var address_types = {
     megacoinTestnet: '6f',	//111 Decimal mn prefix
     primecoin: '17', 		// 23 Decimal A prefix
     primecoinTestnet: '6f',	//111 Decimal mn prefix
-    feathercoin: 'E', 		// 14 Decimal 56 prefix
-    feathercoinTestnet: '6f' //111 Decimal mn prefix
     //That's all for now, to add more just send a pull request
 };
 
@@ -44,8 +42,6 @@ var p2sh_types = {
     megacoinTestnet: 'c4', 	//196 Decimal 2 prefix
     primecoin: '53',		// 83 Decimal a prefix
     primecoinTestnet: 'c4',  //196 Decimal 2 prefix
-    feathercoin: '05',		//  5 Decimal 3 prefix
-    feathercoinTestnet: 'c4' //196 Decimal 2 prefix
 };
 
 /// return address type if valid base58 address, otherwise null

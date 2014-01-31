@@ -89,14 +89,4 @@ test('valid', function() {
     //p2sh addresses
     validate('af5CvTQq7agDh717Wszb5QDbWb7nT2mukP', 'primecoin');
     validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'primecoinTestnet');
-//----------------FTC ADDRESSES--------------------------------
-//    validate('6pM4jLS3NPX9mowsTQdrEAAodKJbEYTfXR', 'feathercoin');
-//    validate('6tiFUi4xwNruHBbrrKeAabJ6u28ppcLRc6', 'feathercoin');
-    validate('6pwGwQhxQRymWmYHHDvdt66JAGZXuQCMtj', 'feathercoin');
-    validate('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'feathercoinTestnet');
-    
-    //p2sh addresses
-    validate('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'feathercoin');
-    validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'feathercoinTestnet');
 });
-
