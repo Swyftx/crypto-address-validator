@@ -22,7 +22,7 @@ var address_types = {
     megacoinTestnet: '6f',	//111 Decimal mn prefix
     primecoin: '17', 		// 23 Decimal A prefix
     primecoinTestnet: '6f',	//111 Decimal mn prefix
-    feathercoin: '0E', 		// 14 Decimal 56 prefix
+    feathercoin: 'E', 		// 14 Decimal 56 prefix
     feathercoinTestnet: '6f' //111 Decimal mn prefix
     //That's all for now, to add more just send a pull request
 };
