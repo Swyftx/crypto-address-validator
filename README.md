@@ -23,7 +23,6 @@ Functions for working with altcoin addresses, forked from defunctzombie
 * PTS  (protoshares)
 * MEC  (megacoin)
 * XPM  (primecoin)
-* FTC  (feathercoin)
 
 >This will work for both BIP-0016 P2SH addresses and regular addresses.
 >
@@ -54,7 +53,7 @@ else
       console.log('Address INVALID');
 
 
-//As this is a valid bitcoin address response will be 'Address INVALID'
+//As this is a invalid litecoin address response will be 'Address INVALID'
 ```
 
 ###Donations
