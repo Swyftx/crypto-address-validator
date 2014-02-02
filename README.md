@@ -24,6 +24,8 @@ Functions for working with altcoin addresses, forked from defunctzombie
 * MEC  (megacoin)
 * XPM  (primecoin)
 
+I intend to update this to include more currencies in the future. If you would like a new currency added quickly please send a pull request including tests.
+
 >This will work for both BIP-0016 P2SH addresses and regular addresses.
 >
 >To check the validity of a testnet address for any of the listed coins just append 'Testnet'
@@ -59,4 +61,4 @@ else
 ###Donations
 
 If you've found this useful feel free to send me a tip
->1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck
+>1E3s7YjGVWrnhxTYkjkBKtTX3c673CCm3w
