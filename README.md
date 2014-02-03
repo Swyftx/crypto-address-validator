@@ -1,34 +1,34 @@
-# altcoin-address #
-Functions for working with altcoin addresses, forked from defunctzombie
+# altcoin-address [![Build Status](https://secure.travis-ci.org/ryanralph/altcoin-address.png)](http://travis-ci.org/ryanralph/altcoin-address)
+Functions for working with altcoin addresses, forked from [DefunctZombie](https://github.com/defunctzombie/bitcoin-address).
 
-## API ##
+## API
 
-### validate (address [, type]) ###
+### validate (address [, type])
 
 > returns true if the address (string) is a valid altcoin address for the type specified
 >
 > if no options are specified it defaults to bitcoin
 
-### get_address_type (address) ###
+### get_address_type (address)
 
 > returns address type if valid base58 address, otherwise null
 
-### Address types ###
+### Address types
 
-* BTC  (bitcoin)
-* LTC  (litecoin)
-* PPC  (peercoin)
-* DOGE (dogecoin)
-* FRC  (freicoin)
-* PTS  (protoshares)
-* MEC  (megacoin)
-* XPM  (primecoin)
+* Bitcoin/BTC  (bitcoin)
+* Litecoin/LTC  (litecoin)
+* Peercoin/PPCoin/PPC  (peercoin)
+* Dogecoin/DOGE (dogecoin)
+* Freicoin/FRC  (freicoin)
+* Protoshares/PTS  (protoshares)
+* Megacoin/MEC  (megacoin)
+* Primecoin/XPM  (primecoin)
 
 I intend to update this to include more currencies in the future. If you would like a new currency added quickly please send a pull request including tests.
 
->This will work for both BIP-0016 P2SH addresses and regular addresses.
->
->To check the validity of a testnet address for any of the listed coins just append 'Testnet'
+> This will work for both BIP-0016 P2SH addresses and regular addresses.
+> 
+> To check the validity of a testnet address for any of the listed coins just append 'Testnet'
 
 ### Example
 
@@ -61,4 +61,4 @@ else
 ###Donations
 
 If you've found this useful feel free to send me a tip
->1E3s7YjGVWrnhxTYkjkBKtTX3c673CCm3w
+> BTC 1E3s7YjGVWrnhxTYkjkBKtTX3c673CCm3w
