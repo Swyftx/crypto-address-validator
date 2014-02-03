@@ -2,7 +2,7 @@
   "author": "Ryan Ralph <ryanralph1991@gmail.com>",
   "name": "altcoin-address",
   "description": "altcoin address verification and other related functions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/ryanralph/altcoin-address",
   "scripts": {
     "test": "mocha"
