@@ -97,6 +97,6 @@ test('valid', function() {
     validate('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'auroracoinTestnet');
 
     //p2sh addresses
-    validate('af5CvTQq7agDh717Wszb5QDbWb7nT2mukP', 'auroracoin');
+    validate('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'auroracoin');
     validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'auroracoinTestnet');
 });
