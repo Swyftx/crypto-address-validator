@@ -23,11 +23,12 @@ Functions for working with altcoin addresses, forked from [DefunctZombie](https:
 * Protoshares/PTS  (protoshares)
 * Megacoin/MEC  (megacoin)
 * Primecoin/XPM  (primecoin)
+* Auroracoin/AUR (auroracoin)
 
 I intend to update this to include more currencies in the future. If you would like a new currency added quickly please send a pull request including tests.
 
 > This will work for both BIP-0016 P2SH addresses and regular addresses.
-> 
+>
 > To check the validity of a testnet address for any of the listed coins just append 'Testnet'
 
 ### Example
