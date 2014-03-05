@@ -43,7 +43,7 @@ test('valid', function() {
     validate('DPpJVPpvPNP6i6tMj4rTycAGh8wReTqaSU', 'dogecoin');
     validate('DNzLUN6MyYVS5zf4Xc2yK69V3dXs6Mxia5', 'dogecoin');
     validate('DPS6iZj7roHquvwRYXNBua9QtKPzigUUhM', 'dogecoin');
-    //NEED A DOGECOIN TESTNET ADDRESS
+    //TODO: NEED A DOGECOIN TESTNET ADDRESS
 
     //p2sh addresses
     validate('A7JjzK9k9x5b2MkkQzqt91WZsuu7wTu6iS', 'dogecoin');
@@ -89,6 +89,7 @@ test('valid', function() {
     //p2sh addresses
     validate('af5CvTQq7agDh717Wszb5QDbWb7nT2mukP', 'primecoin');
     validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'primecoinTestnet');
+
 //----------------AUR ADDRESSES---------------------------------
     validate('ARM3GLZXF1PDTZ5vz3wh5MVahbK9BHTWAN', 'auroracoin');
     validate('AUtfc6ThCLb7FuEu7QPrWpJuaXaJRPciDF', 'auroracoin');
