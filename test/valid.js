@@ -99,4 +99,15 @@ test('valid', function() {
     //p2sh addresses
     validate('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'auroracoin');
     validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'auroracoinTestnet');
+
+//----------------NMC ADDRESSES---------------------------------
+    validate('NEpeRmS775fnti8TDgJA28m8KLEfNNRZvT', 'namecoin');
+    validate('MyJ691bGJ48RBK2LS8n1U57wcFLFScFXxi', 'namecoin');
+    validate('NFY9aw1RXLGtWpeqgNQXprnUcZXyKNinTh', 'namecoin');
+    validate('NCPPc7Pzb75CpRPJQPRRh6ouJTq7BCy1H4', 'namecoin');
+    //validate('', 'namecoinTestnet'); //TODO: Add testnet address
+
+    //p2sh addresses
+    //validate('', 'namecoin'); //TODO: Add multi-sig address
+    //validate('', 'namecoinTestnet'); //TODO: Add testnet multi-sig address
 });
