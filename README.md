@@ -24,6 +24,7 @@ Functions for working with altcoin addresses, forked from [DefunctZombie](https:
 * Megacoin/MEC  (megacoin)
 * Primecoin/XPM  (primecoin)
 * Auroracoin/AUR (auroracoin)
+* Namecoin/NMC (namecoin)
 
 I intend to update this to include more currencies in the future. If you would like a new currency added quickly please send a pull request including tests.
 
