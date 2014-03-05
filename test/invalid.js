@@ -2,107 +2,39 @@ var address = require('..');
 var assert = require('assert');
 
 test('invalid', function() {
-    function invalid(addr, type) {
-        assert.ok(!address.validate(addr, type));
-    };
-//-----------------------BTC ADDRESSES-------------------------------
-    invalid('');
-    invalid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhe');
-    invalid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoin');
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983');
-    invalid('miCVC7QcY917Cz427qTBEUrvBzRapHrupc');
-    invalid('rrRmhfXzGBKbV4YHtbpxfA1ftEcry8AJaX');
-    invalid('LSxNsEQekEpXMS4B7tUYstMEdMyH321ZQ1', 'bitcoinTestnet');
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'bitcoinTestnet');
-    invalid('%%@');
-
+	function invalid(addr, type) {
+		assert.ok(!address.validate(addr, type));
+	};
+//----------------COMMON TESTS---------------------------------
+	function commontests(coin) {
+		invalid('', coin); //reject blank
+		invalid('%%@', coin); //reject invalid base58 string
+		invalid('1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa', coin); //reject invalid address
+		invalid('bd839e4f6fadb293ba580df5dea7814399989983', coin);  //reject transaction id's
+		//testnet
+		invalid('', coin + 'Testnet'); //reject blank
+		invalid('%%@', coin + 'Testnet'); //reject invalid base58 string
+		invalid('1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa', coin + 'Testnet'); //reject invalid address
+		invalid('bd839e4f6fadb293ba580df5dea7814399989983', coin + 'Testnet');  //reject transaction id's
+	}
+//----------------BTC ADDRESSES--------------------------------
+	commontests('bitcoin');
 //----------------LTC ADDRESSES--------------------------------
-    invalid('', 'litecoin'); //reject blank
-    invalid('%%@', 'litecoin'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'litecoin'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'litecoin');  //reject transaction id's
-
-    invalid('', 'litecoinTestnet'); //reject blank
-    invalid('%%@', 'litecoinTestnet'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'litecoinTestnet'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'litecoinTestnet');  //reject transaction id's
-
+      commontests('litecoin');
 //----------------PPC ADDRESSES--------------------------------
-    invalid('', 'peercoin'); //reject blank
-    invalid('%%@', 'peercoin'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'peercoin'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'peercoin');  //reject transaction id's
-
-    invalid('', 'peercoinTestnet'); //reject blank
-    invalid('%%@', 'peercoinTestnet'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'peercoinTestnet'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'peercoinTestnet');  //reject transaction id's
-
+      commontests('peercoin');
 //----------------DOGE ADDRESSES-------------------------------
-    invalid('', 'dogecoin'); //reject blank
-    invalid('%%@', 'dogecoin'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'dogecoin'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'dogecoin');  //reject transaction id's
-
-    invalid('', 'dogecoinTestnet'); //reject blank
-    invalid('%%@', 'dogecoinTestnet'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'dogecoinTestnet'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'dogecoinTestnet');  //reject transaction id's
-
+      commontests('dogecoin');
 //----------------FRC ADDRESSES--------------------------------
-    invalid('', 'freicoin'); //reject blank
-    invalid('%%@', 'freicoin'); //reject invalid base58 string
-    invalid('miCVC7QcY917Cz427qTBEUrvBzRapHrupc', 'freicoin'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'freicoin');  //reject transaction id's
-
-    invalid('', 'freicoinTestnet'); //reject blank
-    invalid('%%@', 'freicoinTestnet'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'freicoinTestnet'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'freicoinTestnet');  //reject transaction id's
-
+      commontests('freicoin');
 //----------------PTS ADDRESSES--------------------------------
-    invalid('', 'protoshares'); //reject blank
-    invalid('%%@', 'protoshares'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'protoshares'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'protoshares');  //reject transaction id's
-
-    invalid('', 'protosharesTestnet'); //reject blank
-    invalid('%%@', 'protosharesTestnet'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'protosharesTestnet'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'protosharesTestnet');  //reject transaction id's
-
+      commontests('protoshares');
 //----------------MEC ADDRESSES--------------------------------
-    invalid('', 'megacoin'); //reject blank
-    invalid('%%@', 'megacoin'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'megacoin'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'megacoin');  //reject transaction id's
-
-    invalid('', 'megacoinTestnet'); //reject blank
-    invalid('%%@', 'megacoinTestnet'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'megacoinTestnet'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'megacoinTestnet');  //reject transaction id's
-
+      commontests('megacoin');
 //----------------XPM ADDRESSES-------------------------------
-    invalid('', 'primecoin'); //reject blank
-    invalid('%%@', 'primecoin'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'primecoin'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'primecoin');  //reject transaction id's
-
-    invalid('', 'primecoinTestnet'); //reject blank
-    invalid('%%@', 'primecoinTestnet'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'primecoinTestnet'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'primecoinTestnet');  //reject transaction id's
-
+      commontests('primecoin');
 //----------------AUR ADDRESSES-------------------------------
-    invalid('', 'auroracoin'); //reject blank
-    invalid('%%@', 'auroracoin'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'auroracoin'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'auroracoin');  //reject transaction id's
-
-    invalid('', 'auroracoinTestnet'); //reject blank
-    invalid('%%@', 'auroracoinTestnet'); //reject invalid base58 string
-    invalid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'auroracoinTestnet'); //reject invalid address
-    invalid('bd839e4f6fadb293ba580df5dea7814399989983', 'auroracoinTestnet');  //reject transaction id's
-
+      commontests('auroracoin');
+//----------------NMC ADDRESSES-------------------------------
+      commontests('namecoin');
 });
-
