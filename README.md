@@ -64,3 +64,8 @@ else
 
 If you've found this useful feel free to send me a tip
 > BTC 1E3s7YjGVWrnhxTYkjkBKtTX3c673CCm3w
+
+
+###Ports to other languages
+
+Ruby: https://bitbucket.org/noveltylab/crypto-address
