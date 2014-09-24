@@ -25,6 +25,8 @@ test('invalid', function() {
       commontests('peercoin');
 //----------------DOGE ADDRESSES-------------------------------
       commontests('dogecoin');
+//----------------BVC ADDRESSES-------------------------------
+      commontests('beavercoin');
 //----------------FRC ADDRESSES--------------------------------
       commontests('freicoin');
 //----------------PTS ADDRESSES--------------------------------

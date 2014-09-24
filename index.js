@@ -14,6 +14,8 @@ var address_types = {
     peercoinTestnet: '6f', 	//111 Decimal mn prefix
     dogecoin: '1e', 		// 30 Decimal D prefix
     dogecoinTestnet: '71', 	//113 Decimal n prefix
+    beavercoin: '19', 		// 25 Decimal B prefix
+    beavercoinTestnet: '6f',	//111 Decimal mn prefix
     freicoin: '00', 		//  0 Decimal 1 prefix
     freicoinTestnet: '6f',	//111 Decimal mn prefix
     protoshares: '38',		// 56 Decimal P prefix
@@ -38,6 +40,8 @@ var p2sh_types = {
     peercoinTestnet: 'c4',	//196 Decimal 2 prefix
     dogecoin: '16',		//22 Decimal 9A prefix
     dogecoinTestnet: 'c4',	//196 Decimal 2 prefix
+    beavercoin: '05',		//  5 Decimal 3 prefix
+    beavercoinTestnet: 'c4',	//196 Decimal 2 prefix
     freicoin: '05',		//  5 Decimal 3 prefix
     freicoinTestnet: 'c4', 	//196 Decimal 2 prefix
     protoshares: '05',		//  5 Decimal 3 prefix

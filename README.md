@@ -19,6 +19,7 @@ Functions for working with altcoin addresses, forked from [DefunctZombie](https:
 * Litecoin/LTC  (litecoin)
 * Peercoin/PPCoin/PPC  (peercoin)
 * Dogecoin/DOGE (dogecoin)
+* BeaverCoin/BVC (beavercoin)
 * Freicoin/FRC  (freicoin)
 * Protoshares/PTS  (protoshares)
 * Megacoin/MEC  (megacoin)
