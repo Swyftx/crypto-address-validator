@@ -49,6 +49,16 @@ test('valid', function() {
     validate('A7JjzK9k9x5b2MkkQzqt91WZsuu7wTu6iS', 'dogecoin');
     validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'dogecoinTestnet');
 
+//----------------BVC ADDRESSES--------------------------------
+    validate('BPPtB4EpPi5wCaGXZuNyKQgng8ya579qUh', 'beavercoin');
+    validate('BC1LLYoE4mTCHTJhVYvLGxhRTwAHyWTQ49', 'beavercoin');
+    validate('BBuyeg2vjtyFdMNj3LTxuVra4wJMKVAY9C', 'beavercoin');
+    validate('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'beavercoinTestnet');
+
+    // p2sh addresses
+    validate('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'beavercoin');
+    validate('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'beavercoinTestnet');
+
 //----------------FRC ADDRESSES--------------------------------
     validate('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'freicoin');
     validate('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs', 'freicoin');
