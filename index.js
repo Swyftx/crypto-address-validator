@@ -54,8 +54,9 @@ var p2sh_types = {
 
 /// return address type if valid base58 address, otherwise null
 function get_address_type(address) {
+	 var decoded_hex;
     try {
-        var decoded_hex = base58.decode(address);
+        decoded_hex = base58.decode(address);
     } catch (e) {
         // if decoding fails, assume invalid address
         return null;
@@ -73,7 +74,7 @@ function get_address_type(address) {
     var cksum = decoded.slice(length - 4, length).toString('binary');
     var body = decoded.slice(0, length - 4);
 
-    var good_cksum = sha256_digest(sha256_digest(body)).substr(0,4);
+	 var good_cksum = sha256_digest(sha256_digest(body)).toString('binary').substr(0,4);
     return (cksum === good_cksum ? decoded_hex.slice(0, 2) : null);
 }
 
@@ -106,5 +107,5 @@ module.exports.validate = validate;
 
 // helper to perform sha256 digest
 function sha256_digest(payload) {
-    return crypto.createHash('sha256').update(payload).digest('binary');
+	 return crypto.createHash('sha256').update(payload).digest();
 }
