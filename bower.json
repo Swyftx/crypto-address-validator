@@ -1,0 +1,20 @@
+{
+  "name": "wallet-address-validator",
+  "description": "Wallet address validator for Bitcoin and other Altcoins.",
+  "version": "0.0.1",
+  "keywords": [
+    "bitcoin",
+    "litecoin",
+    "dogecoin",
+    "altcoin",
+    "address",
+    "wallet",
+    "validator"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ognus/wallet-address-validator",
+  "main": "dist/wallet-address-validator.min.js",
+  "devDependencies": {
+    "jssha": "1.6.0"
+  }
+}

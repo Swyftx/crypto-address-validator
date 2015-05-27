@@ -1,72 +1,93 @@
-# altcoin-address [![Build Status](https://secure.travis-ci.org/ryanralph/altcoin-address.png)](http://travis-ci.org/ryanralph/altcoin-address)
-Functions for working with altcoin addresses, forked from [DefunctZombie](https://github.com/defunctzombie/bitcoin-address).
+# wallet-address-validator
+Simple wallet address validator for validating Bitcoin and other altcoins addresses in **Node.js and browser**. 
+
+Forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
+
+I forked it to remove all Node.js dependencies (crypro, Buffer etc.) to make it usable in the browser as well. I didn't use browserify to achieve smaller footprint, **file size is 3.9 kB (minifed and gzipped)**.
+
+## Installation
+
+### Node
+```
+npm install wallet-address-validator
+```
+
+### Browser
+```html
+<script src="wallet-address-validator.min.js"></script>
+```
+
+#### Using bower
+```
+bower install wallet-address-validator
+```
+
 
 ## API
 
-### validate (address [, type])
+### validate (address [, currency])
 
-> returns true if the address (string) is a valid altcoin address for the type specified
+> returns true if the address (string) is a valid wallet address for the crypto currency specified, see below for supported currencies.
 >
 > if no options are specified it defaults to bitcoin
 
-### get_address_type (address)
+### getAddressType (address)
 
-> returns address type if valid base58 address, otherwise null
+> returns address type (as 2 character hex string) if valid base58 address, otherwise null
 
-### Address types
+### Supported crypto currencies
 
-* Bitcoin/BTC  (bitcoin)
-* Litecoin/LTC  (litecoin)
-* Peercoin/PPCoin/PPC  (peercoin)
-* Dogecoin/DOGE (dogecoin)
-* BeaverCoin/BVC (beavercoin)
-* Freicoin/FRC  (freicoin)
-* Protoshares/PTS  (protoshares)
-* Megacoin/MEC  (megacoin)
-* Primecoin/XPM  (primecoin)
-* Auroracoin/AUR (auroracoin)
-* Namecoin/NMC (namecoin)
+* Bitcoin/BTC, `'bitcoin'`
+* Litecoin/LTC, `'litecoin'`
+* Peercoin/PPCoin/PPC, `'peercoin'`
+* Dogecoin/DOGE, `'dogecoin'`
+* BeaverCoin/BVC, `'beavercoin'`
+* Freicoin/FRC, `'freicoin'`
+* Protoshares/PTS, `'protoshares'`
+* Megacoin/MEC, `'megacoin'`
+* Primecoin/XPM, `'primecoin'`
+* Auroracoin/AUR, `'auroracoin'`
+* Namecoin/NMC, `'namecoin'`
 
-I intend to update this to include more currencies in the future. If you would like a new currency added quickly please send a pull request including tests.
+### Usage example
 
-> This will work for both BIP-0016 P2SH addresses and regular addresses.
->
-> To check the validity of a testnet address for any of the listed coins just append 'Testnet'
-
-### Example
-
+#### Node
 ```javascript
-var altcoin = require('altcoin-address');
+var WAValidator = require('wallet-address-validator');
 
-var valid = altcoin.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin');
+var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin');
 if(valid)
 	console.log('This is a valid address');
 else
 	console.log('Address INVALID');
 
-
-//This should return that 'This is a valid address'
+// This will log 'This is a valid address' to the console.
 ```
 
 ```javascript
-var altcoin = require('altcoin-address');
+var WAValidator = require('wallet-address-validator');
 
-var valid = altcoin.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoinTestnet');
+var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoinTestnet');
 if(valid)
       console.log('This is a valid address');
 else
       console.log('Address INVALID');
 
-
-//As this is a invalid litecoin address response will be 'Address INVALID'
+// As this is a invalid litecoin address 'Address INVALID' will be logged to console.
 ```
 
-###Donations
+#### Browser
+```html
+<script src="wallet-address-validator.min.js"></script>
+```
 
-If you've found this useful feel free to send me a tip
-> BTC 1E3s7YjGVWrnhxTYkjkBKtTX3c673CCm3w
+```javascript
+// WAValidator is exposed as a global (window.WAValidator)
+var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin');
+if(valid)
+    alert('This is a valid address');
+else
+    alert('Address INVALID');
 
-
-###Ports to other languages
-
-Ruby: https://bitbucket.org/noveltylab/crypto-address
+// This should show a pop up with text 'This is a valid address'.
+```
