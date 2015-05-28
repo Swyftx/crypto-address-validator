@@ -11,6 +11,7 @@ module.exports = function(grunt) {
                         'bower_components/jssha/src/sha256.js',
                         'src/base58.js',
                         'src/crypto_utils.js',
+                        'src/currencies.js',
                         'src/wallet_address_validator.js'
                     ]
                 }

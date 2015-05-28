@@ -5,13 +5,13 @@ var chai = isNode ? require('chai') : window.chai,
 
 var WAValidator = isNode ? require('../src/wallet_address_validator') : window.WAValidator;
 
-function valid (address, currency) {
-    var result = WAValidator.validate(address, currency);
+function valid (address, currency, networkType) {
+    var result = WAValidator.validate(address, currency, networkType);
     expect(result).to.be.true;
 }
 
-function invalid (address, currency) {
-    var result = WAValidator.validate(address, currency);
+function invalid (address, currency, networkType) {
+    var result = WAValidator.validate(address, currency, networkType);
     expect(result).to.be.false;
 }
 
@@ -20,8 +20,14 @@ describe('WAValidator.validate()', function () {
         it('should return true for correct bitcoin addresses', function () {
             valid('12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP', 'bitcoin');
             valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bitcoin');
+            valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'BTC');
+            valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'Bitcoin');
+            valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'btc');
+            valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'btc', 'prod');
+            valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'btc', 'both');
             valid('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs', 'bitcoin');
-            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoinTestnet');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoin', 'testnet');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoin', 'both');
 
             valid('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez');
             valid('116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd');
@@ -29,84 +35,91 @@ describe('WAValidator.validate()', function () {
             // p2sh addresses
             valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt');
             valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'bitcoin');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'bitcoinTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'bitcoin', 'testnet');
         });
 
         it('should return true for correct litecoin addresses', function () {
             valid('LVg2kJoFNg45Nbpy53h7Fe1wKyeXVRhMH9', 'litecoin');
+            valid('LVg2kJoFNg45Nbpy53h7Fe1wKyeXVRhMH9', 'LTC');
             valid('LTpYZG19YmfvY2bBDYtCKpunVRw7nVgRHW', 'litecoin');
             valid('Lb6wDP2kHGyWC7vrZuZAgV7V4ECyDdH7a6', 'litecoin');
-            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'litecoinTestnet');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'litecoin', 'testnet');
 
             // p2sh addresses
             valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'litecoin');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'litecoinTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'litecoin', 'testnet');
         });
 
         it('should return true for correct peercoin addresses', function () {
             valid('PHCEsP6od3WJ8K2WKWEDBYKhH95pc9kiZN', 'peercoin');
             valid('PSbM1pGoE9dnAuVWvpQqTTYVpKZU41dNAz', 'peercoin');
             valid('PUULeHrJL2WujJkorc2RsUAR3SardKUauu', 'peercoin');
-            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'peercoinTestnet');
+            valid('PUULeHrJL2WujJkorc2RsUAR3SardKUauu', 'PPC');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'peercoin', 'testnet');
 
             // p2sh addresses
             valid('pNms4CaWqgZUxbNZaA1yP2gPr3BYnez9EM', 'peercoin');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'peercoinTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'peercoin', 'testnet');
         });
 
         it('should return true for correct dogecoin addresses', function () {
             valid('DPpJVPpvPNP6i6tMj4rTycAGh8wReTqaSU', 'dogecoin');
             valid('DNzLUN6MyYVS5zf4Xc2yK69V3dXs6Mxia5', 'dogecoin');
             valid('DPS6iZj7roHquvwRYXNBua9QtKPzigUUhM', 'dogecoin');
+            valid('DPS6iZj7roHquvwRYXNBua9QtKPzigUUhM', 'DOGE');
             //TODO: NEED A DOGECOIN TESTNET ADDRESS
 
             //p2sh addresses
             valid('A7JjzK9k9x5b2MkkQzqt91WZsuu7wTu6iS', 'dogecoin');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'dogecoinTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'dogecoin', 'testnet');
         });
 
         it('should return true for correct beavercoin addresses', function () {
             valid('BPPtB4EpPi5wCaGXZuNyKQgng8ya579qUh', 'beavercoin');
             valid('BC1LLYoE4mTCHTJhVYvLGxhRTwAHyWTQ49', 'beavercoin');
             valid('BBuyeg2vjtyFdMNj3LTxuVra4wJMKVAY9C', 'beavercoin');
-            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'beavercoinTestnet');
+            valid('BBuyeg2vjtyFdMNj3LTxuVra4wJMKVAY9C', 'BVC');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'beavercoin', 'testnet');
 
             // p2sh addresses
             valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'beavercoin');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'beavercoinTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'beavercoin', 'testnet');
         });
 
         it('should return true for correct litecoin freicoin', function () {
             valid('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 'freicoin');
             valid('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs', 'freicoin');
             valid('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez', 'freicoin');
-            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'freicoinTestnet');
+            valid('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez', 'FRC');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'freicoin', 'testnet');
 
             // p2sh addresse
             valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'freicoin');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'freicoinTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'freicoin', 'testnet');
         });
 
         it('should return true for correct protoshares addresses', function () {
             valid('PaNGELmZgzRQCKeEKM6ifgTqNkC4ceiAWw', 'protoshares');
             valid('Piev8TMX2fT5mFtgxx2TXJaqXP37weMPuD', 'protoshares');
             valid('PgsuLoe9ojRKFGJGVpqqk37gAqNJ4ozboD', 'protoshares');
-            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'protosharesTestnet');
+            valid('PgsuLoe9ojRKFGJGVpqqk37gAqNJ4ozboD', 'PTS');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'protoshares', 'testnet');
 
             //p2sh addresses
             valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'protoshares');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'protosharesTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'protoshares', 'testnet');
         });
 
         it('should return true for correct megacoin addresses', function () {
             valid('MWUHaNxjXGZUYTh92i3zuDmsnH1rHSBk5M', 'megacoin');
             valid('MSAkrhRyte7bz999Ga5SqYjzypFFYa2oEb', 'megacoin');
             valid('MLUTAtDQFcfo1QACWocLuufFq5fBDTpCHE', 'megacoin');
-            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'megacoinTestnet');
+            valid('MLUTAtDQFcfo1QACWocLuufFq5fBDTpCHE', 'MEC');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'megacoin', 'testnet');
 
             //p2sh addresses
             valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'megacoin');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'megacoinTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'megacoin', 'testnet');
         });
 
         it('should return true for correct primecoin addresses', function () {
@@ -114,11 +127,12 @@ describe('WAValidator.validate()', function () {
             valid('AQXBRPyob4dywUJ21RUKrR1xetQCDVenKD', 'primecoin');
             valid('ANHfTZnskKqaBU7oZuSha9SpbHU3YBfeKf', 'primecoin');
             valid('AYdiYMKSGYxLcZNDmqB8jNcck7SQibrfiK', 'primecoin');
-            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'primecoinTestnet');
+            valid('AYdiYMKSGYxLcZNDmqB8jNcck7SQibrfiK', 'XPM');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'primecoin', 'testnet');
 
             //p2sh addresses
             valid('af5CvTQq7agDh717Wszb5QDbWb7nT2mukP', 'primecoin');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'primecoinTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'primecoin', 'testnet');
         });
 
         it('should return true for correct auroracoin addresses', function () {
@@ -126,11 +140,12 @@ describe('WAValidator.validate()', function () {
             valid('AUtfc6ThCLb7FuEu7QPrWpJuaXaJRPciDF', 'auroracoin');
             valid('AUN1oaj5hjispGnczt8Aruw3TxgGyRqB3V', 'auroracoin');
             valid('AXGcBkGX6NiaDXj85C5dCrhTRUgwxSkKDK', 'auroracoin');
-            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'auroracoinTestnet');
+            valid('AXGcBkGX6NiaDXj85C5dCrhTRUgwxSkKDK', 'AUR');
+            valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'auroracoin', 'testnet');
 
             //p2sh addresses
             valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'auroracoin');
-            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'auroracoinTestnet');
+            valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'auroracoin', 'testnet');
         });
 
         it('should return true for correct namecoin addresses', function () {
@@ -138,6 +153,7 @@ describe('WAValidator.validate()', function () {
             valid('MyJ691bGJ48RBK2LS8n1U57wcFLFScFXxi', 'namecoin');
             valid('NFY9aw1RXLGtWpeqgNQXprnUcZXyKNinTh', 'namecoin');
             valid('NCPPc7Pzb75CpRPJQPRRh6ouJTq7BCy1H4', 'namecoin');
+            valid('NCPPc7Pzb75CpRPJQPRRh6ouJTq7BCy1H4', 'NMC');
         });
     });
 
@@ -148,10 +164,10 @@ describe('WAValidator.validate()', function () {
             invalid('1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa', currency); //reject invalid address
             invalid('bd839e4f6fadb293ba580df5dea7814399989983', currency);  //reject transaction id's
             //testnet
-            invalid('', currency + 'Testnet'); //reject blank
-            invalid('%%@', currency + 'Testnet'); //reject invalid base58 string
-            invalid('1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa', currency + 'Testnet'); //reject invalid address
-            invalid('bd839e4f6fadb293ba580df5dea7814399989983', currency + 'Testnet');  //reject transaction id's
+            invalid('', currency, 'testnet'); //reject blank
+            invalid('%%@', currency, 'testnet'); //reject invalid base58 string
+            invalid('1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa', currency, 'testnet'); //reject invalid address
+            invalid('bd839e4f6fadb293ba580df5dea7814399989983', currency, 'testnet');  //reject transaction id's
         }
 
         it('should return false for incorrect bitcoin addresses', function () {

@@ -8,9 +8,12 @@
     "altcoin",
     "address",
     "wallet",
-    "validator"
+    "validator",
+    "javascript",
+    "browser",
+    "nodejs"
   ],
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Tomek Kolasa <tomek@kolasa.me>",
   "homepage": "https://github.com/ognus/wallet-address-validator",
   "license": "MIT",

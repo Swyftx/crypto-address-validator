@@ -3,7 +3,7 @@ Simple wallet address validator for validating Bitcoin and other altcoins addres
 
 Forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
 
-I forked it to remove all Node.js dependencies (crypro, Buffer etc.) to make it usable in the browser as well. I didn't use browserify to achieve smaller footprint, **file size is 3.9 kB (minifed and gzipped)**.
+I forked it to remove all Node.js dependencies (crypro, Buffer etc.) to make it usable in the browser as well. I didn't use browserify to achieve smaller footprint, **file size is 4.0 kB (minifed and gzipped)**.
 
 ## Installation
 
@@ -25,29 +25,35 @@ bower install wallet-address-validator
 
 ## API
 
-### validate (address [, currency])
+##### validate (address [, currency = 'bitcoin'[, networkType = 'prod']])
 
-> returns true if the address (string) is a valid wallet address for the crypto currency specified, see below for supported currencies.
->
-> if no options are specified it defaults to bitcoin
+###### Parameters
+* address - Wallet address to validate.
+* currency - Optional. Currency name or symbol, e.g. `'bitcoin'` (default), `'litecoin'` or `'LTC'`
+* networkType - Optional. Use `'prod'` (default) to enforce standard address, `'testnet'` to enforce testnet address and `'both'` to enforce nothing. 
 
-### getAddressType (address)
+> Returns true if the address (string) is a valid wallet address for the crypto currency specified, see below for supported currencies.
 
-> returns address type (as 2 character hex string) if valid base58 address, otherwise null
+##### getAddressType (address)
+
+###### Parameters
+* address - Wallet address.
+
+> Returns address type (as 2 character hex string) if valid base58 address, otherwise null.
 
 ### Supported crypto currencies
 
-* Bitcoin/BTC, `'bitcoin'`
-* Litecoin/LTC, `'litecoin'`
-* Peercoin/PPCoin/PPC, `'peercoin'`
-* Dogecoin/DOGE, `'dogecoin'`
-* BeaverCoin/BVC, `'beavercoin'`
-* Freicoin/FRC, `'freicoin'`
-* Protoshares/PTS, `'protoshares'`
-* Megacoin/MEC, `'megacoin'`
-* Primecoin/XPM, `'primecoin'`
-* Auroracoin/AUR, `'auroracoin'`
-* Namecoin/NMC, `'namecoin'`
+* Bitcoin/BTC, `'bitcoin'` or `'BTC'`
+* Litecoin/LTC, `'litecoin'` or `'LTC'`
+* Peercoin/PPCoin/PPC, `'peercoin'` or `'PPC'`
+* Dogecoin/DOGE, `'dogecoin'` or `'DOGE'`
+* BeaverCoin/BVC, `'beavercoin'` or `'BVC'`
+* Freicoin/FRC, `'freicoin'` or `'FRC'`
+* Protoshares/PTS, `'protoshares'` or `'PTS'`
+* Megacoin/MEC, `'megacoin'` or `'MEC'`
+* Primecoin/XPM, `'primecoin'` or `'XPM'`
+* Auroracoin/AUR, `'auroracoin'` or `'AUR'`
+* Namecoin/NMC, `'namecoin'` or `'NMC'`
 
 ### Usage example
 
@@ -55,7 +61,7 @@ bower install wallet-address-validator
 ```javascript
 var WAValidator = require('wallet-address-validator');
 
-var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin');
+var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'BTC');
 if(valid)
 	console.log('This is a valid address');
 else
@@ -67,7 +73,7 @@ else
 ```javascript
 var WAValidator = require('wallet-address-validator');
 
-var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoinTestnet');
+var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoin', 'testnet');
 if(valid)
       console.log('This is a valid address');
 else
