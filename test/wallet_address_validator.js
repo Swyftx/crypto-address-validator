@@ -155,6 +155,14 @@ describe('WAValidator.validate()', function () {
             valid('NCPPc7Pzb75CpRPJQPRRh6ouJTq7BCy1H4', 'namecoin');
             valid('NCPPc7Pzb75CpRPJQPRRh6ouJTq7BCy1H4', 'NMC');
         });
+
+        it('should return true for correct BioCoin addresses', function () {
+            valid('B7xseoLGk7hEpMDDeSvZDKmmiAMHWiccok', 'biocoin');
+            valid('B8zjmYFGhWmiaQSJshfrnefE72xCapCkvo', 'biocoin');
+            valid('muH8LL42DiMs8GEQ6Grfi8KUw2uFvuKr1J', 'biocoin', 'testnet');
+            valid('muH8LL42DiMs8GEQ6Grfi8KUw2uFvuKr1J', 'BIO', 'testnet');
+            valid('B8zjmYFGhWmiaQSJshfrnefE72xCapCkvo', 'BIO');
+        });
     });
 
     describe('invalid results', function () {
@@ -212,6 +220,10 @@ describe('WAValidator.validate()', function () {
 
         it('should return false for incorrect namecoin addresses', function () {
             commonTests('namecoin');
+        });
+
+        it('should return false for incorrect biocoin addresses', function () {
+            commonTests('biocoin');
         });
 
     });

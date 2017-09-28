@@ -44,6 +44,10 @@
             name: 'namecoin',
             symbol: 'nmc',
             addressTypes: {prod: ['34'], testnet: []}
+        },{
+            name: 'biocoin',
+            symbol: 'bio',
+            addressTypes: {prod: ['19', '14'], testnet: ['6f', 'c4']}
         }];
 
 
