@@ -11,9 +11,6 @@ function isValidAdaAddress (address, currency, networkType) {
   }
   var addrChecksum = decodedAddr[1]
   var calculatedChecksum = crc32.buf(taggedAddr.value)
-  console.log('DECODED ADDRESS', taggedAddr.value.toString('hex'))
-  console.log('CALCULATED CHECKSUM', calculatedChecksum)
-  console.log('CHECKSUM:', addrChecksum)
   return calculatedChecksum === addrChecksum
 }
 
