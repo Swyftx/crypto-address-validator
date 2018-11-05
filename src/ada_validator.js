@@ -1,21 +1,34 @@
-const base58 = require('./crypto/base58')
-const cbor = require('cbor')
-const crc32 = require('crc-32')
+var cbor = require('cbor-js')
+var CRC = require('crc')
+var base58 = require('./crypto/base58')
 
-function isValidAdaAddress (address, currency, networkType) {
-  var decodedAddr = base58.decode(address)
-  decodedAddr = cbor.decode(Buffer.from(decodedAddr))
-  var taggedAddr = decodedAddr[0]
-  if (taggedAddr === undefined) {
-    return false
+function getDecoded (address) {
+  try {
+    var decoded = base58.decode(address)
+    return cbor.decode(new Uint8Array(decoded).buffer)
+  } catch (e) {
+    // if decoding fails, assume invalid address
+    return null
   }
-  var addrChecksum = decodedAddr[1]
-  var calculatedChecksum = crc32.buf(taggedAddr.value)
-  return calculatedChecksum === addrChecksum
 }
 
 module.exports = {
-  isValidAddress: function (address, currency, networkType) {
-    return isValidAdaAddress(address, currency, networkType)
+  isValidAddress: function (address) {
+    var decoded = getDecoded(address)
+
+    if (!decoded || (!Array.isArray(decoded) && decoded.length !== 2)) {
+      return false
+    }
+
+    var tagged = decoded[0]
+    var validCrc = decoded[1]
+    if (typeof (validCrc) !== 'number') {
+      return false
+    }
+
+    // get crc of the payload
+    var crc = CRC.crc32(tagged)
+
+    return crc === validCrc
   }
 }
