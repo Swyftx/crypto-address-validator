@@ -18,99 +18,98 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-var CHARSET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l';
-var GENERATOR = [0x3b6a57b2, 0x26508e6d, 0x1ea119fa, 0x3d4233dd, 0x2a1462b3];
+var CHARSET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
+var GENERATOR = [0x3b6a57b2, 0x26508e6d, 0x1ea119fa, 0x3d4233dd, 0x2a1462b3]
 
 module.exports = {
   decode: decode,
-  encode: encode,
-};
-
+  encode: encode
+}
 
 function polymod (values) {
-  var chk = 1;
+  var chk = 1
   for (var p = 0; p < values.length; ++p) {
-    var top = chk >> 25;
-    chk = (chk & 0x1ffffff) << 5 ^ values[p];
+    var top = chk >> 25
+    chk = (chk & 0x1ffffff) << 5 ^ values[p]
     for (var i = 0; i < 5; ++i) {
       if ((top >> i) & 1) {
-        chk ^= GENERATOR[i];
+        chk ^= GENERATOR[i]
       }
     }
   }
-  return chk;
+  return chk
 }
 
 function hrpExpand (hrp) {
-  var ret = [];
-  var p;
+  var ret = []
+  var p
   for (p = 0; p < hrp.length; ++p) {
-    ret.push(hrp.charCodeAt(p) >> 5);
+    ret.push(hrp.charCodeAt(p) >> 5)
   }
-  ret.push(0);
+  ret.push(0)
   for (p = 0; p < hrp.length; ++p) {
-    ret.push(hrp.charCodeAt(p) & 31);
+    ret.push(hrp.charCodeAt(p) & 31)
   }
-  return ret;
+  return ret
 }
 
 function verifyChecksum (hrp, data) {
-  return polymod(hrpExpand(hrp).concat(data)) === 1;
+  return polymod(hrpExpand(hrp).concat(data)) === 1
 }
 
 function createChecksum (hrp, data) {
-  var values = hrpExpand(hrp).concat(data).concat([0, 0, 0, 0, 0, 0]);
-  var mod = polymod(values) ^ 1;
-  var ret = [];
+  var values = hrpExpand(hrp).concat(data).concat([0, 0, 0, 0, 0, 0])
+  var mod = polymod(values) ^ 1
+  var ret = []
   for (var p = 0; p < 6; ++p) {
-    ret.push((mod >> 5 * (5 - p)) & 31);
+    ret.push((mod >> 5 * (5 - p)) & 31)
   }
-  return ret;
+  return ret
 }
 
 function encode (hrp, data) {
-  var combined = data.concat(createChecksum(hrp, data));
-  var ret = hrp + '1';
+  var combined = data.concat(createChecksum(hrp, data))
+  var ret = hrp + '1'
   for (var p = 0; p < combined.length; ++p) {
-    ret += CHARSET.charAt(combined[p]);
+    ret += CHARSET.charAt(combined[p])
   }
-  return ret;
+  return ret
 }
 
 function decode (bechString) {
-  var p;
-  var has_lower = false;
-  var has_upper = false;
+  var p
+  var hasLower = false
+  var hasUpper = false
   for (p = 0; p < bechString.length; ++p) {
     if (bechString.charCodeAt(p) < 33 || bechString.charCodeAt(p) > 126) {
-      return null;
+      return null
     }
     if (bechString.charCodeAt(p) >= 97 && bechString.charCodeAt(p) <= 122) {
-        has_lower = true;
+      hasLower = true
     }
     if (bechString.charCodeAt(p) >= 65 && bechString.charCodeAt(p) <= 90) {
-        has_upper = true;
+      hasUpper = true
     }
   }
-  if (has_lower && has_upper) {
-    return null;
+  if (hasLower && hasUpper) {
+    return null
   }
-  bechString = bechString.toLowerCase();
-  var pos = bechString.lastIndexOf('1');
+  bechString = bechString.toLowerCase()
+  var pos = bechString.lastIndexOf('1')
   if (pos < 1 || pos + 7 > bechString.length || bechString.length > 90) {
-    return null;
+    return null
   }
-  var hrp = bechString.substring(0, pos);
-  var data = [];
+  var hrp = bechString.substring(0, pos)
+  var data = []
   for (p = pos + 1; p < bechString.length; ++p) {
-    var d = CHARSET.indexOf(bechString.charAt(p));
+    var d = CHARSET.indexOf(bechString.charAt(p))
     if (d === -1) {
-      return null;
+      return null
     }
-    data.push(d);
+    data.push(d)
   }
   if (!verifyChecksum(hrp, data)) {
-    return null;
+    return null
   }
-  return {hrp: hrp, data: data.slice(0, data.length - 6)};
+  return { hrp: hrp, data: data.slice(0, data.length - 6) }
 }
