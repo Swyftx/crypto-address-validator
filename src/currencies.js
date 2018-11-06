@@ -1,11 +1,12 @@
 var XRPValidator = require('./ripple_validator')
 var ETHValidator = require('./ethereum_validator')
 var BTCValidator = require('./bitcoin_validator')
-var ADAValidator = require('./ada_validator')
+var ADAValidator = require('./cardano_validator')
 var XMRValidator = require('./monero_validator')
 var NANOValidator = require('./nano_validator')
 var LSKValidator = require('./lisk_validator')
 var IOTAValidator = require('./iota_validator')
+var EOSValidator = require('./eos_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 var CURRENCIES = [{
@@ -19,6 +20,11 @@ var CURRENCIES = [{
   addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
   validator: BTCValidator
 }, {
+  name: 'BitcoinCash',
+  symbol: 'bcc', // Other asset code for Bitcoin Cash
+  addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
+  validator: BTCValidator
+}, {
   name: 'LiteCoin',
   symbol: 'ltc',
   addressTypes: { prod: ['30', '05', '32'], testnet: ['6f', 'c4', '3a'] },
@@ -27,6 +33,11 @@ var CURRENCIES = [{
   name: 'PeerCoin',
   symbol: 'ppc',
   addressTypes: { prod: ['37', '75'], testnet: ['6f', 'c4'] },
+  validator: BTCValidator
+}, {
+  name: 'Tron',
+  symbol: 'trx',
+  addressTypes: { prod: ['41'] },
   validator: BTCValidator
 }, {
   name: 'DogeCoin',
@@ -245,7 +256,7 @@ var CURRENCIES = [{
   symbol: 'ant',
   validator: ETHValidator
 }, {
-  name: 'Basic Attention Token',
+  name: 'BasicAttentionToken',
   symbol: 'bat',
   validator: ETHValidator
 }, {
@@ -289,7 +300,7 @@ var CURRENCIES = [{
   symbol: 'pay',
   validator: ETHValidator
 }, {
-  name: 'Ripio Credit Network',
+  name: 'RipioCreditNetwork',
   symbol: 'rcn',
   validator: ETHValidator
 }, {
@@ -357,6 +368,42 @@ var CURRENCIES = [{
   symbol: 'xrb',
   validator: NANOValidator
 }, {
+  name: 'AdEx',
+  symbol: 'adx',
+  validator: ETHValidator
+}, {
+  name: 'BinanceCoin',
+  symbol: 'bnb',
+  validator: ETHValidator
+}, {
+  name: 'ETHOS',
+  symbol: 'ethos',
+  validator: ETHValidator
+}, {
+  name: 'Bitquence',
+  symbol: 'bqx',
+  validator: ETHValidator
+}, {
+  name: 'FunFair',
+  symbol: 'fun',
+  validator: ETHValidator
+}, {
+  name: 'Monacao',
+  symbol: 'mco',
+  validator: ETHValidator
+}, {
+  name: 'PowerLedger',
+  symbol: 'powr',
+  validator: ETHValidator
+}, {
+  name: 'Substratum',
+  symbol: 'sub',
+  validator: ETHValidator
+}, {
+  name: 'WaltonChain',
+  symbol: 'wtc',
+  validator: ETHValidator
+}, {
   name: 'Lisk',
   symbol: 'lsk',
   validator: LSKValidator
@@ -365,16 +412,16 @@ var CURRENCIES = [{
   symbol: 'iota',
   validator: IOTAValidator
 }, {
-  name: 'Cardano',
-  symbol: 'ada',
-  validator: ADAValidator
+  name: 'EOS',
+  symbol: 'eos',
+  validator: EOSValidator
 }]
 
 module.exports = {
   getByNameOrSymbol: function (currencyNameOrSymbol) {
-    var nameOrSymbol = currencyNameOrSymbol.toLowerCase()
+    var nameOrSymbol = currencyNameOrSymbol.replace(' ', '').toLowerCase() // Remove spaces and make lowercase
     return CURRENCIES.find(function (currency) {
-      return currency.name.toLowerCase() === nameOrSymbol.toLowerCase() || currency.symbol.toLowerCase() === nameOrSymbol.toLowerCase()
+      return currency.name.replace(' ', '').toLowerCase() === nameOrSymbol || currency.symbol.replace(' ', '').toLowerCase() === nameOrSymbol
     })
   }
 }

@@ -13,11 +13,11 @@ function validateNetwork (decoded, currency, networkType, addressType) {
 
   switch (networkType) {
     case 'prod':
-      return parseInt(decoded.substr(0, 2), 16) === network.prod[0]
+      return parseInt(decoded.substr(0, 2), 16).toString() === network.prod[0]
     case 'testnet':
-      return parseInt(decoded.substr(0, 2), 16) === network.testnet[0]
+      return parseInt(decoded.substr(0, 2), 16).toString() === network.testnet[0]
     case 'both':
-      return parseInt(decoded.substr(0, 2), 16) === network.prod[0] || parseInt(decoded.substr(0, 2), 16) === network.testnet[0]
+      return parseInt(decoded.substr(0, 2), 16).toString() === network.prod[0] || parseInt(decoded.substr(0, 2), 16).toString() === network.testnet[0]
     default:
       return false
   }
