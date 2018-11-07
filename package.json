@@ -1,5 +1,5 @@
 {
-  "name": "wallet-address-validator",
+  "name": "@swyftx/api-crypto-address-validator",
   "description": "Wallet address validator for Bitcoin and other Altcoins.",
   "keywords": [
     "btc",
@@ -27,13 +27,19 @@
     "browser",
     "nodejs"
   ],
-  "version": "0.2.1",
-  "author": "Tomek Kolasa <tomek@kolasa.me>",
-  "homepage": "https://github.com/ognus/wallet-address-validator",
+  "version": "1.0.0",
+  "author": "Swyftx",
+  "contributors": [
+    {
+      "name": "Tomek Kolasa",
+      "email": "tomek@kolasa.me",
+    }
+  ],
+  "homepage": "https://github.com/Swyftx/crypto-address-validator",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ognus/wallet-address-validator.git"
+    "url": "https://github.com/Swyftx/crypto-address-validator.git"
   },
   "main": "src/wallet_address_validator",
   "engines": {
@@ -52,8 +58,7 @@
     "base-x": "^3.0.4",
     "cbor-js": "^0.1.0",
     "crc": "^3.8.0",
-    "jssha": "2.3.1",
-    "standard": "^12.0.1"
+    "jssha": "2.3.1"
   },
   "devDependencies": {
     "browserify": "^15.1.0",
@@ -63,6 +68,7 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^1.3.0",
     "mocha": "^5.0.2",
-    "uglify-es": "^3.3.13"
+    "uglify-es": "^3.3.13",
+    "standard": "^12.0.1"
   }
 }
