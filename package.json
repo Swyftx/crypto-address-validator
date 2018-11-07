@@ -27,12 +27,15 @@
     "browser",
     "nodejs"
   ],
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "Swyftx",
+  "publishConfig": {
+    "access": "public"
+  },
   "contributors": [
     {
       "name": "Tomek Kolasa",
-      "email": "tomek@kolasa.me",
+      "email": "tomek@kolasa.me"
     }
   ],
   "homepage": "https://github.com/Swyftx/crypto-address-validator",
@@ -42,16 +45,14 @@
     "url": "https://github.com/Swyftx/crypto-address-validator.git"
   },
   "main": "src/wallet_address_validator",
-  "engines": {
-    "node": "*"
-  },
   "scripts": {
     "bundle": "browserify src/wallet_address_validator.js --standalone WAValidator --outfile dist/wallet-address-validator.js",
     "minify": "uglifyjs -c -m -o dist/wallet-address-validator.min.js -- dist/wallet-address-validator.js",
     "test:node": "mocha test",
     "test:browser": "karma start",
     "test": "npm run test:node && npm run test:browser",
-    "start": "npm run bundle && npm run minify && npm test"
+    "start": "npm run bundle && npm run minify && npm test",
+    "newversion": "yarn upgrade && yarn version --new-version"
   },
   "dependencies": {
     "@iota/validators": "^1.0.0-beta.6",
@@ -68,7 +69,7 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^1.3.0",
     "mocha": "^5.0.2",
-    "uglify-es": "^3.3.13",
-    "standard": "^12.0.1"
+    "standard": "^12.0.1",
+    "uglify-es": "^3.3.10"
   }
 }
