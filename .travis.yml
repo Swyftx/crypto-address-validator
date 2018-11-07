@@ -18,7 +18,9 @@ deploy:
   tag: beta
   on:
     branch: dev
+    node: "9"
 - provider: script
   script: "node tagAsLatest.ci.js"
   on:
     branch: master
+    node: "9"
