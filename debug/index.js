@@ -1,2 +1,2 @@
 const Validator = require('../src/wallet_address_validator.js')
-console.log(Validator.validate('DT7XFDEsQDm3cziF2EZ4DUmCg4R9eh7UjF', 'XVG'))
+console.log(Validator.validate('1Px36iiF6LqR3PkWqBB4LmkCnn2VUqtYEK', 'XVG'))

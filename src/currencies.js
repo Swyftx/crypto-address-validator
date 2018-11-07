@@ -214,6 +214,11 @@ var CURRENCIES = [{
   addressTypes: { prod: ['3a', '32'], testnet: ['6f', 'c4'] },
   validator: BTCValidator
 }, {
+  name: 'Verge',
+  symbol: 'xvg',
+  addressTypes: { prod: ['1e'], testnet: ['6F'] },
+  validator: BTCValidator
+}, {
   name: 'Waves',
   symbol: 'waves',
   addressTypes: { prod: ['0157'], testnet: ['0154'] },
