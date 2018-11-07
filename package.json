@@ -29,6 +29,9 @@
   ],
   "version": "1.0.1",
   "author": "Swyftx",
+  "publishConfig": {
+    "access": "public"
+  },
   "contributors": [
     {
       "name": "Tomek Kolasa",
