@@ -42,9 +42,6 @@
     "url": "https://github.com/Swyftx/crypto-address-validator.git"
   },
   "main": "src/wallet_address_validator",
-  "engines": {
-    "node": "*"
-  },
   "scripts": {
     "bundle": "browserify src/wallet_address_validator.js --standalone WAValidator --outfile dist/wallet-address-validator.js",
     "minify": "uglifyjs -c -m -o dist/wallet-address-validator.min.js -- dist/wallet-address-validator.js",
