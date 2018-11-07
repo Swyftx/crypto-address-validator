@@ -11584,42 +11584,6 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 }
 
 },{"buffer":29}],94:[function(require,module,exports){
-var cbor = require('cbor-js')
-var CRC = require('crc')
-var base58 = require('./crypto/base58')
-
-function getDecoded (address) {
-  try {
-    var decoded = base58.decode(address)
-    return cbor.decode(new Uint8Array(decoded).buffer)
-  } catch (e) {
-    // if decoding fails, assume invalid address
-    return null
-  }
-}
-
-module.exports = {
-  isValidAddress: function (address) {
-    var decoded = getDecoded(address)
-
-    if (!decoded || (!Array.isArray(decoded) && decoded.length !== 2)) {
-      return false
-    }
-
-    var tagged = decoded[0]
-    var validCrc = decoded[1]
-    if (typeof (validCrc) !== 'number') {
-      return false
-    }
-
-    // get crc of the payload
-    var crc = CRC.crc32(tagged)
-
-    return crc === validCrc
-  }
-}
-
-},{"./crypto/base58":96,"cbor-js":30,"crc":55}],95:[function(require,module,exports){
 (function (Buffer){
 var base58 = require('./crypto/base58')
 var segwit = require('./crypto/segwit_addr')
@@ -11711,7 +11675,43 @@ module.exports = {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"./crypto/base58":96,"./crypto/segwit_addr":102,"./crypto/utils":104,"buffer":29}],96:[function(require,module,exports){
+},{"./crypto/base58":96,"./crypto/segwit_addr":102,"./crypto/utils":104,"buffer":29}],95:[function(require,module,exports){
+var cbor = require('cbor-js')
+var CRC = require('crc')
+var base58 = require('./crypto/base58')
+
+function getDecoded (address) {
+  try {
+    var decoded = base58.decode(address)
+    return cbor.decode(new Uint8Array(decoded).buffer)
+  } catch (e) {
+    // if decoding fails, assume invalid address
+    return null
+  }
+}
+
+module.exports = {
+  isValidAddress: function (address) {
+    var decoded = getDecoded(address)
+
+    if (!decoded || (!Array.isArray(decoded) && decoded.length !== 2)) {
+      return false
+    }
+
+    var tagged = decoded[0]
+    var validCrc = decoded[1]
+    if (typeof (validCrc) !== 'number') {
+      return false
+    }
+
+    // get crc of the payload
+    var crc = CRC.crc32(tagged)
+
+    return crc === validCrc
+  }
+}
+
+},{"./crypto/base58":96,"cbor-js":30,"crc":55}],96:[function(require,module,exports){
 // Base58 encoding/decoding
 // Originally written by Mike Hearn for BitcoinJ
 // Copyright (c) 2011 Google Inc
@@ -14802,11 +14802,12 @@ module.exports = {
 var XRPValidator = require('./ripple_validator')
 var ETHValidator = require('./ethereum_validator')
 var BTCValidator = require('./bitcoin_validator')
-var ADAValidator = require('./ada_validator')
+var ADAValidator = require('./cardano_validator')
 var XMRValidator = require('./monero_validator')
 var NANOValidator = require('./nano_validator')
 var LSKValidator = require('./lisk_validator')
 var IOTAValidator = require('./iota_validator')
+var EOSValidator = require('./eos_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 var CURRENCIES = [{
@@ -14820,6 +14821,11 @@ var CURRENCIES = [{
   addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
   validator: BTCValidator
 }, {
+  name: 'BitcoinCash',
+  symbol: 'bcc', // Other asset code for Bitcoin Cash
+  addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
+  validator: BTCValidator
+}, {
   name: 'LiteCoin',
   symbol: 'ltc',
   addressTypes: { prod: ['30', '05', '32'], testnet: ['6f', 'c4', '3a'] },
@@ -14828,6 +14834,11 @@ var CURRENCIES = [{
   name: 'PeerCoin',
   symbol: 'ppc',
   addressTypes: { prod: ['37', '75'], testnet: ['6f', 'c4'] },
+  validator: BTCValidator
+}, {
+  name: 'Tron',
+  symbol: 'trx',
+  addressTypes: { prod: ['41'] },
   validator: BTCValidator
 }, {
   name: 'DogeCoin',
@@ -15004,6 +15015,11 @@ var CURRENCIES = [{
   addressTypes: { prod: ['3a', '32'], testnet: ['6f', 'c4'] },
   validator: BTCValidator
 }, {
+  name: 'Verge',
+  symbol: 'xvg',
+  addressTypes: { prod: ['1e'], testnet: ['6F'] },
+  validator: BTCValidator
+}, {
   name: 'Waves',
   symbol: 'waves',
   addressTypes: { prod: ['0157'], testnet: ['0154'] },
@@ -15046,7 +15062,7 @@ var CURRENCIES = [{
   symbol: 'ant',
   validator: ETHValidator
 }, {
-  name: 'Basic Attention Token',
+  name: 'BasicAttentionToken',
   symbol: 'bat',
   validator: ETHValidator
 }, {
@@ -15090,7 +15106,7 @@ var CURRENCIES = [{
   symbol: 'pay',
   validator: ETHValidator
 }, {
-  name: 'Ripio Credit Network',
+  name: 'RipioCreditNetwork',
   symbol: 'rcn',
   validator: ETHValidator
 }, {
@@ -15158,6 +15174,42 @@ var CURRENCIES = [{
   symbol: 'xrb',
   validator: NANOValidator
 }, {
+  name: 'AdEx',
+  symbol: 'adx',
+  validator: ETHValidator
+}, {
+  name: 'BinanceCoin',
+  symbol: 'bnb',
+  validator: ETHValidator
+}, {
+  name: 'ETHOS',
+  symbol: 'ethos',
+  validator: ETHValidator
+}, {
+  name: 'Bitquence',
+  symbol: 'bqx',
+  validator: ETHValidator
+}, {
+  name: 'FunFair',
+  symbol: 'fun',
+  validator: ETHValidator
+}, {
+  name: 'Monacao',
+  symbol: 'mco',
+  validator: ETHValidator
+}, {
+  name: 'PowerLedger',
+  symbol: 'powr',
+  validator: ETHValidator
+}, {
+  name: 'Substratum',
+  symbol: 'sub',
+  validator: ETHValidator
+}, {
+  name: 'WaltonChain',
+  symbol: 'wtc',
+  validator: ETHValidator
+}, {
   name: 'Lisk',
   symbol: 'lsk',
   validator: LSKValidator
@@ -15166,16 +15218,16 @@ var CURRENCIES = [{
   symbol: 'iota',
   validator: IOTAValidator
 }, {
-  name: 'Cardano',
-  symbol: 'ada',
-  validator: ADAValidator
+  name: 'EOS',
+  symbol: 'eos',
+  validator: EOSValidator
 }]
 
 module.exports = {
   getByNameOrSymbol: function (currencyNameOrSymbol) {
-    var nameOrSymbol = currencyNameOrSymbol.toLowerCase()
+    var nameOrSymbol = currencyNameOrSymbol.replace(' ', '').toLowerCase() // Remove spaces and make lowercase
     return CURRENCIES.find(function (currency) {
-      return currency.name.toLowerCase() === nameOrSymbol.toLowerCase() || currency.symbol.toLowerCase() === nameOrSymbol.toLowerCase()
+      return currency.name.replace(' ', '').toLowerCase() === nameOrSymbol || currency.symbol.replace(' ', '').toLowerCase() === nameOrSymbol
     })
   }
 }
@@ -15185,7 +15237,23 @@ module.exports = {
 //     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
 //     .forEach(c => console.log(`* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\` `));
 
-},{"./ada_validator":94,"./bitcoin_validator":95,"./ethereum_validator":106,"./iota_validator":107,"./lisk_validator":108,"./monero_validator":109,"./nano_validator":110,"./ripple_validator":111}],106:[function(require,module,exports){
+},{"./bitcoin_validator":94,"./cardano_validator":95,"./eos_validator":106,"./ethereum_validator":107,"./iota_validator":108,"./lisk_validator":109,"./monero_validator":110,"./nano_validator":111,"./ripple_validator":112}],106:[function(require,module,exports){
+function isValidEOSAddress (address, currency, networkType) {
+  var regex = /[a-z0-9]/g // Must be numbers and lowercase letters only
+  if (address.search(regex) !== -1 && address.length === 12) {
+    return true
+  } else {
+    return false
+  }
+}
+
+module.exports = {
+  isValidAddress: function (address, currency, networkType) {
+    return isValidEOSAddress(address, currency, networkType)
+  }
+}
+
+},{}],107:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 
 module.exports = {
@@ -15221,7 +15289,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":104}],107:[function(require,module,exports){
+},{"./crypto/utils":104}],108:[function(require,module,exports){
 var IOTA = require('@iota/validators')
 
 function isValidIotaAddress (address, currency, networkType) {
@@ -15235,7 +15303,7 @@ module.exports = {
   }
 }
 
-},{"@iota/validators":26}],108:[function(require,module,exports){
+},{"@iota/validators":26}],109:[function(require,module,exports){
 function isValidLiskAddress (address, currency, networkType) {
   var regex = /[0-9]{1,20}L/g // Must be numbers only for the first 1 - 20 charactors with a capital L at the end
   if (address.search(regex) !== -1) {
@@ -15251,7 +15319,7 @@ module.exports = {
   }
 }
 
-},{}],109:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var cnBase58 = require('./crypto/cnBase58')
 
@@ -15267,11 +15335,11 @@ function validateNetwork (decoded, currency, networkType, addressType) {
 
   switch (networkType) {
     case 'prod':
-      return parseInt(decoded.substr(0, 2), 16) === network.prod[0]
+      return parseInt(decoded.substr(0, 2), 16).toString() === network.prod[0]
     case 'testnet':
-      return parseInt(decoded.substr(0, 2), 16) === network.testnet[0]
+      return parseInt(decoded.substr(0, 2), 16).toString() === network.testnet[0]
     case 'both':
-      return parseInt(decoded.substr(0, 2), 16) === network.prod[0] || parseInt(decoded.substr(0, 2), 16) === network.testnet[0]
+      return parseInt(decoded.substr(0, 2), 16).toString() === network.prod[0] || parseInt(decoded.substr(0, 2), 16).toString() === network.testnet[0]
     default:
       return false
   }
@@ -15310,7 +15378,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/cnBase58":101,"./crypto/utils":104}],110:[function(require,module,exports){
+},{"./crypto/cnBase58":101,"./crypto/utils":104}],111:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var baseX = require('base-x')
 
@@ -15339,7 +15407,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":104,"base-x":27}],111:[function(require,module,exports){
+},{"./crypto/utils":104,"base-x":27}],112:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var baseX = require('base-x')
 
@@ -15369,7 +15437,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":104,"base-x":27}],112:[function(require,module,exports){
+},{"./crypto/utils":104,"base-x":27}],113:[function(require,module,exports){
 var currencies = require('./currencies')
 
 var DEFAULT_CURRENCY_NAME = 'bitcoin'
@@ -15386,5 +15454,5 @@ module.exports = {
   }
 }
 
-},{"./currencies":105}]},{},[112])(112)
+},{"./currencies":105}]},{},[113])(113)
 });
