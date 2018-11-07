@@ -48,7 +48,8 @@
     "test:node": "mocha test",
     "test:browser": "karma start",
     "test": "npm run test:node && npm run test:browser",
-    "start": "npm run bundle && npm run minify && npm test"
+    "start": "npm run bundle && npm run minify && npm test",
+    "newversion": "yarn upgrade && yarn version --new-version"
   },
   "dependencies": {
     "@iota/validators": "^1.0.0-beta.6",
