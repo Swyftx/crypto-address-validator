@@ -1,6 +1,6 @@
 const Path = require('path')
 const Fs = require('fs')
-const packageJson = Fs.readFileSync(Path.join(__dirname, 'package.json'))
+const packageJson = Fs.readFileSync(Path.join(__dirname, '../package.json'))
 const { spawnSync } = require('child_process')
 
 const packageManifest = JSON.parse(packageJson)
