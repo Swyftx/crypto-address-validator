@@ -1,0 +1,16 @@
+# Debugging
+debug/*
+
+# Continuous Integration
+.travis.yml
+tagAsLatest.ci.js
+
+# Coverage
+coverage/*
+.nyc_output/*
+
+# Logs
+log/*
+
+# Yarn
+yarn-error.log
