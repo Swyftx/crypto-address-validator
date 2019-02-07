@@ -214,7 +214,7 @@
     "test": "npm run test:node && npm run test:browser",
     "start": "npm run bundle && npm run minify && npm test",
     "generateReadme": "node debug/generateReadme.js && git add README.md dist/wallet-address-validator.min.js.gz package.json",
-    "preversion": "yarn upgrade && git add yarn.lock && yarn test",
+    "preversion": "yarn upgrade && git add yarn.lock && yarn test && yarn generateReadme",
     "postversion": "git push origin HEAD --follow-tags"
   },
   "dependencies": {
