@@ -56,7 +56,7 @@ Promise.all([
 
   template = templateReplace(template, 'supportedAssets',
     sortedCurrencies
-      .map(c => `* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\` `)
+      .map(c => `* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\``)
       .join('\n'))
 
   template = templateReplace(template, 'minGzSize', prettysize(compressed.gzipped.byteLength))
