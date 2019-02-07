@@ -122,7 +122,7 @@ exports.INVALID_ATTACHED_TRYTES = 'Invalid attached trytes';
 exports.INVALID_TRANSACTION_HASH = 'Invalid transaction hash';
 exports.INVALID_TAIL_TRANSACTION = 'Invalid tail transaction';
 exports.INVALID_THRESHOLD = 'Invalid threshold option';
-exports.INVALID_TRANSFER = 'Invalid transfer object';
+exports.INVALID_TRANSFER = 'Invalid transfer array';
 exports.INVALID_TRUNK_TRANSACTION = 'Invalid trunk transaction';
 exports.INVALID_REFERENCE_HASH = 'Invalid reference hash';
 exports.INVALID_TRYTES = 'Invalid trytes';
@@ -136,6 +136,7 @@ exports.INVALID_TRANSACTIONS_TO_APPROVE = 'Invalid transactions to approve.';
 exports.NO_INPUTS = 'Could not find any available inputs.';
 exports.invalidChecksum = function (address) { return "Invalid Checksum: " + address; };
 exports.inconsistentTransaction = function (reason) { return "Transaction is inconsistent. Reason: " + reason; };
+exports.INVALID_DELAY = 'Invalid delay.';
 
 },{}],4:[function(require,module,exports){
 "use strict";
@@ -204,8 +205,10 @@ exports.isNinesTrytes = exports.isEmpty;
 exports.isHash = function (hash) {
     return exports.isTrytesOfExactLength(hash, constants_1.HASH_TRYTE_SIZE) || exports.isTrytesOfExactLength(hash, constants_1.HASH_TRYTE_SIZE + 9);
 }; // address w/ checksum is valid hash
-/* Check if security level is positive integer */
-exports.isSecurityLevel = function (security) { return Number.isInteger(security) && security > 0; };
+/* Check if security level is valid positive integer */
+exports.isSecurityLevel = function (security) {
+    return Number.isInteger(security) && security > 0 && security < 4;
+};
 /**
  * Checks if input is valid input object. Address can be passed with or without checksum.
  * It does not validate the checksum.
@@ -218,7 +221,7 @@ exports.isSecurityLevel = function (security) { return Number.isInteger(security
  */
 exports.isInput = function (input) {
     return exports.isHash(input.address) &&
-        (typeof input.security === 'undefined' || exports.isSecurityLevel(input.security)) &&
+        exports.isSecurityLevel(input.security) &&
         (typeof input.balance === 'undefined' || (Number.isInteger(input.balance) && input.balance > 0)) &&
         Number.isInteger(input.keyIndex) &&
         input.keyIndex >= 0;
@@ -328,7 +331,11 @@ exports.arrayValidator = function (validator, allowEmpty) {
     return function (arr, customMsg) {
         var _a = validator(arr[0]), _ = _a[0], // tslint:disable-line no-unused-variable
         isValid = _a[1], msg = _a[2];
-        return [arr, function (x) { return x.every(function (value) { return isValid(value); }); }, customMsg || msg];
+        return [
+            arr,
+            function (x) { return Array.isArray(x) && x.every(function (value) { return isValid(value); }); },
+            customMsg || msg,
+        ];
     };
 };
 exports.depthValidator = function (depth) { return [
@@ -14799,18 +14806,19 @@ module.exports = {
 
 }).call(this,require("buffer").Buffer)
 },{"./blake256":99,"./blake2b":100,"./sha3":103,"buffer":29,"jssha/src/sha256":91}],105:[function(require,module,exports){
-var XRPValidator = require('./ripple_validator')
-var ETHValidator = require('./ethereum_validator')
-var BTCValidator = require('./bitcoin_validator')
-var ADAValidator = require('./cardano_validator')
-var XMRValidator = require('./monero_validator')
-var NANOValidator = require('./nano_validator')
-var LSKValidator = require('./lisk_validator')
-var IOTAValidator = require('./iota_validator')
-var EOSValidator = require('./eos_validator')
+const XRPValidator = require('./ripple_validator')
+const ETHValidator = require('./ethereum_validator')
+const BTCValidator = require('./bitcoin_validator')
+const ADAValidator = require('./cardano_validator')
+const XMRValidator = require('./monero_validator')
+const NANOValidator = require('./nano_validator')
+const LSKValidator = require('./lisk_validator')
+const IOTAValidator = require('./iota_validator')
+const EOSValidator = require('./eos_validator')
+const XLMValidator = require('./lumen_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
-var CURRENCIES = [{
+const CURRENCIES = [{
   name: 'Bitcoin',
   symbol: 'btc',
   addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
@@ -15221,6 +15229,39 @@ var CURRENCIES = [{
   name: 'EOS',
   symbol: 'eos',
   validator: EOSValidator
+}, {
+  name: 'BitTorrent',
+  symbol: 'btt',
+  addressTypes: { prod: ['41'] },
+  validator: BTCValidator
+}, {
+  name: 'Dent',
+  symbol: 'dent',
+  validator: ETHValidator
+}, {
+  name: 'Holo',
+  symbol: 'HOT',
+  validator: ETHValidator
+}, {
+  name: 'Chainlink',
+  symbol: 'link',
+  validator: ETHValidator
+}, {
+  name: 'Metal',
+  symbol: 'mtl',
+  validator: ETHValidator
+}, {
+  name: 'Pundi X',
+  symbol: 'npxs',
+  validator: ETHValidator
+}, {
+  name: 'Stellar Lumens',
+  symbol: 'xlm',
+  validator: XLMValidator
+}, {
+  name: 'Zilliqa',
+  symbol: 'zil',
+  validator: ETHValidator
 }]
 
 module.exports = {
@@ -15237,7 +15278,7 @@ module.exports = {
 //     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
 //     .forEach(c => console.log(`* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\` `));
 
-},{"./bitcoin_validator":94,"./cardano_validator":95,"./eos_validator":106,"./ethereum_validator":107,"./iota_validator":108,"./lisk_validator":109,"./monero_validator":110,"./nano_validator":111,"./ripple_validator":112}],106:[function(require,module,exports){
+},{"./bitcoin_validator":94,"./cardano_validator":95,"./eos_validator":106,"./ethereum_validator":107,"./iota_validator":108,"./lisk_validator":109,"./lumen_validator":110,"./monero_validator":111,"./nano_validator":112,"./ripple_validator":113}],106:[function(require,module,exports){
 function isValidEOSAddress (address, currency, networkType) {
   var regex = /[a-z0-9]/g // Must be numbers and lowercase letters only
   if (address.search(regex) !== -1 && address.length === 12) {
@@ -15279,8 +15320,10 @@ module.exports = {
 
     for (var i = 0; i < 40; i++) {
       // The nth letter should be uppercase if the nth digit of casemap is 1
-      if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) ||
-                (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
+      if (
+        (parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) ||
+        (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])
+      ) {
         return false
       }
     }
@@ -15305,7 +15348,7 @@ module.exports = {
 
 },{"@iota/validators":26}],109:[function(require,module,exports){
 function isValidLiskAddress (address, currency, networkType) {
-  var regex = /[0-9]{1,20}L/g // Must be numbers only for the first 1 - 20 charactors with a capital L at the end
+  var regex = /^[0-9]{1,20}L$/g // Must be numbers only for the first 1 - 20 charactors with a capital L at the end
   if (address.search(regex) !== -1) {
     return true
   } else {
@@ -15320,6 +15363,58 @@ module.exports = {
 }
 
 },{}],110:[function(require,module,exports){
+(function (Buffer){
+const baseX = require('base-x')
+const crc = require('crc')
+
+const ALLOWED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
+
+const codec = baseX(ALLOWED_CHARS)
+const regexp = new RegExp('^G[' + ALLOWED_CHARS + ']{55}$')
+
+module.exports = {
+  /**
+     * lumen address validation
+     */
+  isValidAddress: function (address) {
+    if (regexp.test(address)) {
+      return this.verifyChecksum(address)
+    }
+
+    return false
+  },
+
+  verifyChecksum: function (encodedAddress) {
+    const decodedAddress = codec.decode(encodedAddress)
+    const versionByte = decodedAddress[0]
+    const payload = decodedAddress.slice(0, -2)
+    // const data = payload.slice(1)
+    const checksum = decodedAddress.slice(-2)
+
+    if (encodedAddress !== codec.encode(decodedAddress)) {
+      // console.log('not base 32')
+      return false
+    }
+
+    if (versionByte !== 6 << 3) { // ? !== 48
+      // console.log('wrong version')
+      return false
+    }
+
+    const calculatedChecksum = Buffer.alloc(2)
+    calculatedChecksum.writeUInt16LE(crc.crc16xmodem(payload), 0)
+
+    if (Buffer.compare(checksum, calculatedChecksum) !== 0) {
+      // console.log('checksum missmatch')
+      return false
+    }
+
+    return true
+  }
+}
+
+}).call(this,require("buffer").Buffer)
+},{"base-x":27,"buffer":29,"crc":55}],111:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var cnBase58 = require('./crypto/cnBase58')
 
@@ -15378,7 +15473,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/cnBase58":101,"./crypto/utils":104}],111:[function(require,module,exports){
+},{"./crypto/cnBase58":101,"./crypto/utils":104}],112:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var baseX = require('base-x')
 
@@ -15407,7 +15502,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":104,"base-x":27}],112:[function(require,module,exports){
+},{"./crypto/utils":104,"base-x":27}],113:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var baseX = require('base-x')
 
@@ -15437,7 +15532,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":104,"base-x":27}],113:[function(require,module,exports){
+},{"./crypto/utils":104,"base-x":27}],114:[function(require,module,exports){
 var currencies = require('./currencies')
 
 var DEFAULT_CURRENCY_NAME = 'bitcoin'
@@ -15454,5 +15549,5 @@ module.exports = {
   }
 }
 
-},{"./currencies":105}]},{},[113])(113)
+},{"./currencies":105}]},{},[114])(114)
 });
