@@ -1,15 +1,16 @@
-var XRPValidator = require('./ripple_validator')
-var ETHValidator = require('./ethereum_validator')
-var BTCValidator = require('./bitcoin_validator')
-var ADAValidator = require('./cardano_validator')
-var XMRValidator = require('./monero_validator')
-var NANOValidator = require('./nano_validator')
-var LSKValidator = require('./lisk_validator')
-var IOTAValidator = require('./iota_validator')
-var EOSValidator = require('./eos_validator')
+const XRPValidator = require('./ripple_validator')
+const ETHValidator = require('./ethereum_validator')
+const BTCValidator = require('./bitcoin_validator')
+const ADAValidator = require('./cardano_validator')
+const XMRValidator = require('./monero_validator')
+const NANOValidator = require('./nano_validator')
+const LSKValidator = require('./lisk_validator')
+const IOTAValidator = require('./iota_validator')
+const EOSValidator = require('./eos_validator')
+const XLMValidator = require('./lumen_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
-var CURRENCIES = [{
+const CURRENCIES = [{
   name: 'Bitcoin',
   symbol: 'btc',
   addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
@@ -420,6 +421,39 @@ var CURRENCIES = [{
   name: 'EOS',
   symbol: 'eos',
   validator: EOSValidator
+}, {
+  name: 'BitTorrent',
+  symbol: 'btt',
+  addressTypes: { prod: ['41'] },
+  validator: BTCValidator
+}, {
+  name: 'Dent',
+  symbol: 'dent',
+  validator: ETHValidator
+}, {
+  name: 'Holo',
+  symbol: 'HOT',
+  validator: ETHValidator
+}, {
+  name: 'Chainlink',
+  symbol: 'link',
+  validator: ETHValidator
+}, {
+  name: 'Metal',
+  symbol: 'mtl',
+  validator: ETHValidator
+}, {
+  name: 'Pundi X',
+  symbol: 'npxs',
+  validator: ETHValidator
+}, {
+  name: 'Stellar Lumens',
+  symbol: 'xlm',
+  validator: XLMValidator
+}, {
+  name: 'Zilliqa',
+  symbol: 'zil',
+  validator: ETHValidator
 }]
 
 module.exports = {
@@ -433,5 +467,5 @@ module.exports = {
 
 // spit out details for readme.md
 // CURRENCIES
-//     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
-//     .forEach(c => console.log(`* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\` `));
+//   .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
+//   .forEach(c => console.log(`* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\` `))
