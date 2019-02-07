@@ -27,7 +27,7 @@
     "browser",
     "nodejs"
   ],
-  "version": "1.0.3",
+  "version": "1.1.0",
   "author": "Swyftx",
   "publishConfig": {
     "access": "public"
@@ -52,7 +52,8 @@
     "test:browser": "karma start",
     "test": "npm run test:node && npm run test:browser",
     "start": "npm run bundle && npm run minify && npm test",
-    "newversion": "yarn upgrade && yarn version --new-version"
+    "preversion": "yarn upgrade && git add yarn.lock && yarn test",
+    "postversion": "git push origin HEAD --follow-tags"
   },
   "dependencies": {
     "@iota/validators": "^1.0.0-beta.6",
