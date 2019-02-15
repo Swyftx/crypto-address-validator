@@ -35,6 +35,7 @@ npm install wallet-address-validator
 * Aragon/ant `'Aragon'` or `'ant'`
 * Augur/rep `'Augur'` or `'rep'`
 * AuroraCoin/aur `'AuroraCoin'` or `'aur'`
+* Australian Dollars/aud `'Australian Dollars'` or `'aud'`
 * Bancor/bnt `'Bancor'` or `'bnt'`
 * Bankex/bkx `'Bankex'` or `'bkx'`
 * BasicAttentionToken/bat `'BasicAttentionToken'` or `'bat'`
@@ -42,8 +43,8 @@ npm install wallet-address-validator
 * BinanceCoin/bnb `'BinanceCoin'` or `'bnb'`
 * BioCoin/bio `'BioCoin'` or `'bio'`
 * Bitcoin/btc `'Bitcoin'` or `'btc'`
-* BitcoinCash/bcc `'BitcoinCash'` or `'bcc'`
 * BitcoinCash/bch `'BitcoinCash'` or `'bch'`
+* BitcoinCash/bcc `'BitcoinCash'` or `'bcc'`
 * BitcoinGold/btg `'BitcoinGold'` or `'btg'`
 * BitcoinPrivate/btcp `'BitcoinPrivate'` or `'btcp'`
 * BitcoinZ/btcz `'BitcoinZ'` or `'btcz'`
