@@ -459,6 +459,11 @@ const CURRENCIES = [{
   name: 'Australian Dollars',
   symbol: 'aud',
   validator: AUDValidator
+}, {
+  name: 'Syscoin',
+  symbol: 'sys',
+  addressTypes: { prod: ['00', '3f'] },
+  validator: BTCValidator
 }]
 
 module.exports = {

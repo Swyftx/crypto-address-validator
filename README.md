@@ -3,7 +3,7 @@ Simple wallet address validator for validating Bitcoin and other altcoins addres
 
 Forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
 
-**File size is ~56.7 kB (minifed and gzipped - ~68.8% smaller)**.
+**File size is ~56.5 kB (minifed and gzipped - ~68.8% smaller)**.
 
 ## Installation
 
@@ -113,6 +113,7 @@ npm install wallet-address-validator
 * Storm/storm `'Storm'` or `'storm'`
 * Substratum/sub `'Substratum'` or `'sub'`
 * Swarm City/swt `'Swarm City'` or `'swt'`
+* Syscoin/sys `'Syscoin'` or `'sys'`
 * TenX/pay `'TenX'` or `'pay'`
 * Tether/usdt `'Tether'` or `'usdt'`
 * Tron/trx `'Tron'` or `'trx'`

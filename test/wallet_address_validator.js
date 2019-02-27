@@ -381,6 +381,16 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Zilliqa addresses', () => {
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'zil')
     })
+    it('should return true for correct Syscoin addresses', () => {
+      valid('1EQUz46mFC5Wa4hbmfp7pzJa3tzNLWxyfr', 'sys')
+      valid('1B5mKdSwRNuBvE7uZAbFCbzi7MW1KH1PHT', 'sys')
+      valid('1MZZNZS5cPQu8THtpqcTF3bQASBQoWr6zo', 'sys')
+      valid('SdzKyvhD2Y3xJvGVSfx96NXszq6x9BZX34', 'sys')
+      valid('SbmNaK9hVn9BUoPoPtTmXogfGfZd5Mophm', 'sys')
+      valid('SQUDdLog219Hpcz6Zss4uXg6xU1pAcnbLF', 'sys')
+      valid('STxiBMedbmA28ip1QMooZaTBHxyiwVSCSr', 'sys')
+      valid('SV4yxaugDJB6WXT5hNJwN1Pz6M8TjrMmJ6', 'sys')
+    })
   })
 
   describe('invalid results', function () {

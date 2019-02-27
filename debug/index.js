@@ -1,2 +1,7 @@
 const Validator = require('../src/wallet_address_validator.js')
-console.log(Validator.validate('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'zrx'))
+console.log(Validator.validate('1EQUz46mFC5Wa4hbmfp7pzJa3tzNLWxyfr', 'sys'))
+console.log(Validator.validate('1B5mKdSwRNuBvE7uZAbFCbzi7MW1KH1PHT', 'sys'))
+console.log(Validator.validate('SdzKyvhD2Y3xJvGVSfx96NXszq6x9BZX34', 'sys'))
+console.log(Validator.validate('SbmNaK9hVn9BUoPoPtTmXogfGfZd5Mophm', 'sys'))
+console.log(Validator.validate('SQUDdLog219Hpcz6Zss4uXg6xU1pAcnbLF', 'sys'))
+console.log(Validator.validate('STxiBMedbmA28ip1QMooZaTBHxyiwVSCSr', 'sys'))
