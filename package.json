@@ -213,12 +213,12 @@
     "minify": "uglifyjs -c -m -o dist/wallet-address-validator.min.js -- dist/wallet-address-validator.js",
     "test:node": "mocha test",
     "test:browser": "karma start",
-    "test": "npm run test:node && npm run test:browser",
+    "test": "yarn run bundle && yarn run minify && npm run test:node && npm run test:browser",
     "start": "npm run bundle && npm run minify && npm test",
     "generateReadme": "node debug/generateReadme.js && git add README.md dist/wallet-address-validator.min.js.gz package.json",
     "createMin": "yarn run bundle && yarn run minify && git add dist/wallet-address-validator.js dist/wallet-address-validator.min.js",
-    "preversion": "yarn upgrade && git add yarn.lock && yarn test && yarn run createMin && yarn run generateReadme",
-    "postversion": "git push origin HEAD --follow-tags"
+    "preversion": "yarn upgrade && git add yarn.lock && yarn run createMin && yarn run generateReadme",
+    "postversion": "git push origin HEAD --follow-tags && hub pull-request -o -b dev -m v%npm_package_version%"
   },
   "dependencies": {
     "@iota/validators": "^1.0.0-beta.6",
