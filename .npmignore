@@ -2,8 +2,12 @@
 debug/*
 
 # Continuous Integration
+ci/*
 .travis.yml
-tagAsLatest.ci.js
+Jenkinsfile
+
+# Tests
+test/*
 
 # Coverage
 coverage/*
