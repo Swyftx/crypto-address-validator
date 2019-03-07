@@ -1,7 +1,7 @@
 # crypto-address-validator
 Simple wallet address validator for validating Bitcoin and other altcoins addresses in **Node.js and browser**.
 
-Forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
+Forked from [ognus/wallet-address-validator](https://github.com/ognus/wallet-address-validator) which was forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
 
 **File size is ~{{minGzSize}} (minifed and gzipped - ~{{minGzReduction}}% smaller)**.
 
