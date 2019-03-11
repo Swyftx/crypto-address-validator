@@ -464,6 +464,10 @@ const CURRENCIES = [{
   symbol: 'sys',
   addressTypes: { prod: ['00', '3f'] },
   validator: BTCValidator
+}, {
+  name: 'Populous',
+  symbol: 'ppt',
+  validator: ETHValidator
 }]
 
 module.exports = {
