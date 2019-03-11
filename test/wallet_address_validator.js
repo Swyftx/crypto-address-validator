@@ -391,6 +391,9 @@ describe('WAValidator.validate()', function () {
       valid('STxiBMedbmA28ip1QMooZaTBHxyiwVSCSr', 'sys')
       valid('SV4yxaugDJB6WXT5hNJwN1Pz6M8TjrMmJ6', 'sys')
     })
+    it('should return true for correct Populous addresses', () => {
+      valid('0x0e48746feb5603ceb03c1c181ccc55c953d989dc', 'ppt')
+    })
   })
 
   describe('invalid results', function () {
@@ -604,6 +607,9 @@ describe('WAValidator.validate()', function () {
     })
     it('should return false for incorrect Zilliqa addresses', () => {
       invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'zil')
+    })
+    it('should return false for incorrect Populous addresses', () => {
+      invalid('0x0E48746feb5603ceb03c1c181ccc55c953d989dc', 'ppt')
     })
   })
 })
