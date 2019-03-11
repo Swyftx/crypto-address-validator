@@ -98,6 +98,7 @@ npm install wallet-address-validator
 * PeerCoin/ppc `'PeerCoin'` or `'ppc'`
 * PIVX/pivx `'PIVX'` or `'pivx'`
 * Polymath/poly `'Polymath'` or `'poly'`
+* Populous/ppt `'Populous'` or `'ppt'`
 * PowerLedger/powr `'PowerLedger'` or `'powr'`
 * PrimeCoin/xpm `'PrimeCoin'` or `'xpm'`
 * ProtoShares/pts `'ProtoShares'` or `'pts'`
