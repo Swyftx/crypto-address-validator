@@ -394,6 +394,10 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Populous addresses', () => {
       valid('0x0e48746feb5603ceb03c1c181ccc55c953d989dc', 'ppt')
     })
+    it('should return true for correct VeChain addresses', () => {
+      valid('0x53D2c8Ac73877675e31Fe6Aa35f1Dec7Da1E0864', 'vet')
+      valid('0x24628ab432B18B1a715E0952c87211814BDC7199', 'vet')
+    })
   })
 
   describe('invalid results', function () {
@@ -610,6 +614,10 @@ describe('WAValidator.validate()', function () {
     })
     it('should return false for incorrect Populous addresses', () => {
       invalid('0x0E48746feb5603ceb03c1c181ccc55c953d989dc', 'ppt')
+    })
+    it('should return false for incorrect VeChain addresses', () => {
+      invalid('0x53D2c8Ac73877675e31Fe6Aa35f1DEc7Da1E0864', 'vet')
+      invalid('0x24628ab432B18B1a715E0952c87212814BDC7199', 'vet')
     })
   })
 })

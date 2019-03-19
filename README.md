@@ -121,6 +121,7 @@ npm install wallet-address-validator
 * Tether/usdt `'Tether'` or `'usdt'`
 * Tron/trx `'Tron'` or `'trx'`
 * TrueUSD/tusd `'TrueUSD'` or `'tusd'`
+* VeChain/vet `'VeChain'` or `'vet'`
 * Verge/xvg `'Verge'` or `'xvg'`
 * VertCoin/vtc `'VertCoin'` or `'vtc'`
 * Viberate/vib `'Viberate'` or `'vib'`
