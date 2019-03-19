@@ -468,6 +468,10 @@ const CURRENCIES = [{
   name: 'Populous',
   symbol: 'ppt',
   validator: ETHValidator
+}, {
+  name: 'VeChain',
+  symbol: 'vet',
+  validator: ETHValidator
 }]
 
 module.exports = {
