@@ -5,7 +5,7 @@ Forked from [ognus/wallet-address-validator](https://github.com/ognus/wallet-add
 
 Did you know? This package is under active development by Swyftx. Swyftx allows you to buy and sell Bitcoin, Etherium, Ripple and many more assets using Australian Dollars. [Buy Bitcoin in Australia](https://swyftx.com.au)
 
-**File size is ~56.5 kB (minifed and gzipped - ~68.8% smaller)**.
+**File size is ~80.9 kB (minifed and gzipped - ~70.6% smaller)**.
 
 ## Installation
 
@@ -95,6 +95,7 @@ npm install wallet-address-validator
 * Numeraire/nmr `'Numeraire'` or `'nmr'`
 * Odyssey/ocn `'Odyssey'` or `'ocn'`
 * OmiseGO/omg `'OmiseGO'` or `'omg'`
+* Ontology/ont `'Ontology'` or `'ont'`
 * PeerCoin/ppc `'PeerCoin'` or `'ppc'`
 * PIVX/pivx `'PIVX'` or `'pivx'`
 * Polymath/poly `'Polymath'` or `'poly'`

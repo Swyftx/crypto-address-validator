@@ -472,6 +472,11 @@ const CURRENCIES = [{
   name: 'VeChain',
   symbol: 'vet',
   validator: ETHValidator
+}, {
+  name: 'Ontology',
+  symbol: 'ont',
+  validator: BTCValidator,
+  addressTypes: { prod: ['17', '41'] }
 }]
 
 module.exports = {
