@@ -119,6 +119,8 @@
     "ocn",
     "OmiseGO",
     "omg",
+    "Ontology",
+    "ont",
     "PeerCoin",
     "ppc",
     "pivx",
@@ -196,7 +198,7 @@
     "wallet",
     "address"
   ],
-  "version": "1.5.0",
+  "version": "1.6.0",
   "author": "Swyftx",
   "publishConfig": {
     "access": "public"
