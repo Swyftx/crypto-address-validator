@@ -398,6 +398,12 @@ describe('WAValidator.validate()', function () {
       valid('0x53D2c8Ac73877675e31Fe6Aa35f1Dec7Da1E0864', 'vet')
       valid('0x24628ab432B18B1a715E0952c87211814BDC7199', 'vet')
     })
+    it('should return true for correct Ontology addresses', () => {
+      valid('AXu57dhdNDnA5drqJUM2KfoMqgaLwmZwoP', 'ont')
+      valid('TNVv2v7eKL525gZ2YCmFnsB2FGNG4VeMHX', 'ont')
+      valid('TFYhfePLaZq1Y4BdKAnorm3XjjqTZcc9m4', 'ont')
+      valid('AecjXQsLGsSU3nmx92UuGGbF1fj7EsGrt2', 'ont')
+    })
   })
 
   describe('invalid results', function () {
@@ -619,5 +625,8 @@ describe('WAValidator.validate()', function () {
       invalid('0x53D2c8Ac73877675e31Fe6Aa35f1DEc7Da1E0864', 'vet')
       invalid('0x24628ab432B18B1a715E0952c87212814BDC7199', 'vet')
     })
+    // it('should return false for incorrect Ontology addresses', () => {
+    //   invalid('', 'ont')
+    // })
   })
 })
