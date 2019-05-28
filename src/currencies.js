@@ -539,6 +539,11 @@ const CURRENCIES = [{
   name: 'THETA',
   symbol: 'theta',
   validator: ETHValidator
+}, {
+  name: 'Stratis',
+  symbol: 'strat',
+  validator: BTCValidator,
+  addressTypes: { prod: ['3f'] }
 }]
 
 module.exports = {

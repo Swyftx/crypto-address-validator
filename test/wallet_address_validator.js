@@ -444,6 +444,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct THETA addresses', () => {
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'theta')
     })
+    it('should return true for correct Stratis addresses', () => {
+      valid('SY7YwpMGvU42dkFzmFEkGWFr1BEikUwhPT', 'strat')
+    })
   })
 
   describe('invalid results', function () {
