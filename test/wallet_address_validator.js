@@ -435,6 +435,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Cosmos addresses', () => {
       valid('cosmos15v50ymp6n5dn73erkqtmq0u8adpl8d3ujv2e74', 'atom')
     })
+    it('should return true for correct STEEM addresses', () => {
+      valid('meetcrypto8', 'steem')
+    })
   })
 
   describe('invalid results', function () {
