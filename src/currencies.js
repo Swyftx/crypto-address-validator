@@ -544,6 +544,11 @@ const CURRENCIES = [{
   symbol: 'strat',
   validator: BTCValidator,
   addressTypes: { prod: ['3f'] }
+}, {
+  name: 'Status',
+  symbol: 'status',
+  validator: ETHValidator
+}, {
 }]
 
 module.exports = {

@@ -447,6 +447,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Stratis addresses', () => {
       valid('SY7YwpMGvU42dkFzmFEkGWFr1BEikUwhPT', 'strat')
     })
+    it('should return true for correct Status addresses', () => {
+      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'status')
+    })
   })
 
   describe('invalid results', function () {
