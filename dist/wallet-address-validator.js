@@ -21993,10 +21993,6 @@ const CURRENCIES = [{
   validator: BTCValidator,
   addressTypes: { prod: ['3f'] }
 }, {
-  name: 'Status',
-  symbol: 'status',
-  validator: ETHValidator
-}, {
   name: 'Golem',
   symbol: 'gnt',
   validator: ETHValidator

@@ -37,8 +37,8 @@
     "Bitcoin Diamond",
     "bcd",
     "BitcoinCash",
-    "bcc",
     "bch",
+    "bcc",
     "BitcoinGold",
     "btg",
     "BitcoinPrivate",
@@ -172,7 +172,7 @@
     "sng",
     "SolarCoin",
     "slr",
-    "status",
+    "Status",
     "snt",
     "steem",
     "Stellar Lumens",
@@ -228,7 +228,7 @@
     "wallet",
     "address"
   ],
-  "version": "1.7.0",
+  "version": "1.7.1",
   "author": "Swyftx",
   "publishConfig": {
     "access": "public"

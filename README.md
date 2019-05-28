@@ -49,8 +49,8 @@ npm install wallet-address-validator
 * BioCoin/bio `'BioCoin'` or `'bio'`
 * Bitcoin/btc `'Bitcoin'` or `'btc'`
 * Bitcoin Diamond/bcd `'Bitcoin Diamond'` or `'bcd'`
-* BitcoinCash/bcc `'BitcoinCash'` or `'bcc'`
 * BitcoinCash/bch `'BitcoinCash'` or `'bch'`
+* BitcoinCash/bcc `'BitcoinCash'` or `'bcc'`
 * BitcoinGold/btg `'BitcoinGold'` or `'btg'`
 * BitcoinPrivate/btcp `'BitcoinPrivate'` or `'btcp'`
 * BitcoinZ/btcz `'BitcoinZ'` or `'btcz'`
@@ -125,7 +125,6 @@ npm install wallet-address-validator
 * SnowGem/sng `'SnowGem'` or `'sng'`
 * SolarCoin/slr `'SolarCoin'` or `'slr'`
 * Status/snt `'Status'` or `'snt'`
-* Status/status `'Status'` or `'status'`
 * STEEM/steem `'STEEM'` or `'steem'`
 * Stellar Lumens/xlm `'Stellar Lumens'` or `'xlm'`
 * Storj/storj `'Storj'` or `'storj'`
