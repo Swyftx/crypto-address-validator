@@ -14,6 +14,7 @@ const BTSValidator = require('./bts_validator')
 const ICXValidator = require('./icx_validator')
 const AEValidator = require('./ae_validator')
 const SCValidator = require('./sc_validator')
+const ATOMValidator = require('./atom_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -522,6 +523,10 @@ const CURRENCIES = [{
   name: 'Siacoin',
   symbol: 'sc',
   validator: SCValidator
+}, {
+  name: 'Cosmos',
+  symbol: 'atom',
+  validator: ATOMValidator
 }]
 
 module.exports = {
