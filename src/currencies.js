@@ -9,6 +9,7 @@ const IOTAValidator = require('./iota_validator')
 const EOSValidator = require('./eos_validator')
 const XLMValidator = require('./lumen_validator')
 const AUDValidator = require('./aud_validator')
+const NEMValidator = require('./nem_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -476,6 +477,11 @@ const CURRENCIES = [{
   name: 'Ontology',
   symbol: 'ont',
   validator: BTCValidator,
+  addressTypes: { prod: ['17', '41'] }
+}, {
+  name: 'NEM',
+  symbol: 'XEM',
+  validator: NEMValidator,
   addressTypes: { prod: ['17', '41'] }
 }]
 

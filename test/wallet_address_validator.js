@@ -404,6 +404,9 @@ describe('WAValidator.validate()', function () {
       valid('TFYhfePLaZq1Y4BdKAnorm3XjjqTZcc9m4', 'ont')
       valid('AecjXQsLGsSU3nmx92UuGGbF1fj7EsGrt2', 'ont')
     })
+    it('should return true for correct NEM addresses', () => {
+      valid('NC64UFOWRO6AVMWFV2BFX2NT6W2GURK2EOX6FFMZ', 'xem')
+    })
   })
 
   describe('invalid results', function () {
@@ -625,8 +628,11 @@ describe('WAValidator.validate()', function () {
       invalid('0x53D2c8Ac73877675e31Fe6Aa35f1DEc7Da1E0864', 'vet')
       invalid('0x24628ab432B18B1a715E0952c87212814BDC7199', 'vet')
     })
-    // it('should return false for incorrect Ontology addresses', () => {
-    //   invalid('', 'ont')
-    // })
+    it('should return false for incorrect Ontology addresses', () => {
+      invalid('AXu57dhdNDnA5drqJUM2KfoMqgaLwmZwow', 'ont')
+      invalid('TNVv2v7eKL525gZ2YCmFnsB2FGNG4VeMHd', 'ont')
+      invalid('TFYhfePLaZq2Y4BdKAnorm3XjjqTZcc9m4', 'ont')
+      invalid('AecjxQsLGsSU3nmx92UuGGbF1fj7EsGrt2', 'ont')
+    })
   })
 })
