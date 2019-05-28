@@ -506,8 +506,7 @@ const CURRENCIES = [{
 }, {
   name: 'Bitshares',
   symbol: 'bts',
-  validator: BTSValidator,
-  addressTypes: { prod: ['3c'] }
+  validator: BTSValidator
 }, {
   name: 'ICON',
   symbol: 'icx',
