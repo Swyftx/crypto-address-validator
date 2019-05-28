@@ -1,4 +1,4 @@
-const accountRegex = new RegExp('^[a-z0-9-.]+$')
+const accountRegex = new RegExp('^[a-z0-9-.]{3,}$')
 const segmentRegex = new RegExp('^[a-z][a-z0-9-]+[a-z0-9]$')
 const doubleDashRegex = new RegExp('--')
 
