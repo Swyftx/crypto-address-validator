@@ -11,6 +11,7 @@ const XLMValidator = require('./lumen_validator')
 const AUDValidator = require('./aud_validator')
 const NEMValidator = require('./nem_validator')
 const BTSValidator = require('./bts_validator')
+const ICXValidator = require('./icx_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -503,6 +504,10 @@ const CURRENCIES = [{
   symbol: 'bts',
   validator: BTSValidator,
   addressTypes: { prod: ['3c'] }
+}, {
+  name: 'ICON',
+  symbol: 'icx',
+  validator: ICXValidator
 }]
 
 module.exports = {

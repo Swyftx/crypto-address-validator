@@ -419,6 +419,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Bitshares addresses', () => {
       valid('abcdefg-bts-1', 'bts')
     })
+    it('should return true for correct ICON addresses', () => {
+      valid('hxde8ba8fd110625a0c47ecf29de308b8f5bd20ed6', 'icx')
+    })
   })
 
   describe('invalid results', function () {
