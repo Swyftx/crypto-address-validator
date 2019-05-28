@@ -429,6 +429,9 @@ describe('WAValidator.validate()', function () {
       valid('ak_AT2bs7LkqwKbPUj5waoqq1E7QYgRzXUbaBanDHXDVsaCJ8gRA', 'ae')
       valid('ak_8QxnP9qXP3NpA4fskYZE7P1GfHzKZAMmoNuok7jJC5NqVYi21', 'ae')
     })
+    it('should return true for correct Siacoin addresses', () => {
+      valid('1acc2bc035b6606bd612b6114efea1102bd4499c0edf559469de7f40076f1c54e4eed3c5f1ac', 'sc')
+    })
   })
 
   describe('invalid results', function () {
