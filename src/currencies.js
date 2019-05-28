@@ -548,6 +548,10 @@ const CURRENCIES = [{
   name: 'Status',
   symbol: 'status',
   validator: ETHValidator
+}, {
+  name: 'Golem',
+  symbol: 'gnt',
+  validator: ETHValidator
 }]
 
 module.exports = {

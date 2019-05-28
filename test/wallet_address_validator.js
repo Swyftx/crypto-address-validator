@@ -450,6 +450,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Status addresses', () => {
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'status')
     })
+    it('should return true for correct Golem addresses', () => {
+      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'gnt')
+    })
   })
 
   describe('invalid results', function () {
