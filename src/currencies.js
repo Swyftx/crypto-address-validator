@@ -492,6 +492,11 @@ const CURRENCIES = [{
   symbol: 'bcd',
   validator: BTCValidator,
   addressTypes: { prod: ['00'] }
+}, {
+  name: 'Ravencoin',
+  symbol: 'rvn',
+  validator: BTCValidator,
+  addressTypes: { prod: ['3c'] }
 }]
 
 module.exports = {
