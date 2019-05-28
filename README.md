@@ -5,7 +5,7 @@ Forked from [ognus/wallet-address-validator](https://github.com/ognus/wallet-add
 
 Did you know? This package is under active development by Swyftx. Swyftx allows you to buy and sell Bitcoin, Etherium, Ripple and many more assets using Australian Dollars. [Buy Bitcoin in Australia](https://swyftx.com.au)
 
-**File size is ~80.9 kB (minifed and gzipped - ~70.6% smaller)**.
+**File size is ~81.6 kB (minifed and gzipped - ~70.7% smaller)**.
 
 ## Installation
 
@@ -34,7 +34,10 @@ npm install wallet-address-validator
 
 * 0x/zrx `'0x'` or `'zrx'`
 * AdEx/adx `'AdEx'` or `'adx'`
+* aelf/ELF `'aelf'` or `'ELF'`
+* Aeternity/ae `'Aeternity'` or `'ae'`
 * Aragon/ant `'Aragon'` or `'ant'`
+* Ardor/ardr `'Ardor'` or `'ardr'`
 * Augur/rep `'Augur'` or `'rep'`
 * AuroraCoin/aur `'AuroraCoin'` or `'aur'`
 * Australian Dollars/aud `'Australian Dollars'` or `'aud'`
@@ -45,23 +48,27 @@ npm install wallet-address-validator
 * BinanceCoin/bnb `'BinanceCoin'` or `'bnb'`
 * BioCoin/bio `'BioCoin'` or `'bio'`
 * Bitcoin/btc `'Bitcoin'` or `'btc'`
+* Bitcoin Diamond/bcd `'Bitcoin Diamond'` or `'bcd'`
 * BitcoinCash/bch `'BitcoinCash'` or `'bch'`
 * BitcoinCash/bcc `'BitcoinCash'` or `'bcc'`
 * BitcoinGold/btg `'BitcoinGold'` or `'btg'`
 * BitcoinPrivate/btcp `'BitcoinPrivate'` or `'btcp'`
 * BitcoinZ/btcz `'BitcoinZ'` or `'btcz'`
 * Bitquence/bqx `'Bitquence'` or `'bqx'`
+* Bitshares/bts `'Bitshares'` or `'bts'`
 * BitTorrent/btt `'BitTorrent'` or `'btt'`
 * Callisto/clo `'Callisto'` or `'clo'`
 * Cardano/ada `'Cardano'` or `'ada'`
 * Chainlink/link `'Chainlink'` or `'link'`
 * Civic/cvc `'Civic'` or `'cvc'`
+* Cosmos/atom `'Cosmos'` or `'atom'`
 * Dash/dash `'Dash'` or `'dash'`
 * Decred/dcr `'Decred'` or `'dcr'`
 * Dent/dent `'Dent'` or `'dent'`
 * DigiByte/dgb `'DigiByte'` or `'dgb'`
 * District0x/dnt `'District0x'` or `'dnt'`
 * DogeCoin/doge `'DogeCoin'` or `'doge'`
+* Enjin Coin/enj `'Enjin Coin'` or `'enj'`
 * EOS/eos `'EOS'` or `'eos'`
 * Ethereum/eth `'Ethereum'` or `'eth'`
 * EthereumClassic/etc `'EthereumClassic'` or `'etc'`
@@ -74,8 +81,10 @@ npm install wallet-address-validator
 * GarliCoin/grlc `'GarliCoin'` or `'grlc'`
 * Gnosis/gno `'Gnosis'` or `'gno'`
 * Golem/gnt `'Golem'` or `'gnt'`
+* Golem/gnt `'Golem'` or `'gnt'`
 * Holo/HOT `'Holo'` or `'HOT'`
 * Hush/hush `'Hush'` or `'hush'`
+* ICON/icx `'ICON'` or `'icx'`
 * iExec RLC/rlc `'iExec RLC'` or `'rlc'`
 * Iota/iota `'Iota'` or `'iota'`
 * Komodo/kmd `'Komodo'` or `'kmd'`
@@ -90,12 +99,14 @@ npm install wallet-address-validator
 * Monero/xmr `'Monero'` or `'xmr'`
 * NameCoin/nmc `'NameCoin'` or `'nmc'`
 * Nano/nano `'Nano'` or `'nano'`
+* NEM/xem `'NEM'` or `'xem'`
 * Neo/neo `'Neo'` or `'neo'`
 * NeoGas/gas `'NeoGas'` or `'gas'`
 * Numeraire/nmr `'Numeraire'` or `'nmr'`
 * Odyssey/ocn `'Odyssey'` or `'ocn'`
 * OmiseGO/omg `'OmiseGO'` or `'omg'`
 * Ontology/ont `'Ontology'` or `'ont'`
+* Paxos Standard Token/pax `'Paxos Standard Token'` or `'pax'`
 * PeerCoin/ppc `'PeerCoin'` or `'ppc'`
 * PIVX/pivx `'PIVX'` or `'pivx'`
 * Polymath/poly `'Polymath'` or `'poly'`
@@ -106,22 +117,28 @@ npm install wallet-address-validator
 * Pundi X/npxs `'Pundi X'` or `'npxs'`
 * Qtum/qtum `'Qtum'` or `'qtum'`
 * RaiBlocks/xrb `'RaiBlocks'` or `'xrb'`
+* Ravencoin/rvn `'Ravencoin'` or `'rvn'`
 * RipioCreditNetwork/rcn `'RipioCreditNetwork'` or `'rcn'`
 * Ripple/xrp `'Ripple'` or `'xrp'`
 * Salt/salt `'Salt'` or `'salt'`
+* Siacoin/sc `'Siacoin'` or `'sc'`
 * SnowGem/sng `'SnowGem'` or `'sng'`
 * SolarCoin/slr `'SolarCoin'` or `'slr'`
 * Status/snt `'Status'` or `'snt'`
+* STEEM/steem `'STEEM'` or `'steem'`
 * Stellar Lumens/xlm `'Stellar Lumens'` or `'xlm'`
 * Storj/storj `'Storj'` or `'storj'`
 * Storm/storm `'Storm'` or `'storm'`
+* Stratis/strat `'Stratis'` or `'strat'`
 * Substratum/sub `'Substratum'` or `'sub'`
 * Swarm City/swt `'Swarm City'` or `'swt'`
 * Syscoin/sys `'Syscoin'` or `'sys'`
 * TenX/pay `'TenX'` or `'pay'`
 * Tether/usdt `'Tether'` or `'usdt'`
+* THETA/theta `'THETA'` or `'theta'`
 * Tron/trx `'Tron'` or `'trx'`
 * TrueUSD/tusd `'TrueUSD'` or `'tusd'`
+* USD Coin/usdc `'USD Coin'` or `'usdc'`
 * VeChain/vet `'VeChain'` or `'vet'`
 * Verge/xvg `'Verge'` or `'xvg'`
 * VertCoin/vtc `'VertCoin'` or `'vtc'`

@@ -9,6 +9,14 @@ const IOTAValidator = require('./iota_validator')
 const EOSValidator = require('./eos_validator')
 const XLMValidator = require('./lumen_validator')
 const AUDValidator = require('./aud_validator')
+const NEMValidator = require('./nem_validator')
+const BTSValidator = require('./bts_validator')
+const ICXValidator = require('./icx_validator')
+const AEValidator = require('./ae_validator')
+const SCValidator = require('./sc_validator')
+const ATOMValidator = require('./atom_validator')
+const STEEMValidator = require('./steem_validator')
+const ARDRValidator = require('./ardr_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -477,6 +485,78 @@ const CURRENCIES = [{
   symbol: 'ont',
   validator: BTCValidator,
   addressTypes: { prod: ['17', '41'] }
+}, {
+  name: 'NEM',
+  symbol: 'xem',
+  validator: NEMValidator,
+  addressTypes: { prod: ['17', '41'] }
+}, {
+  name: 'USD Coin',
+  symbol: 'usdc',
+  validator: ETHValidator
+}, {
+  name: 'Bitcoin Diamond',
+  symbol: 'bcd',
+  validator: BTCValidator,
+  addressTypes: { prod: ['00'] }
+}, {
+  name: 'Ravencoin',
+  symbol: 'rvn',
+  validator: BTCValidator,
+  addressTypes: { prod: ['3c'] }
+}, {
+  name: 'Bitshares',
+  symbol: 'bts',
+  validator: BTSValidator
+}, {
+  name: 'ICON',
+  symbol: 'icx',
+  validator: ICXValidator
+}, {
+  name: 'Paxos Standard Token',
+  symbol: 'pax',
+  validator: ETHValidator
+}, {
+  name: 'Aeternity',
+  symbol: 'ae',
+  validator: AEValidator
+}, {
+  name: 'Siacoin',
+  symbol: 'sc',
+  validator: SCValidator
+}, {
+  name: 'Cosmos',
+  symbol: 'atom',
+  validator: ATOMValidator
+}, {
+  name: 'STEEM',
+  symbol: 'steem',
+  validator: STEEMValidator
+}, {
+  name: 'Enjin Coin',
+  symbol: 'enj',
+  validator: ETHValidator
+}, {
+  name: 'THETA',
+  symbol: 'theta',
+  validator: ETHValidator
+}, {
+  name: 'Stratis',
+  symbol: 'strat',
+  validator: BTCValidator,
+  addressTypes: { prod: ['3f'] }
+}, {
+  name: 'Golem',
+  symbol: 'gnt',
+  validator: ETHValidator
+}, {
+  name: 'aelf',
+  symbol: 'ELF',
+  validator: ETHValidator
+}, {
+  name: 'Ardor',
+  symbol: 'ardr',
+  validator: ARDRValidator
 }]
 
 module.exports = {
