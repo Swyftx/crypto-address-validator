@@ -448,7 +448,7 @@ describe('WAValidator.validate()', function () {
       valid('SY7YwpMGvU42dkFzmFEkGWFr1BEikUwhPT', 'strat')
     })
     it('should return true for correct Status addresses', () => {
-      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'status')
+      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'snt')
     })
     it('should return true for correct Golem addresses', () => {
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'gnt')
@@ -742,7 +742,7 @@ describe('WAValidator.validate()', function () {
       invalid('SY7YwpMGvU42dkFzmFEkGWFr1BEikUwhPTT', 'strat')
     })
     it('should return false for incorrect Status addresses', () => {
-      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'status')
+      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'snt')
     })
     it('should return false for incorrect Golem addresses', () => {
       invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'gnt')
