@@ -487,6 +487,11 @@ const CURRENCIES = [{
   name: 'USD Coin',
   symbol: 'usdc',
   validator: ETHValidator
+}, {
+  name: 'Bitcoin Diamond',
+  symbol: 'bcd',
+  validator: BTCValidator,
+  addressTypes: { prod: ['00'] }
 }]
 
 module.exports = {

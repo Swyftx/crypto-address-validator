@@ -410,6 +410,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct USD Coin addresses', () => {
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'usdc')
     })
+    it('should return true for correct Bitcoin Diamond addresses', () => {
+      valid('1B3HxLb5EgDUdmiqDxGjfL6VNAbJNZ9ZaW', 'bcd')
+    })
   })
 
   describe('invalid results', function () {
