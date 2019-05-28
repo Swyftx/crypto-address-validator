@@ -441,6 +441,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Enjin Coin addresses', () => {
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'enj')
     })
+    it('should return true for correct THETA addresses', () => {
+      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'theta')
+    })
   })
 
   describe('invalid results', function () {
