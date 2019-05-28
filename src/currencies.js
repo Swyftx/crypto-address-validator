@@ -552,6 +552,10 @@ const CURRENCIES = [{
   name: 'Golem',
   symbol: 'gnt',
   validator: ETHValidator
+}, {
+  name: 'aelf',
+  symbol: 'ELF',
+  validator: ETHValidator
 }]
 
 module.exports = {
