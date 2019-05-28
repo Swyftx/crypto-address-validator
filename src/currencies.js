@@ -480,9 +480,13 @@ const CURRENCIES = [{
   addressTypes: { prod: ['17', '41'] }
 }, {
   name: 'NEM',
-  symbol: 'XEM',
+  symbol: 'xem',
   validator: NEMValidator,
   addressTypes: { prod: ['17', '41'] }
+}, {
+  name: 'USD Coin',
+  symbol: 'usdc',
+  validator: ETHValidator
 }]
 
 module.exports = {

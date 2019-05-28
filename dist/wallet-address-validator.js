@@ -21360,6 +21360,7 @@ const IOTAValidator = require('./iota_validator')
 const EOSValidator = require('./eos_validator')
 const XLMValidator = require('./lumen_validator')
 const AUDValidator = require('./aud_validator')
+const NEMValidator = require('./nem_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -21828,6 +21829,15 @@ const CURRENCIES = [{
   symbol: 'ont',
   validator: BTCValidator,
   addressTypes: { prod: ['17', '41'] }
+}, {
+  name: 'NEM',
+  symbol: 'xem',
+  validator: NEMValidator,
+  addressTypes: { prod: ['17', '41'] }
+}, {
+  name: 'USD Coin',
+  symbol: 'usdc',
+  validator: ETHValidator
 }]
 
 module.exports = {
@@ -21840,7 +21850,7 @@ module.exports = {
   CURRENCIES
 }
 
-},{"./aud_validator":104,"./bitcoin_validator":105,"./cardano_validator":106,"./eos_validator":117,"./ethereum_validator":118,"./iota_validator":119,"./lisk_validator":120,"./lumen_validator":121,"./monero_validator":122,"./nano_validator":123,"./ripple_validator":124}],117:[function(require,module,exports){
+},{"./aud_validator":104,"./bitcoin_validator":105,"./cardano_validator":106,"./eos_validator":117,"./ethereum_validator":118,"./iota_validator":119,"./lisk_validator":120,"./lumen_validator":121,"./monero_validator":122,"./nano_validator":123,"./nem_validator":124,"./ripple_validator":125}],117:[function(require,module,exports){
 function isValidEOSAddress (address, currency, networkType) {
   var regex = /[a-z0-9]/g // Must be numbers and lowercase letters only
   if (address.search(regex) !== -1 && address.length === 12) {
@@ -22065,6 +22075,18 @@ module.exports = {
 }
 
 },{"./crypto/utils":115,"base-x":34}],124:[function(require,module,exports){
+var ALLOWED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
+
+// https://github.com/QuantumMechanics/NEM-sdk/blob/4b0b60007c52ff4a89deeef84f9ca95b61c92fca/src/model/address.js#L122
+var regexp = new RegExp('^N[' + ALLOWED_CHARS + ']{39}$')
+
+module.exports = {
+  isValidAddress: function (address) {
+    return regexp.test(address)
+  }
+}
+
+},{}],125:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var baseX = require('base-x')
 
@@ -22094,7 +22116,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":115,"base-x":34}],125:[function(require,module,exports){
+},{"./crypto/utils":115,"base-x":34}],126:[function(require,module,exports){
 var currencies = require('./currencies')
 
 var DEFAULT_CURRENCY_NAME = 'bitcoin'
@@ -22111,5 +22133,5 @@ module.exports = {
   }
 }
 
-},{"./currencies":116}]},{},[125])(125)
+},{"./currencies":116}]},{},[126])(126)
 });
