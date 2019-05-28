@@ -16,6 +16,7 @@ const AEValidator = require('./ae_validator')
 const SCValidator = require('./sc_validator')
 const ATOMValidator = require('./atom_validator')
 const STEEMValidator = require('./steem_validator')
+const ARDRValidator = require('./ardr_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -556,6 +557,10 @@ const CURRENCIES = [{
   name: 'aelf',
   symbol: 'ELF',
   validator: ETHValidator
+}, {
+  name: 'Ardor',
+  symbol: 'ardr',
+  validator: ARDRValidator
 }]
 
 module.exports = {

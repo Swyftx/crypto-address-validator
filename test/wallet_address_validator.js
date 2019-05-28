@@ -456,6 +456,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct aelf addresses', () => {
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'elf')
     })
+    it('should return true for correct Ardor addresses', () => {
+      valid('ARDOR-HFNE-E2VE-SMV3-DCRZ8', 'ardr')
+    })
   })
 
   describe('invalid results', function () {
