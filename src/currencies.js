@@ -531,6 +531,10 @@ const CURRENCIES = [{
   name: 'STEEM',
   symbol: 'steem',
   validator: STEEMValidator
+}, {
+  name: 'Enjin Coin',
+  symbol: 'enj',
+  validator: ETHValidator
 }]
 
 module.exports = {
