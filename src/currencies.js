@@ -508,6 +508,10 @@ const CURRENCIES = [{
   name: 'ICON',
   symbol: 'icx',
   validator: ICXValidator
+}, {
+  name: 'Paxos Standard Token',
+  symbol: 'pax',
+  validator: ETHValidator
 }]
 
 module.exports = {

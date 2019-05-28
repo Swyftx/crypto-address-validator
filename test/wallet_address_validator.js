@@ -422,6 +422,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct ICON addresses', () => {
       valid('hxde8ba8fd110625a0c47ecf29de308b8f5bd20ed6', 'icx')
     })
+    it('should return true for correct Paxos Standard Token addresses', () => {
+      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'pax')
+    })
   })
 
   describe('invalid results', function () {
