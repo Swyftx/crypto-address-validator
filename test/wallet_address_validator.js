@@ -686,5 +686,74 @@ describe('WAValidator.validate()', function () {
       invalid('TFYhfePLaZq2Y4BdKAnorm3XjjqTZcc9m4', 'ont')
       invalid('AecjxQsLGsSU3nmx92UuGGbF1fj7EsGrt2', 'ont')
     })
+    it('should return false for incorrect NEM addresses', () => {
+      invalid('NC64UFOWRO6AVMaFV2BFX2NT6W2GURK2EOX6FFMZ', 'xem')
+      invalid('NC64UFOWRO6AVMFV2BFX2NT6W2GURK2EOX6FFMZSDF', 'xem')
+    })
+    it('should return false for incorrect USD Coin addresses', () => {
+      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'usdc')
+    })
+    it('should return false for incorrect Bitcoin Diamond addresses', () => {
+      invalid('1B3HxLb5EgDUdmiqDxGjfL6VNAbJNZ9Zaw', 'bcd')
+    })
+    it('should return false for incorrect Ravencoin addresses', () => {
+      invalid('RFnM9d8sjAPn24yJi4VACWWWZjaYyFwd8k', 'rvn')
+    })
+    it('should return false for incorrect Bitshares addresses', () => {
+      invalid('abcdefg-Dbts-1', 'bts')
+    })
+    it('should return false for incorrect ICON addresses', () => {
+      invalid('gxde8ba8fd110625a0c47ecf29de308b8f5bd20ed6', 'icx')
+      invalid('hxde8ba8fd110625a0c47ecf29de308b8f5bd20eD6', 'icx')
+    })
+    it('should return false for incorrect Paxos Standard Token addresses', () => {
+      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'pax')
+    })
+    it('should return false for incorrect Aeternity addresses', () => {
+      invalid('aj_AT2bs7LkqwKbPUj5waoqq1E7QYgRzXUbaBanDHXDVsaCJ8gRA', 'ae')
+      invalid('ak_8QlnP9qXP3NpA4fskYZE7P1GfHzKZAMmoNuok7jJC5NqVYi21', 'ae')
+      invalid('ak_8QxnP9qXP3NpA4fskYZE7P1GfHzKZAMmoNuok7jJC5NqVYi212', 'ae')
+    })
+    it('should return false for incorrect Siacoin addresses', () => {
+      invalid('1acc2bc035b6606bd612b6114efea1102bd4499c0edf559469de7f40076f1c54e4eed3c5f1a', 'sc')
+      invalid('1acc2bc035b6606bd612b6114efea1102bd4499c0edf559469de7f40076f1c54e4eed3c5f1ah', 'sc')
+    })
+    it('should return false for incorrect Cosmos addresses', () => {
+      invalid('cosmo15v50ymp6n5dn73erkqtmq0u8adpl8d3ujv2e74', 'atom')
+      invalid('cosmos25v50ymp6n5dn73erkqtmq0u8adpl8d3ujv2e74', 'atom')
+      invalid('cosmos15v50ymp6n5dn73erkQtmq0u8adpl8d3ujv2e74', 'atom')
+    })
+    it('should return false for incorrect STEEM addresses', () => {
+      invalid('meet--crypto8', 'steem')
+      invalid('me.etcrypto8', 'steem')
+      invalid('met.8etcrypto8', 'steem')
+      invalid('me', 'steem')
+      invalid('.', 'steem')
+    })
+    it('should return false for incorrect Enjin Coin addresses', () => {
+      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'enj')
+    })
+    it('should return false for incorrect THETA addresses', () => {
+      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'theta')
+    })
+    it('should return false for incorrect Stratis addresses', () => {
+      invalid('SY7YwpMGvU42dkFzmFEkGWFr1BEikUwhPt', 'strat')
+      invalid('AY7YwpMGvU42dkFzmFEkGWFr1BEikUwhPT', 'strat')
+      invalid('SY7YwpMGvU42dkFzmFEkGWFr1BEikUwhPTT', 'strat')
+    })
+    it('should return false for incorrect Status addresses', () => {
+      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'status')
+    })
+    it('should return false for incorrect Golem addresses', () => {
+      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'gnt')
+    })
+    it('should return false for incorrect aelf addresses', () => {
+      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'elf')
+    })
+    it('should return false for incorrect Ardor addresses', () => {
+      invalid('ARDOR-HFNE-a2VE-SMV3-DCRZ8', 'ardr')
+      invalid('ARDOR-HFNE-E2VE-SMV3-DCRZ', 'ardr')
+      invalid('ARD0R-HFNE-E2VE-SMV3-DCRZ8', 'ardr')
+    })
   })
 })
