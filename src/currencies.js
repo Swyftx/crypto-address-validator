@@ -12,6 +12,7 @@ const AUDValidator = require('./aud_validator')
 const NEMValidator = require('./nem_validator')
 const BTSValidator = require('./bts_validator')
 const ICXValidator = require('./icx_validator')
+const AEValidator = require('./ae_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -512,6 +513,10 @@ const CURRENCIES = [{
   name: 'Paxos Standard Token',
   symbol: 'pax',
   validator: ETHValidator
+}, {
+  name: 'Aeternity',
+  symbol: 'ae',
+  validator: AEValidator
 }]
 
 module.exports = {

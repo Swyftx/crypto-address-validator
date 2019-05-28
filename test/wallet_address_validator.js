@@ -425,6 +425,10 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Paxos Standard Token addresses', () => {
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'pax')
     })
+    it('should return true for correct Aeternity addresses', () => {
+      valid('ak_AT2bs7LkqwKbPUj5waoqq1E7QYgRzXUbaBanDHXDVsaCJ8gRA', 'ae')
+      valid('ak_8QxnP9qXP3NpA4fskYZE7P1GfHzKZAMmoNuok7jJC5NqVYi21', 'ae')
+    })
   })
 
   describe('invalid results', function () {
