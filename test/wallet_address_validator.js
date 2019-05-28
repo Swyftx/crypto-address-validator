@@ -416,6 +416,9 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Ravencoin addresses', () => {
       valid('RFnM9d8sjAPn24yJi4VACWWWZjaYyFwd8K', 'rvn')
     })
+    it('should return true for correct Bitshares addresses', () => {
+      valid('abcdefg-bts-1', 'bts')
+    })
   })
 
   describe('invalid results', function () {
