@@ -459,6 +459,10 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Ardor addresses', () => {
       valid('ARDOR-HFNE-E2VE-SMV3-DCRZ8', 'ardr')
     })
+    it('should return true for correct Binance Coin addresses', () => {
+      valid('bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23', 'bnb')
+      valid('bnb142q467df6jun6rt5u2ar58sp47hm5f9wvz2cvg', 'bnb')
+    })
   })
 
   describe('invalid results', function () {
