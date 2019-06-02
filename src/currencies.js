@@ -17,6 +17,7 @@ const SCValidator = require('./sc_validator')
 const ATOMValidator = require('./atom_validator')
 const STEEMValidator = require('./steem_validator')
 const ARDRValidator = require('./ardr_validator')
+const BNBValidator = require('./bnb_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -389,7 +390,7 @@ const CURRENCIES = [{
 }, {
   name: 'BinanceCoin',
   symbol: 'bnb',
-  validator: ETHValidator
+  validator: BNBValidator
 }, {
   name: 'ETHOS',
   symbol: 'ethos',
