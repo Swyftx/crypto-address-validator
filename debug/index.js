@@ -1,3 +1,3 @@
 const Validator = require('../src/wallet_address_validator.js')
-console.log(Validator.validate('bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23', 'bnb'))
-console.log(Validator.validate('bnb142q467df6jun6rt5u2ar58sp47hm5f9wvz2cvg', 'bnb'))
+console.log(Validator.validate('zil1ex2ph6e2arwfx0mpdmlwl9nsfxydmpvhg2zwy3', 'zil'))
+console.log(Validator.validate('zil14pu4qn4ngmkcq3dcpkw862lys2w7z38hq3ktua', 'zil'))
