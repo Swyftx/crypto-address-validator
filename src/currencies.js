@@ -18,6 +18,7 @@ const ATOMValidator = require('./atom_validator')
 const STEEMValidator = require('./steem_validator')
 const ARDRValidator = require('./ardr_validator')
 const BNBValidator = require('./bnb_validator')
+const ZILValidator = require('./zil_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -463,7 +464,7 @@ const CURRENCIES = [{
 }, {
   name: 'Zilliqa',
   symbol: 'zil',
-  validator: ETHValidator
+  validator: ZILValidator
 }, {
   name: 'Australian Dollars',
   symbol: 'aud',

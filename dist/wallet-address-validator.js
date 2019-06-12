@@ -21475,6 +21475,7 @@ const ATOMValidator = require('./atom_validator')
 const STEEMValidator = require('./steem_validator')
 const ARDRValidator = require('./ardr_validator')
 const BNBValidator = require('./bnb_validator')
+const ZILValidator = require('./zil_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -21920,7 +21921,7 @@ const CURRENCIES = [{
 }, {
   name: 'Zilliqa',
   symbol: 'zil',
-  validator: ETHValidator
+  validator: ZILValidator
 }, {
   name: 'Australian Dollars',
   symbol: 'aud',
@@ -22027,7 +22028,7 @@ module.exports = {
   CURRENCIES
 }
 
-},{"./ae_validator":104,"./ardr_validator":105,"./atom_validator":106,"./aud_validator":107,"./bitcoin_validator":108,"./bnb_validator":109,"./bts_validator":110,"./cardano_validator":111,"./eos_validator":122,"./ethereum_validator":123,"./icx_validator":124,"./iota_validator":125,"./lisk_validator":126,"./lumen_validator":127,"./monero_validator":128,"./nano_validator":129,"./nem_validator":130,"./ripple_validator":131,"./sc_validator":132,"./steem_validator":133}],122:[function(require,module,exports){
+},{"./ae_validator":104,"./ardr_validator":105,"./atom_validator":106,"./aud_validator":107,"./bitcoin_validator":108,"./bnb_validator":109,"./bts_validator":110,"./cardano_validator":111,"./eos_validator":122,"./ethereum_validator":123,"./icx_validator":124,"./iota_validator":125,"./lisk_validator":126,"./lumen_validator":127,"./monero_validator":128,"./nano_validator":129,"./nem_validator":130,"./ripple_validator":131,"./sc_validator":132,"./steem_validator":133,"./zil_validator":135}],122:[function(require,module,exports){
 function isValidEOSAddress (address, currency, networkType) {
   var regex = /^[a-z0-9]+$/g // Must be numbers and lowercase letters only
   if (address.search(regex) !== -1 && address.length === 12) {
@@ -22373,5 +22374,32 @@ module.exports = {
   }
 }
 
-},{"./currencies":121}]},{},[134])(134)
+},{"./currencies":121}],135:[function(require,module,exports){
+var utils = require('./crypto/utils')
+
+const ALLOWED_CHARS = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
+
+var regexp = new RegExp('^(zil)1([' + ALLOWED_CHARS + ']+)$') // zil + bech32 separated by '1'
+
+module.exports = {
+  isValidAddress: function (address, currency, networkType) {
+    let match = regexp.exec(address)
+    if (match !== null) {
+      return this.verifyChecksum(address)
+    } else {
+      return false
+    }
+  },
+
+  verifyChecksum: function (address) {
+    var decoded = utils.bech32.decode(address)
+    if (decoded !== null) {
+      return decoded.data.length === 32
+    } else {
+      return false
+    }
+  }
+}
+
+},{"./crypto/utils":120}]},{},[134])(134)
 });
