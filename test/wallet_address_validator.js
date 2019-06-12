@@ -379,7 +379,8 @@ describe('WAValidator.validate()', function () {
       valid('GAHK7EEG2WWHVKDNT4CEQFZGKF2LGDSW2IVM4S5DP42RBW3K6BTODB4A', 'xlm')
     })
     it('should return true for correct Zilliqa addresses', () => {
-      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'zil')
+      valid('zil1ex2ph6e2arwfx0mpdmlwl9nsfxydmpvhg2zwy3', 'zil')
+      valid('zil14pu4qn4ngmkcq3dcpkw862lys2w7z38hq3ktua', 'zil')
     })
     it('should return true for correct Syscoin addresses', () => {
       valid('1EQUz46mFC5Wa4hbmfp7pzJa3tzNLWxyfr', 'sys')
