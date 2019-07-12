@@ -265,7 +265,7 @@ const CURRENCIES = [{
 }, {
   name: 'Monero',
   symbol: 'xmr',
-  addressTypes: { prod: ['18'], testnet: ['53'] },
+  addressTypes: { prod: ['18', '42'], testnet: ['53', '63'] },
   iAddressTypes: { prod: ['19'], testnet: ['54'] },
   validator: XMRValidator
 }, {
