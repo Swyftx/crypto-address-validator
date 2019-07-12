@@ -464,6 +464,10 @@ describe('WAValidator.validate()', function () {
       valid('bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23', 'bnb')
       valid('bnb142q467df6jun6rt5u2ar58sp47hm5f9wvz2cvg', 'bnb')
     })
+    it('should return true for correct Monero addresses', () => {
+      valid('8BMsVKsZ6kdUVWi4o67iWTe3ZaGL4Qc7KjfLVcPer4v2jNTKfEoXtJoL48EHt8cqdZWBQkjzttygpHJyhZcnqLb1JTfVkim', 'xmr')
+      valid('45HqZMyS2VmKzD4V17U7fT2HZj9ZgYgBXJsAJHkjj8QFVuhCxRSxsJB8HrZmGVyFr8HEsDxbKhFCyVLiauFtiPknJeDFAMj', 'xmr')
+    })
   })
 
   describe('invalid results', function () {
