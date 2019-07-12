@@ -11,13 +11,15 @@ function validateNetwork (decoded, currency, networkType, addressType) {
     network = currency.iAddressTypes
   }
 
+  let networkByte = parseInt(decoded.substr(0, 2), 16).toString()
+
   switch (networkType) {
     case 'prod':
-      return parseInt(decoded.substr(0, 2), 16).toString() === network.prod[0]
+      return network.prod.indexOf(networkByte) !== -1
     case 'testnet':
-      return parseInt(decoded.substr(0, 2), 16).toString() === network.testnet[0]
+      return network.testnet.indexOf(networkByte) !== -1
     case 'both':
-      return parseInt(decoded.substr(0, 2), 16).toString() === network.prod[0] || parseInt(decoded.substr(0, 2), 16).toString() === network.testnet[0]
+      return network.prod.indexOf(networkByte) !== -1 || network.testnet.indexOf(networkByte) !== -1
     default:
       return false
   }
