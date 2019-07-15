@@ -264,6 +264,7 @@ describe('WAValidator.validate()', function () {
       valid('0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb', 'ETZ')
       valid('0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb', 'callisto')
       valid('0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb', 'CLO')
+      valid('0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb', 'USDT')
     })
 
     it('should return true for correct Ripple addresses', function () {
