@@ -199,8 +199,9 @@ const CURRENCIES = [{
 }, {
   name: 'Tether',
   symbol: 'usdt',
-  addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
-  validator: BTCValidator
+  // addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
+  // validator: BTCValidator
+  validator: ETHValidator
 }, {
   name: 'Ripple',
   symbol: 'xrp',
