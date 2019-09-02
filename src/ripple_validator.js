@@ -4,7 +4,7 @@ var baseX = require('base-x')
 var ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz'
 
 var codec = baseX(ALLOWED_CHARS)
-var regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{24,34}$')
+var regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{27,35}$')
 
 module.exports = {
   /**

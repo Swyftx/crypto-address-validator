@@ -21476,6 +21476,8 @@ const STEEMValidator = require('./steem_validator')
 const ARDRValidator = require('./ardr_validator')
 const BNBValidator = require('./bnb_validator')
 const ZILValidator = require('./zil_validator')
+const NXSValidator = require('./nxs_validator')
+const IOSTValidator = require('./iost_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -22017,6 +22019,24 @@ const CURRENCIES = [{
   name: 'Ardor',
   symbol: 'ardr',
   validator: ARDRValidator
+}, {
+  name: 'Horizen',
+  symbol: 'zen',
+  expectedLength: 26,
+  addressTypes: { prod: ['2089', '2096'], testnet: ['2092', '2098'] },
+  validator: BTCValidator
+}, {
+  name: 'Nexus',
+  symbol: 'nxs',
+  validator: NXSValidator
+}, {
+  name: 'Internet of Services',
+  symbol: 'IOST',
+  validator: IOSTValidator
+}, {
+  name: 'Decentraland',
+  symbol: 'MANA',
+  validator: ETHValidator
 }]
 
 module.exports = {
@@ -22029,7 +22049,7 @@ module.exports = {
   CURRENCIES
 }
 
-},{"./ae_validator":104,"./ardr_validator":105,"./atom_validator":106,"./aud_validator":107,"./bitcoin_validator":108,"./bnb_validator":109,"./bts_validator":110,"./cardano_validator":111,"./eos_validator":122,"./ethereum_validator":123,"./icx_validator":124,"./iota_validator":125,"./lisk_validator":126,"./lumen_validator":127,"./monero_validator":128,"./nano_validator":129,"./nem_validator":130,"./ripple_validator":131,"./sc_validator":132,"./steem_validator":133,"./zil_validator":135}],122:[function(require,module,exports){
+},{"./ae_validator":104,"./ardr_validator":105,"./atom_validator":106,"./aud_validator":107,"./bitcoin_validator":108,"./bnb_validator":109,"./bts_validator":110,"./cardano_validator":111,"./eos_validator":122,"./ethereum_validator":123,"./icx_validator":124,"./iost_validator":125,"./iota_validator":126,"./lisk_validator":127,"./lumen_validator":128,"./monero_validator":129,"./nano_validator":130,"./nem_validator":131,"./nxs_validator":132,"./ripple_validator":133,"./sc_validator":134,"./steem_validator":135,"./zil_validator":137}],122:[function(require,module,exports){
 function isValidEOSAddress (address, currency, networkType) {
   var regex = /^[a-z0-9]+$/g // Must be numbers and lowercase letters only
   if (address.search(regex) !== -1 && address.length === 12) {
@@ -22100,6 +22120,15 @@ module.exports = {
 }
 
 },{}],125:[function(require,module,exports){
+const iostRegex = new RegExp('^[a-z0-9_]{5,11}$')
+
+module.exports = {
+  isValidAddress: function (address, currency, networkType) {
+    return iostRegex.test(address)
+  }
+}
+
+},{}],126:[function(require,module,exports){
 var IOTA = require('@iota/validators')
 
 function isValidIotaAddress (address, currency, networkType) {
@@ -22113,7 +22142,7 @@ module.exports = {
   }
 }
 
-},{"@iota/validators":33}],126:[function(require,module,exports){
+},{"@iota/validators":33}],127:[function(require,module,exports){
 function isValidLiskAddress (address, currency, networkType) {
   var regex = /^[0-9]{1,20}L$/g // Must be numbers only for the first 1 - 20 charactors with a capital L at the end
   if (address.search(regex) !== -1) {
@@ -22129,7 +22158,7 @@ module.exports = {
   }
 }
 
-},{}],127:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 (function (Buffer){
 const baseX = require('base-x')
 const crc = require('crc')
@@ -22181,7 +22210,7 @@ module.exports = {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"base-x":34,"buffer":37,"crc":63}],128:[function(require,module,exports){
+},{"base-x":34,"buffer":37,"crc":63}],129:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var cnBase58 = require('./crypto/cnBase58')
 
@@ -22242,7 +22271,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/cnBase58":117,"./crypto/utils":120}],129:[function(require,module,exports){
+},{"./crypto/cnBase58":117,"./crypto/utils":120}],130:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var baseX = require('base-x')
 
@@ -22271,7 +22300,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":120,"base-x":34}],130:[function(require,module,exports){
+},{"./crypto/utils":120,"base-x":34}],131:[function(require,module,exports){
 var ALLOWED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
 
 // https://github.com/QuantumMechanics/NEM-sdk/blob/4b0b60007c52ff4a89deeef84f9ca95b61c92fca/src/model/address.js#L122
@@ -22283,14 +22312,47 @@ module.exports = {
   }
 }
 
-},{}],131:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
+const base58 = require('./crypto/base58')
+
+function getDecoded (address) {
+  try {
+    var decoded = base58.decode(address)
+    return decoded
+  } catch (e) {
+    // if decoding fails, assume invalid address
+    return null
+  }
+}
+
+module.exports = {
+  isValidAddress: function (address) {
+    var decoded = getDecoded(address)
+
+    if (!decoded) {
+      return false
+    }
+
+    if (decoded.length !== 37) {
+      return false
+    }
+
+    if (decoded[0] !== 42) {
+      return false
+    }
+
+    return true
+  }
+}
+
+},{"./crypto/base58":112}],133:[function(require,module,exports){
 var cryptoUtils = require('./crypto/utils')
 var baseX = require('base-x')
 
 var ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz'
 
 var codec = baseX(ALLOWED_CHARS)
-var regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{24,34}$')
+var regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{27,35}$')
 
 module.exports = {
   /**
@@ -22313,7 +22375,7 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":120,"base-x":34}],132:[function(require,module,exports){
+},{"./crypto/utils":120,"base-x":34}],134:[function(require,module,exports){
 function isValidSCAddress (address, currency, networkType) {
   var regex = /^[0-9a-f]{76}$/g // 76 hex chars
   if (address.search(regex) !== -1) {
@@ -22329,7 +22391,7 @@ module.exports = {
   }
 }
 
-},{}],133:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 const accountRegex = new RegExp('^[a-z0-9-.]{3,}$')
 const segmentRegex = new RegExp('^[a-z][a-z0-9-]+[a-z0-9]$')
 const doubleDashRegex = new RegExp('--')
@@ -22360,7 +22422,7 @@ module.exports = {
   }
 }
 
-},{}],134:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 var currencies = require('./currencies')
 
 var DEFAULT_CURRENCY_NAME = 'bitcoin'
@@ -22377,7 +22439,7 @@ module.exports = {
   }
 }
 
-},{"./currencies":121}],135:[function(require,module,exports){
+},{"./currencies":121}],137:[function(require,module,exports){
 var utils = require('./crypto/utils')
 
 const ALLOWED_CHARS = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
@@ -22404,5 +22466,5 @@ module.exports = {
   }
 }
 
-},{"./crypto/utils":120}]},{},[134])(134)
+},{"./crypto/utils":120}]},{},[136])(136)
 });

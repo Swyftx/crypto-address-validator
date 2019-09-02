@@ -107,6 +107,7 @@ describe('WAValidator.validate()', function () {
       valid('DNzLUN6MyYVS5zf4Xc2yK69V3dXs6Mxia5', 'dogecoin')
       valid('DPS6iZj7roHquvwRYXNBua9QtKPzigUUhM', 'dogecoin')
       valid('DPS6iZj7roHquvwRYXNBua9QtKPzigUUhM', 'DOGE')
+      valid('DFs6qrdCp4K4evv6jU5R3y2WjaWQbXzGsX', 'DOGE')
       // TODO: NEED A DOGECOIN TESTNET ADDRESS
 
       // p2sh addresses
@@ -339,10 +340,11 @@ describe('WAValidator.validate()', function () {
       valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'snowgem', 'testnet')
     })
 
-    it('should return true for correct zencash addresses', function () {
+    it('should return true for correct zencash/horizen addresses', function () {
       valid('znhiGGfYRepxkBjXYvA2kFrXiC351i9ta4z', 'zencash')
       valid('zssEdGnZCQ9G86LZFtbynMn1hYTVhn6eYCL', 'ZEN')
       valid('ztmWMDLWjbruCJxKmmfAZiT6QAQdiv5F291', 'zencash', 'testnet')
+      valid('znauTfxFLirRXFXKubFyxjbT5WjBotQzeEt', 'horizen')
     })
 
     it('should return true for correct komodo addresses', function () {
@@ -468,6 +470,22 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Monero addresses', () => {
       valid('8BMsVKsZ6kdUVWi4o67iWTe3ZaGL4Qc7KjfLVcPer4v2jNTKfEoXtJoL48EHt8cqdZWBQkjzttygpHJyhZcnqLb1JTfVkim', 'xmr')
       valid('45HqZMyS2VmKzD4V17U7fT2HZj9ZgYgBXJsAJHkjj8QFVuhCxRSxsJB8HrZmGVyFr8HEsDxbKhFCyVLiauFtiPknJeDFAMj', 'xmr')
+    })
+    it('should return true for correct Nexus addresses', () => {
+      valid('2RytMNwUzYs6gn7YToq7xhnrb1xx1pDM5kqXxvKjDkgEum9acPx', 'nxs')
+      valid('2R9DtwPRUn7fjgnQd7bCbEkaWcwGY5dhrRwPqcNqvxMM9gJk2vM', 'nxs')
+      valid('2RYRzMDyMnFeAHYAbdhCFyemt4u2echtTC5X4nuVjt9Fce6NV5e', 'nxs')
+      valid('2SLoUFsLb5i4nLVQq2Kh2HMBvx589Lb3YQfqjMbSYbLCnCm6Z2d', 'nxs')
+      valid('2Sam1ByD1SnmAPj3PiLMKAiUq3bZEDFXhePYemZieVRi7XVcaWe', 'nxs')
+      valid('2RdoQbTPjznYNumQaDMqpE6LFv3JKe52A73kJneahKU9FoV6Kck', 'nxs')
+      valid('2S2NsdLam19uuXk9jhRUqcmBsPzvZw2KVEDSU7ThLWwFwqYpLzP', 'nxs')
+      valid('2SHJhammSwhm2cqgLRfZZd1kJhoaKgNjYfTYqv49aUbBv7ZzuRC', 'nxs')
+    })
+    it('should return true for correct IOST addresses', () => {
+      valid('binanceiost', 'iost')
+    })
+    it('should return true for correct Decentraland addresses', () => {
+      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'mana')
     })
   })
 

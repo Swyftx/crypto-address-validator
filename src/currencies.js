@@ -19,6 +19,8 @@ const STEEMValidator = require('./steem_validator')
 const ARDRValidator = require('./ardr_validator')
 const BNBValidator = require('./bnb_validator')
 const ZILValidator = require('./zil_validator')
+const NXSValidator = require('./nxs_validator')
+const IOSTValidator = require('./iost_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -560,6 +562,24 @@ const CURRENCIES = [{
   name: 'Ardor',
   symbol: 'ardr',
   validator: ARDRValidator
+}, {
+  name: 'Horizen',
+  symbol: 'zen',
+  expectedLength: 26,
+  addressTypes: { prod: ['2089', '2096'], testnet: ['2092', '2098'] },
+  validator: BTCValidator
+}, {
+  name: 'Nexus',
+  symbol: 'nxs',
+  validator: NXSValidator
+}, {
+  name: 'Internet of Services',
+  symbol: 'IOST',
+  validator: IOSTValidator
+}, {
+  name: 'Decentraland',
+  symbol: 'MANA',
+  validator: ETHValidator
 }]
 
 module.exports = {

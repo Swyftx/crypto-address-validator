@@ -5,7 +5,7 @@ Forked from [ognus/wallet-address-validator](https://github.com/ognus/wallet-add
 
 Did you know? This package is under active development by Swyftx. Swyftx allows you to buy and sell Bitcoin, Etherium, Ripple and many more assets using Australian Dollars. [Buy Bitcoin in Australia](https://swyftx.com.au)
 
-**File size is ~81.8 kB (minifed and gzipped - ~70.7% smaller)**.
+**File size is ~82 kB (minifed and gzipped - ~70.7% smaller)**.
 
 ## Installation
 
@@ -49,8 +49,8 @@ npm install wallet-address-validator
 * BioCoin/bio `'BioCoin'` or `'bio'`
 * Bitcoin/btc `'Bitcoin'` or `'btc'`
 * Bitcoin Diamond/bcd `'Bitcoin Diamond'` or `'bcd'`
-* BitcoinCash/bch `'BitcoinCash'` or `'bch'`
 * BitcoinCash/bcc `'BitcoinCash'` or `'bcc'`
+* BitcoinCash/bch `'BitcoinCash'` or `'bch'`
 * BitcoinGold/btg `'BitcoinGold'` or `'btg'`
 * BitcoinPrivate/btcp `'BitcoinPrivate'` or `'btcp'`
 * BitcoinZ/btcz `'BitcoinZ'` or `'btcz'`
@@ -63,6 +63,7 @@ npm install wallet-address-validator
 * Civic/cvc `'Civic'` or `'cvc'`
 * Cosmos/atom `'Cosmos'` or `'atom'`
 * Dash/dash `'Dash'` or `'dash'`
+* Decentraland/MANA `'Decentraland'` or `'MANA'`
 * Decred/dcr `'Decred'` or `'dcr'`
 * Dent/dent `'Dent'` or `'dent'`
 * DigiByte/dgb `'DigiByte'` or `'dgb'`
@@ -83,9 +84,11 @@ npm install wallet-address-validator
 * Golem/gnt `'Golem'` or `'gnt'`
 * Golem/gnt `'Golem'` or `'gnt'`
 * Holo/HOT `'Holo'` or `'HOT'`
+* Horizen/zen `'Horizen'` or `'zen'`
 * Hush/hush `'Hush'` or `'hush'`
 * ICON/icx `'ICON'` or `'icx'`
 * iExec RLC/rlc `'iExec RLC'` or `'rlc'`
+* Internet of Services/IOST `'Internet of Services'` or `'IOST'`
 * Iota/iota `'Iota'` or `'iota'`
 * Komodo/kmd `'Komodo'` or `'kmd'`
 * Lisk/lsk `'Lisk'` or `'lsk'`
@@ -102,6 +105,7 @@ npm install wallet-address-validator
 * NEM/xem `'NEM'` or `'xem'`
 * Neo/neo `'Neo'` or `'neo'`
 * NeoGas/gas `'NeoGas'` or `'gas'`
+* Nexus/nxs `'Nexus'` or `'nxs'`
 * Numeraire/nmr `'Numeraire'` or `'nmr'`
 * Odyssey/ocn `'Odyssey'` or `'ocn'`
 * OmiseGO/omg `'OmiseGO'` or `'omg'`
