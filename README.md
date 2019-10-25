@@ -49,8 +49,8 @@ npm install wallet-address-validator
 * BioCoin/bio `'BioCoin'` or `'bio'`
 * Bitcoin/btc `'Bitcoin'` or `'btc'`
 * Bitcoin Diamond/bcd `'Bitcoin Diamond'` or `'bcd'`
-* BitcoinCash/bcc `'BitcoinCash'` or `'bcc'`
 * BitcoinCash/bch `'BitcoinCash'` or `'bch'`
+* BitcoinCash/bcc `'BitcoinCash'` or `'bcc'`
 * BitcoinGold/btg `'BitcoinGold'` or `'btg'`
 * BitcoinPrivate/btcp `'BitcoinPrivate'` or `'btcp'`
 * BitcoinZ/btcz `'BitcoinZ'` or `'btcz'`
@@ -87,6 +87,7 @@ npm install wallet-address-validator
 * Horizen/zen `'Horizen'` or `'zen'`
 * Hush/hush `'Hush'` or `'hush'`
 * ICON/icx `'ICON'` or `'icx'`
+* iExec RLC/RLC `'iExec RLC'` or `'RLC'`
 * iExec RLC/rlc `'iExec RLC'` or `'rlc'`
 * Internet of Services/IOST `'Internet of Services'` or `'IOST'`
 * Iota/iota `'Iota'` or `'iota'`
@@ -139,6 +140,7 @@ npm install wallet-address-validator
 * Syscoin/sys `'Syscoin'` or `'sys'`
 * TenX/pay `'TenX'` or `'pay'`
 * Tether/usdt `'Tether'` or `'usdt'`
+* Tezos/XTZ `'Tezos'` or `'XTZ'`
 * THETA/theta `'THETA'` or `'theta'`
 * Tron/trx `'Tron'` or `'trx'`
 * TrueUSD/tusd `'TrueUSD'` or `'tusd'`

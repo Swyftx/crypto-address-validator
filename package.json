@@ -37,8 +37,8 @@
     "Bitcoin Diamond",
     "bcd",
     "BitcoinCash",
-    "bcc",
     "bch",
+    "bcc",
     "BitcoinGold",
     "btg",
     "BitcoinPrivate",
@@ -199,6 +199,8 @@
     "pay",
     "Tether",
     "usdt",
+    "Tezos",
+    "XTZ",
     "theta",
     "Tron",
     "trx",
@@ -235,7 +237,7 @@
     "wallet",
     "address"
   ],
-  "version": "1.9.0",
+  "version": "1.10.0",
   "author": "Swyftx",
   "publishConfig": {
     "access": "public"

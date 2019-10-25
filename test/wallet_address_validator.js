@@ -487,6 +487,13 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct Decentraland addresses', () => {
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'mana')
     })
+    it('should return true for correct iExec RLC addresses', () => {
+      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'rlc')
+    })
+    it('should return true for correct Tezos addresses', () => {
+      valid('tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx', 'xtz')
+      valid('tz1gjaF81ZRRvdzjobyfVNsAeSC6PScjfQwN', 'xtz')
+    })
   })
 
   describe('invalid results', function () {
