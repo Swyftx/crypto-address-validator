@@ -2298,156 +2298,126 @@ exports.isHead = transaction_1.isHead;
 exports.isTransaction = transaction_1.isTransaction;
 
 },{"../../errors":31,"../../guards":32,"@iota/checksum":1,"@iota/transaction":27}],34:[function(require,module,exports){
+'use strict'
 // base-x encoding / decoding
 // Copyright (c) 2018 base-x contributors
 // Copyright (c) 2014-2018 The Bitcoin Core developers (base58.cpp)
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php.
-
-const Buffer = require('safe-buffer').Buffer
-
-module.exports = function base (ALPHABET) {
-  if (ALPHABET.length >= 255) throw new TypeError('Alphabet too long')
-
-  const BASE_MAP = new Uint8Array(256)
+// @ts-ignore
+var _Buffer = require('safe-buffer').Buffer
+function base (ALPHABET) {
+  if (ALPHABET.length >= 255) { throw new TypeError('Alphabet too long') }
+  var BASE_MAP = new Uint8Array(256)
   BASE_MAP.fill(255)
-
-  for (let i = 0; i < ALPHABET.length; i++) {
-    const x = ALPHABET.charAt(i)
-    const xc = x.charCodeAt(0)
-
-    if (BASE_MAP[xc] !== 255) throw new TypeError(x + ' is ambiguous')
+  for (var i = 0; i < ALPHABET.length; i++) {
+    var x = ALPHABET.charAt(i)
+    var xc = x.charCodeAt(0)
+    if (BASE_MAP[xc] !== 255) { throw new TypeError(x + ' is ambiguous') }
     BASE_MAP[xc] = i
   }
-
-  const BASE = ALPHABET.length
-  const LEADER = ALPHABET.charAt(0)
-  const FACTOR = Math.log(BASE) / Math.log(256) // log(BASE) / log(256), rounded up
-  const iFACTOR = Math.log(256) / Math.log(BASE) // log(256) / log(BASE), rounded up
-
+  var BASE = ALPHABET.length
+  var LEADER = ALPHABET.charAt(0)
+  var FACTOR = Math.log(BASE) / Math.log(256) // log(BASE) / log(256), rounded up
+  var iFACTOR = Math.log(256) / Math.log(BASE) // log(256) / log(BASE), rounded up
   function encode (source) {
-    if (!Buffer.isBuffer(source)) throw new TypeError('Expected Buffer')
-    if (source.length === 0) return ''
-
-    // Skip & count leading zeroes.
-    let zeroes = 0
-    let length = 0
-    let pbegin = 0
-    const pend = source.length
-
+    if (!_Buffer.isBuffer(source)) { throw new TypeError('Expected Buffer') }
+    if (source.length === 0) { return '' }
+        // Skip & count leading zeroes.
+    var zeroes = 0
+    var length = 0
+    var pbegin = 0
+    var pend = source.length
     while (pbegin !== pend && source[pbegin] === 0) {
       pbegin++
       zeroes++
     }
-
-    // Allocate enough space in big-endian base58 representation.
-    const size = ((pend - pbegin) * iFACTOR + 1) >>> 0
-    const b58 = new Uint8Array(size)
-
-    // Process the bytes.
+        // Allocate enough space in big-endian base58 representation.
+    var size = ((pend - pbegin) * iFACTOR + 1) >>> 0
+    var b58 = new Uint8Array(size)
+        // Process the bytes.
     while (pbegin !== pend) {
-      let carry = source[pbegin]
-
-      // Apply "b58 = b58 * 256 + ch".
-      let i = 0
-      for (let it = size - 1; (carry !== 0 || i < length) && (it !== -1); it--, i++) {
-        carry += (256 * b58[it]) >>> 0
-        b58[it] = (carry % BASE) >>> 0
+      var carry = source[pbegin]
+            // Apply "b58 = b58 * 256 + ch".
+      var i = 0
+      for (var it1 = size - 1; (carry !== 0 || i < length) && (it1 !== -1); it1--, i++) {
+        carry += (256 * b58[it1]) >>> 0
+        b58[it1] = (carry % BASE) >>> 0
         carry = (carry / BASE) >>> 0
       }
-
-      if (carry !== 0) throw new Error('Non-zero carry')
+      if (carry !== 0) { throw new Error('Non-zero carry') }
       length = i
       pbegin++
     }
-
-    // Skip leading zeroes in base58 result.
-    let it = size - length
-    while (it !== size && b58[it] === 0) {
-      it++
+        // Skip leading zeroes in base58 result.
+    var it2 = size - length
+    while (it2 !== size && b58[it2] === 0) {
+      it2++
     }
-
-    // Translate the result into a string.
-    let str = LEADER.repeat(zeroes)
-    for (; it < size; ++it) str += ALPHABET.charAt(b58[it])
-
+        // Translate the result into a string.
+    var str = LEADER.repeat(zeroes)
+    for (; it2 < size; ++it2) { str += ALPHABET.charAt(b58[it2]) }
     return str
   }
-
   function decodeUnsafe (source) {
-    if (typeof source !== 'string') throw new TypeError('Expected String')
-    if (source.length === 0) return Buffer.alloc(0)
-
-    let psz = 0
-
-    // Skip leading spaces.
-    if (source[psz] === ' ') return
-
-    // Skip and count leading '1's.
-    let zeroes = 0
-    let length = 0
+    if (typeof source !== 'string') { throw new TypeError('Expected String') }
+    if (source.length === 0) { return _Buffer.alloc(0) }
+    var psz = 0
+        // Skip leading spaces.
+    if (source[psz] === ' ') { return }
+        // Skip and count leading '1's.
+    var zeroes = 0
+    var length = 0
     while (source[psz] === LEADER) {
       zeroes++
       psz++
     }
-
-    // Allocate enough space in big-endian base256 representation.
-    const size = (((source.length - psz) * FACTOR) + 1) >>> 0 // log(58) / log(256), rounded up.
-    const b256 = new Uint8Array(size)
-
-    // Process the characters.
+        // Allocate enough space in big-endian base256 representation.
+    var size = (((source.length - psz) * FACTOR) + 1) >>> 0 // log(58) / log(256), rounded up.
+    var b256 = new Uint8Array(size)
+        // Process the characters.
     while (source[psz]) {
-      // Decode character
-      let carry = BASE_MAP[source.charCodeAt(psz)]
-
-      // Invalid character
-      if (carry === 255) return
-
-      let i = 0
-      for (let it = size - 1; (carry !== 0 || i < length) && (it !== -1); it--, i++) {
-        carry += (BASE * b256[it]) >>> 0
-        b256[it] = (carry % 256) >>> 0
+            // Decode character
+      var carry = BASE_MAP[source.charCodeAt(psz)]
+            // Invalid character
+      if (carry === 255) { return }
+      var i = 0
+      for (var it3 = size - 1; (carry !== 0 || i < length) && (it3 !== -1); it3--, i++) {
+        carry += (BASE * b256[it3]) >>> 0
+        b256[it3] = (carry % 256) >>> 0
         carry = (carry / 256) >>> 0
       }
-
-      if (carry !== 0) throw new Error('Non-zero carry')
+      if (carry !== 0) { throw new Error('Non-zero carry') }
       length = i
       psz++
     }
-
-    // Skip trailing spaces.
-    if (source[psz] === ' ') return
-
-    // Skip leading zeroes in b256.
-    let it = size - length
-    while (it !== size && b256[it] === 0) {
-      it++
+        // Skip trailing spaces.
+    if (source[psz] === ' ') { return }
+        // Skip leading zeroes in b256.
+    var it4 = size - length
+    while (it4 !== size && b256[it4] === 0) {
+      it4++
     }
-
-    const vch = Buffer.allocUnsafe(zeroes + (size - it))
+    var vch = _Buffer.allocUnsafe(zeroes + (size - it4))
     vch.fill(0x00, 0, zeroes)
-
-    let j = zeroes
-    while (it !== size) {
-      vch[j++] = b256[it++]
+    var j = zeroes
+    while (it4 !== size) {
+      vch[j++] = b256[it4++]
     }
-
     return vch
   }
-
   function decode (string) {
-    const buffer = decodeUnsafe(string)
-    if (buffer) return buffer
-
+    var buffer = decodeUnsafe(string)
+    if (buffer) { return buffer }
     throw new Error('Non-base' + BASE + ' character')
   }
-
   return {
     encode: encode,
     decodeUnsafe: decodeUnsafe,
     decode: decode
   }
 }
+module.exports = base
 
 },{"safe-buffer":101}],35:[function(require,module,exports){
 'use strict'
@@ -17945,6 +17915,8 @@ function SafeBuffer (arg, encodingOrOffset, length) {
   return Buffer(arg, encodingOrOffset, length)
 }
 
+SafeBuffer.prototype = Object.create(Buffer.prototype)
+
 // Copy static methods from Buffer
 copyProps(Buffer, SafeBuffer)
 
@@ -21478,6 +21450,7 @@ const BNBValidator = require('./bnb_validator')
 const ZILValidator = require('./zil_validator')
 const NXSValidator = require('./nxs_validator')
 const IOSTValidator = require('./iost_validator')
+const XTZValidator = require('./xtz_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -22037,6 +22010,14 @@ const CURRENCIES = [{
   name: 'Decentraland',
   symbol: 'MANA',
   validator: ETHValidator
+}, {
+  name: 'iExec RLC',
+  symbol: 'RLC',
+  validator: ETHValidator
+}, {
+  name: 'Tezos',
+  symbol: 'XTZ',
+  validator: XTZValidator
 }]
 
 module.exports = {
@@ -22049,7 +22030,7 @@ module.exports = {
   CURRENCIES
 }
 
-},{"./ae_validator":104,"./ardr_validator":105,"./atom_validator":106,"./aud_validator":107,"./bitcoin_validator":108,"./bnb_validator":109,"./bts_validator":110,"./cardano_validator":111,"./eos_validator":122,"./ethereum_validator":123,"./icx_validator":124,"./iost_validator":125,"./iota_validator":126,"./lisk_validator":127,"./lumen_validator":128,"./monero_validator":129,"./nano_validator":130,"./nem_validator":131,"./nxs_validator":132,"./ripple_validator":133,"./sc_validator":134,"./steem_validator":135,"./zil_validator":137}],122:[function(require,module,exports){
+},{"./ae_validator":104,"./ardr_validator":105,"./atom_validator":106,"./aud_validator":107,"./bitcoin_validator":108,"./bnb_validator":109,"./bts_validator":110,"./cardano_validator":111,"./eos_validator":122,"./ethereum_validator":123,"./icx_validator":124,"./iost_validator":125,"./iota_validator":126,"./lisk_validator":127,"./lumen_validator":128,"./monero_validator":129,"./nano_validator":130,"./nem_validator":131,"./nxs_validator":132,"./ripple_validator":133,"./sc_validator":134,"./steem_validator":135,"./xtz_validator":137,"./zil_validator":138}],122:[function(require,module,exports){
 function isValidEOSAddress (address, currency, networkType) {
   var regex = /^[a-z0-9]+$/g // Must be numbers and lowercase letters only
   if (address.search(regex) !== -1 && address.length === 12) {
@@ -22352,7 +22333,7 @@ var baseX = require('base-x')
 var ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz'
 
 var codec = baseX(ALLOWED_CHARS)
-var regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{27,35}$')
+var regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{24,34}$')
 
 module.exports = {
   /**
@@ -22440,6 +22421,30 @@ module.exports = {
 }
 
 },{"./currencies":121}],137:[function(require,module,exports){
+var base58 = require('./crypto/base58')
+
+function getDecoded (address) {
+  try {
+    return base58.decode(address)
+  } catch (e) {
+    // if decoding fails, assume invalid address
+    return null
+  }
+}
+
+module.exports = {
+  isValidAddress: function (address) {
+    var decoded = getDecoded(address)
+
+    if (!decoded || !Array.isArray(decoded) || decoded.length !== 27) {
+      return false
+    }
+
+    return true
+  }
+}
+
+},{"./crypto/base58":112}],138:[function(require,module,exports){
 var utils = require('./crypto/utils')
 
 const ALLOWED_CHARS = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
