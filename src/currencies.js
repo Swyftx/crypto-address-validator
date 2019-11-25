@@ -22,6 +22,7 @@ const ZILValidator = require('./zil_validator')
 const NXSValidator = require('./nxs_validator')
 const IOSTValidator = require('./iost_validator')
 const XTZValidator = require('./xtz_validator')
+const BCHValidator = require('./bitcoincash_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -33,7 +34,7 @@ const CURRENCIES = [{
   name: 'BitcoinCash',
   symbol: 'bch',
   addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
-  validator: BTCValidator
+  validator: BCHValidator
 }, {
   name: 'BitcoinCash',
   symbol: 'bcc', // Other asset code for Bitcoin Cash

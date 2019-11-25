@@ -271,6 +271,7 @@
   "dependencies": {
     "@iota/validators": "^1.0.0-beta.6",
     "base-x": "^3.0.4",
+    "bchaddrjs-slp": "^0.2.8",
     "cbor-js": "^0.1.0",
     "crc": "^3.8.0",
     "jssha": "2.3.1"
