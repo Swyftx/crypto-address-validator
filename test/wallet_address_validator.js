@@ -7,13 +7,13 @@ var expect = chai.expect
 
 var WAValidator = isNode ? require('../src/wallet_address_validator') : window.WAValidator
 
-function valid (address, currency, networkType) {
-  var result = WAValidator.validate(address, currency, networkType)
+function valid (address, currency, networkType, addressFormats) {
+  var result = WAValidator.validate(address, currency, networkType, addressFormats)
   expect(result).to.equal(true)
 }
 
-function invalid (address, currency, networkType) {
-  var result = WAValidator.validate(address, currency, networkType)
+function invalid (address, currency, networkType, addressFormats) {
+  var result = WAValidator.validate(address, currency, networkType, addressFormats)
   expect(result).to.equal(false)
 }
 
@@ -70,10 +70,20 @@ describe('WAValidator.validate()', function () {
       valid('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs', 'bitcoincash')
       valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoincash', 'testnet')
       valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoincash', 'both')
+      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'both', ['legacy'])
 
       // p2sh addresses
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'bitcoincash')
+      valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'bch')
       valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'bitcoincash', 'testnet')
+
+      //SLP addresses
+      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', ['all'])
+      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', ['slpaddr'])
+
+      //Cash addresses
+      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['all'])
+      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['cashaddr'])
     })
 
     it('should return true for correct litecoin addresses', function () {
@@ -515,6 +525,13 @@ describe('WAValidator.validate()', function () {
 
     it('should return false for incorrect bitcoincash addresses', function () {
       commonTests('bitcoincash')
+      //legacy
+      invalid('38ty1qB68gHsiyZ8k3RPeCJ1wYQPrUCPPr', 'bitcoincash', 'both', ['cashaddr'])
+      invalid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', ['cashaddr'])
+      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['legacy'])
+      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoin', 'both', ['all'])
+      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['slpaddr'])
+      invalid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'both', ['unknownformat'])
     })
 
     it('should return false for incorrect litecoin addresses', function () {
