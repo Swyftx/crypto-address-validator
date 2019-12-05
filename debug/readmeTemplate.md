@@ -21,12 +21,13 @@ npm install wallet-address-validator
 
 ## API
 
-##### validate (address [, currency = 'bitcoin'[, networkType = 'prod']])
+##### validate (address [, currency = 'bitcoin'[, networkType = 'prod' [, addressType = ['all']]])
 
 ###### Parameters
 * address - Wallet address to validate.
 * currency - Optional. Currency name or symbol, e.g. `'bitcoin'` (default), `'litecoin'` or `'LTC'`
 * networkType - Optional. Use `'prod'` (default) to enforce standard address, `'testnet'` to enforce testnet address and `'both'` to enforce nothing.
+* addressType - Optional. Specifies what version of the address should be validated. Defaults to `'legacy'`, but can be changed on a per asset basis.
 
 > Returns true if the address (string) is a valid wallet address for the crypto currency specified, see below for supported currencies.
 
