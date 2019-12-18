@@ -9,6 +9,11 @@ Did you know? This package is under active development by Swyftx. Swyftx allows 
 
 ## Installation
 
+### Yarn
+```
+yarn add @swyftx/api-crypto-address-validator
+```
+
 ### NPM
 ```
 npm install @swyftx/api-crypto-address-validator
