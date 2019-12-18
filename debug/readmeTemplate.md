@@ -44,26 +44,28 @@ npm install @swyftx/api-crypto-address-validator
 
 #### Node
 ```javascript
-var WAValidator = require('@swyftx/api-crypto-address-validator');
+const WAValidator = require('@swyftx/api-crypto-address-validator')
 
-var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'BTC');
-if(valid)
-	console.log('This is a valid address');
-else
-	console.log('Address INVALID');
+const valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'BTC')
 
+if (valid) {
+  console.log('This is a valid address')
+} else {
+  console.log('Address INVALID')
+}
 // This will log 'This is a valid address' to the console.
 ```
 
 ```javascript
-var WAValidator = require('@swyftx/api-crypto-address-validator');
+const WAValidator = require('@swyftx/api-crypto-address-validator')
 
-var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoin', 'testnet');
-if(valid)
-      console.log('This is a valid address');
-else
-      console.log('Address INVALID');
+const valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoin', 'testnet')
 
+if (valid) {
+  console.log('This is a valid address')
+} else {
+  console.log('Address INVALID')
+}
 // As this is a invalid litecoin address 'Address INVALID' will be logged to console.
 ```
 
@@ -74,11 +76,12 @@ else
 
 ```javascript
 // WAValidator is exposed as a global (window.WAValidator)
-var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin');
-if(valid)
-    alert('This is a valid address');
-else
-    alert('Address INVALID');
+const valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin')
 
+if (valid) {
+  alert('This is a valid address')
+} else {
+  alert('Address INVALID')
+}
 // This should show a pop up with text 'This is a valid address'.
 ```
