@@ -1,5 +1,5 @@
-# crypto-address-validator
 Simple wallet address validator for validating Bitcoin and other altcoins addresses in **Node.js and browser**.
+# @swyftx/api-crypto-address-validator
 
 Forked from [ognus/wallet-address-validator](https://github.com/ognus/wallet-address-validator) which was forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
 
@@ -11,7 +11,7 @@ Did you know? This package is under active development by Swyftx. Swyftx allows 
 
 ### NPM
 ```
-npm install wallet-address-validator
+npm install @swyftx/api-crypto-address-validator
 ```
 
 ### Browser
@@ -39,7 +39,7 @@ npm install wallet-address-validator
 
 #### Node
 ```javascript
-var WAValidator = require('wallet-address-validator');
+var WAValidator = require('@swyftx/api-crypto-address-validator');
 
 var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'BTC');
 if(valid)
@@ -51,7 +51,7 @@ else
 ```
 
 ```javascript
-var WAValidator = require('wallet-address-validator');
+var WAValidator = require('@swyftx/api-crypto-address-validator');
 
 var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoin', 'testnet');
 if(valid)
