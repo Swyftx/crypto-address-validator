@@ -1,17 +1,22 @@
-# crypto-address-validator
-Simple wallet address validator for validating Bitcoin and other altcoins addresses in **Node.js and browser**.
+# @swyftx/api-crypto-address-validator
+Simple wallet address validator for validating Bitcoin and 124 (and counting) other altcoin addresses in **Node.js and browser**.
 
 Forked from [ognus/wallet-address-validator](https://github.com/ognus/wallet-address-validator) which was forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
 
-Did you know? This package is under active development by Swyftx. Swyftx allows you to buy and sell Bitcoin, Etherium, Ripple and many more assets using Australian Dollars. [Buy Bitcoin in Australia](https://swyftx.com.au)
+Did you know? This package is under active development by [Swyftx](https://swyftx.com.au). Swyftx allows you to buy and sell Bitcoin, Etherium, Ripple and many more assets using Australian Dollars. [Buy Bitcoin in Australia](https://swyftx.com.au)
 
-**File size is ~109 kB (minifed and gzipped - ~70.7% smaller)**.
+**File size is ~108.7 kB (minifed and gzipped - ~70.8% smaller)**.
 
 ## Installation
 
+### Yarn
+```
+yarn add @swyftx/api-crypto-address-validator
+```
+
 ### NPM
 ```
-npm install wallet-address-validator
+npm install @swyftx/api-crypto-address-validator
 ```
 
 ### Browser
@@ -163,26 +168,28 @@ npm install wallet-address-validator
 
 #### Node
 ```javascript
-var WAValidator = require('wallet-address-validator');
+const WAValidator = require('@swyftx/api-crypto-address-validator')
 
-var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'BTC');
-if(valid)
-	console.log('This is a valid address');
-else
-	console.log('Address INVALID');
+const valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'BTC')
 
+if (valid) {
+  console.log('This is a valid address')
+} else {
+  console.log('Address INVALID')
+}
 // This will log 'This is a valid address' to the console.
 ```
 
 ```javascript
-var WAValidator = require('wallet-address-validator');
+const WAValidator = require('@swyftx/api-crypto-address-validator')
 
-var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoin', 'testnet');
-if(valid)
-      console.log('This is a valid address');
-else
-      console.log('Address INVALID');
+const valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoin', 'testnet')
 
+if (valid) {
+  console.log('This is a valid address')
+} else {
+  console.log('Address INVALID')
+}
 // As this is a invalid litecoin address 'Address INVALID' will be logged to console.
 ```
 
@@ -193,11 +200,12 @@ else
 
 ```javascript
 // WAValidator is exposed as a global (window.WAValidator)
-var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin');
-if(valid)
-    alert('This is a valid address');
-else
-    alert('Address INVALID');
+const valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin')
 
+if (valid) {
+  alert('This is a valid address')
+} else {
+  alert('Address INVALID')
+}
 // This should show a pop up with text 'This is a valid address'.
 ```

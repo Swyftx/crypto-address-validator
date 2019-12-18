@@ -51,6 +51,8 @@ Promise.all([
   let compressed = results[1]
   let packageJson = results[2]
 
+  template = templateReplace(template, 'numCurrencies', Object.keys(currencies.CURRENCIES).length - 1)
+
   let sortedCurrencies = currencies.CURRENCIES
     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
 
