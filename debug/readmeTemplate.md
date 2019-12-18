@@ -9,19 +9,24 @@ Did you know? This package is under active development by [Swyftx](https://swyft
 
 ## Installation
 
-### Yarn
-```
+#### Yarn
+```bash
 yarn add @swyftx/api-crypto-address-validator
 ```
 
-### NPM
-```
+#### NPM
+```bash
 npm install @swyftx/api-crypto-address-validator
 ```
 
-### Browser
+#### Browser
 ```html
 <script src="wallet-address-validator.min.js"></script>
+```
+
+#### Minified Packed Frontend
+```typescript
+import walletAddressValidatorMinJs from '@swyftx/api-crypto-address-validator/dist/wallet-address-validator.min.js'
 ```
 
 ## API
