@@ -22,10 +22,18 @@ const ZILValidator = require('./zil_validator')
 const NXSValidator = require('./nxs_validator')
 const IOSTValidator = require('./iost_validator')
 const XTZValidator = require('./xtz_validator')
+const HBARValidator = require('./hbar_validator')
+const STXValidator = require('./stx_validator')
+const ALGOValidator = require('./algo_validator')
 const BCHValidator = require('./bitcoincash_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
+  name: 'Algorand',
+  symbol: 'algo',
+  validator: ALGOValidator
+},
+{
   name: 'Bitcoin',
   symbol: 'btc',
   addressTypes: { prod: ['00', '05'], testnet: ['6f', 'c4'] },
@@ -254,6 +262,10 @@ const CURRENCIES = [{
 }, {
   name: 'EthereumClassic',
   symbol: 'etc',
+  validator: ETHValidator
+}, {
+  name: 'Enigma',
+  symbol: 'eng',
   validator: ETHValidator
 }, {
   name: 'Callisto',
@@ -493,6 +505,11 @@ const CURRENCIES = [{
   validator: BTCValidator,
   addressTypes: { prod: ['17', '41'] }
 }, {
+  name: 'Ontology Gas',
+  symbol: 'ong',
+  validator: BTCValidator,
+  addressTypes: { prod: ['17', '41'] }
+}, {
   name: 'NEM',
   symbol: 'xem',
   validator: NEMValidator,
@@ -539,6 +556,11 @@ const CURRENCIES = [{
   name: 'STEEM',
   symbol: 'steem',
   validator: STEEMValidator
+},
+{
+  name: 'Blockstack',
+  symbol: 'stx',
+  validator: STXValidator
 }, {
   name: 'Enjin Coin',
   symbol: 'enj',
@@ -571,6 +593,10 @@ const CURRENCIES = [{
   addressTypes: { prod: ['2089', '2096'], testnet: ['2092', '2098'] },
   validator: BTCValidator
 }, {
+  name: 'Aave',
+  symbol: 'lend',
+  validator: ETHValidator
+}, {
   name: 'Nexus',
   symbol: 'nxs',
   validator: NXSValidator
@@ -590,6 +616,10 @@ const CURRENCIES = [{
   name: 'Tezos',
   symbol: 'XTZ',
   validator: XTZValidator
+}, {
+  name: 'Hedera Hashgraph',
+  symbol: 'hbar',
+  validator: HBARValidator
 }]
 
 module.exports = {

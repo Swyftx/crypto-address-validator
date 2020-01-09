@@ -26,5 +26,7 @@ module.exports = {
     }
 
     throw new Error('Missing validator for currency: ' + currencyNameOrSymbol)
-  }
+  },
+
+  CURRENCIES: currencies.CURRENCIES
 }

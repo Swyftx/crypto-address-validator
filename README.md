@@ -1,11 +1,11 @@
 # @swyftx/api-crypto-address-validator
-Simple wallet address validator for validating Bitcoin and 124 (and counting) other altcoin addresses in **Node.js and browser**.
+Simple wallet address validator for validating Bitcoin and 130 (and counting) other altcoin addresses in **Node.js and browser**.
 
 Forked from [ognus/wallet-address-validator](https://github.com/ognus/wallet-address-validator) which was forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
 
 Did you know? This package is under active development by [Swyftx](https://swyftx.com.au). Swyftx allows you to buy and sell Bitcoin, Etherium, Ripple and many more assets using Australian Dollars. [Buy Bitcoin in Australia](https://swyftx.com.au)
 
-**File size is ~108.7 kB (minifed and gzipped - ~70.8% smaller)**.
+**File size is ~189.8 kB (minifed and gzipped - ~69.7% smaller)**.
 
 ## Installation
 
@@ -44,9 +44,11 @@ import walletAddressValidatorMinJs from '@swyftx/api-crypto-address-validator/di
 ### Supported crypto currencies
 
 * 0x/zrx `'0x'` or `'zrx'`
+* Aave/lend `'Aave'` or `'lend'`
 * AdEx/adx `'AdEx'` or `'adx'`
 * aelf/ELF `'aelf'` or `'ELF'`
 * Aeternity/ae `'Aeternity'` or `'ae'`
+* Algorand/algo `'Algorand'` or `'algo'`
 * Aragon/ant `'Aragon'` or `'ant'`
 * Ardor/ardr `'Ardor'` or `'ardr'`
 * Augur/rep `'Augur'` or `'rep'`
@@ -60,14 +62,15 @@ import walletAddressValidatorMinJs from '@swyftx/api-crypto-address-validator/di
 * BioCoin/bio `'BioCoin'` or `'bio'`
 * Bitcoin/btc `'Bitcoin'` or `'btc'`
 * Bitcoin Diamond/bcd `'Bitcoin Diamond'` or `'bcd'`
-* BitcoinCash/bch `'BitcoinCash'` or `'bch'`
 * BitcoinCash/bcc `'BitcoinCash'` or `'bcc'`
+* BitcoinCash/bch `'BitcoinCash'` or `'bch'`
 * BitcoinGold/btg `'BitcoinGold'` or `'btg'`
 * BitcoinPrivate/btcp `'BitcoinPrivate'` or `'btcp'`
 * BitcoinZ/btcz `'BitcoinZ'` or `'btcz'`
 * Bitquence/bqx `'Bitquence'` or `'bqx'`
 * Bitshares/bts `'Bitshares'` or `'bts'`
 * BitTorrent/btt `'BitTorrent'` or `'btt'`
+* Blockstack/stx `'Blockstack'` or `'stx'`
 * Callisto/clo `'Callisto'` or `'clo'`
 * Cardano/ada `'Cardano'` or `'ada'`
 * Chainlink/link `'Chainlink'` or `'link'`
@@ -80,6 +83,7 @@ import walletAddressValidatorMinJs from '@swyftx/api-crypto-address-validator/di
 * DigiByte/dgb `'DigiByte'` or `'dgb'`
 * District0x/dnt `'District0x'` or `'dnt'`
 * DogeCoin/doge `'DogeCoin'` or `'doge'`
+* Enigma/eng `'Enigma'` or `'eng'`
 * Enjin Coin/enj `'Enjin Coin'` or `'enj'`
 * EOS/eos `'EOS'` or `'eos'`
 * Ethereum/eth `'Ethereum'` or `'eth'`
@@ -94,6 +98,7 @@ import walletAddressValidatorMinJs from '@swyftx/api-crypto-address-validator/di
 * Gnosis/gno `'Gnosis'` or `'gno'`
 * Golem/gnt `'Golem'` or `'gnt'`
 * Golem/gnt `'Golem'` or `'gnt'`
+* Hedera Hashgraph/hbar `'Hedera Hashgraph'` or `'hbar'`
 * Holo/HOT `'Holo'` or `'HOT'`
 * Horizen/zen `'Horizen'` or `'zen'`
 * Hush/hush `'Hush'` or `'hush'`
@@ -122,6 +127,7 @@ import walletAddressValidatorMinJs from '@swyftx/api-crypto-address-validator/di
 * Odyssey/ocn `'Odyssey'` or `'ocn'`
 * OmiseGO/omg `'OmiseGO'` or `'omg'`
 * Ontology/ont `'Ontology'` or `'ont'`
+* Ontology Gas/ong `'Ontology Gas'` or `'ong'`
 * Paxos Standard Token/pax `'Paxos Standard Token'` or `'pax'`
 * PeerCoin/ppc `'PeerCoin'` or `'ppc'`
 * PIVX/pivx `'PIVX'` or `'pivx'`

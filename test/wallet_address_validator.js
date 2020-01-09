@@ -504,6 +504,49 @@ describe('WAValidator.validate()', function () {
       valid('tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx', 'xtz')
       valid('tz1gjaF81ZRRvdzjobyfVNsAeSC6PScjfQwN', 'xtz')
     })
+    it('should return true for correct HashGraph addresses', () => {
+      valid('0.0.10819', 'hbar')
+      valid('0.0.13458', 'hbar')
+      valid('0.0.16952', 'hbar')
+    })
+    it('should return true for correct Neo Gas addresses', () => {
+      valid('AWKECj9RD8rS8RPcpCgYVjk1DeYyHwxZm3', 'gas')
+      valid('ARTmWQviNzB2KwGeKNTLVvSpqAjLqzY3KD', 'gas')
+      valid('APqUsPcjTYQtH2J9Lii8PZpfiG3mygoNrb', 'gas')
+      valid('ARPjP8o2y7j1BVxXcpMGnueq8QARUuByvK', 'gas')
+      valid('AXu57dhdNDnA5drqJUM2KfoMqgaLwmZwoP', 'gas')
+    })
+    it('should return true for correct Ontology Gas addresses', () => {
+      valid('AFmseVrdL9f9oyCzZefL9tG6UbvhPbdYzM', 'ong')
+      valid('AFmseVrdL9f9oyCzZefL9tG6UbvhUMqNMV', 'ong')
+      valid('AGwa8wyKtSFC8JWZ6ccyX4vpf9paAm153R', 'ong')
+      valid('AGwa8wyKtSFC8JWZ6ccyX4vpf9paAm153R', 'ong')
+      valid('AXu57dhdNDnA5drqJUM2KfoMqgaLwmZwoP', 'ong')
+    })
+    it('should return true for correct Blockstacks addresses', () => {
+      valid('SP1YWFP80QE1GD65MPGCXE509R0662DXJ9ANCKWDD', 'stx')
+      valid('SP1P72Z3704VMT3DMHPP2CB8TGQWGDBHD3RPR9GZS', 'stx')
+      valid('SP2ZKDH78NGAMTE1WKCTWRFKYWA2BDZPTVF93TXH6', 'stx')
+      valid('SP3WV3VC6GM1WF215SDHP0MESQ3BNXHB1N6TPB70S', 'stx')
+      valid('SP1P72Z3704VMT3DMHPP2CB8TGQWGDBHD3RPR9GZS', 'stx')
+    })
+    it('should return true for correct Aave Lend addresses', () => {
+      valid('0x80fB784B7eD66730e8b1DBd9820aFD29931aab03', 'lend')
+      valid('0xb1f8272a7b7cad00e465652cf6cbe28a03f5c161', 'lend')
+      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'lend')
+    })
+
+    it('should return true for correct Algorand addresses', () => {
+      valid('LCRDY3LYAANTVS3XRHEHWHGXRTKZYVTX55P5IA2AT5ZDJ4CWZFFZIKVHLI', 'algo')
+      valid('SP745JJR4KPRQEXJZHVIEN736LYTL2T2DFMG3OIIFJBV66K73PHNMDCZVM', 'algo')
+      valid('AKHSHWO2TUWE53RMVG6ZUBNAEX6MTYPT76TCIDCDWYUUTK6HCJTZS2HDQU', 'algo')
+    })
+
+    it('should return true for correct Enigma addresses', () => {
+      valid('0xd3bb6192e78880bf7322dc557673ce45a77dd568', 'eng')
+      valid('0x48337b8dd78a9761a73d0fbb8f5c8a0ddda32d85', 'eng')
+      valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'eng')
+    })
   })
 
   describe('invalid results', function () {
