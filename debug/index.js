@@ -3,7 +3,7 @@ const Validator = require(path.join(__dirname, '..', 'src', 'wallet_address_vali
 
 // Search All Existing Validators
 // Validator.CURRENCIES.forEach(coin => {
-//   const valid = Validator.validate('BNYPJMBTMNKL3GD2S3F3VF2F5F72EABT2DQWXWEJRWUKN32HK3NQ4CWRRA', coin.symbol)
+//   const valid = Validator.validate('1q4m765x694dsawzflaqr8reqc6neh8aj04gkklx', coin.symbol)
 //   if (valid) console.log(coin.symbol)
 // })
 
@@ -13,4 +13,4 @@ const Validator = require(path.join(__dirname, '..', 'src', 'wallet_address_vali
 
 // console.log(Validator.validate('f52c684f95e272c2397475ea74003b3285bfb82873fccdc8c470ac3e721b76ff', 'eng'))
 // console.log(Validator.validate('880e7fedd4cf59b1c170b3bcdf8dc124f580c7cad7271b3f1dd31b688271453a', 'eng'))
-console.log(Validator.validate('SP1YWFP80QE1GD65MPGCXE509R0662DXJ9ANCKWDD', 'stx'))
+console.log(Validator.validate('sys1q4m765x694dsawzflaqr8reqc6neh8aj04gkklx', 'sys'))

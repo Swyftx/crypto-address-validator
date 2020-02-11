@@ -77,11 +77,11 @@ describe('WAValidator.validate()', function () {
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'bch')
       valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'bitcoincash', 'testnet')
 
-      //SLP addresses
+      // SLP addresses
       valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', ['all'])
       valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', ['slpaddr'])
 
-      //Cash addresses
+      // Cash addresses
       valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['all'])
       valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['cashaddr'])
     })
@@ -396,14 +396,13 @@ describe('WAValidator.validate()', function () {
       valid('zil14pu4qn4ngmkcq3dcpkw862lys2w7z38hq3ktua', 'zil')
     })
     it('should return true for correct Syscoin addresses', () => {
-      valid('1EQUz46mFC5Wa4hbmfp7pzJa3tzNLWxyfr', 'sys')
-      valid('1B5mKdSwRNuBvE7uZAbFCbzi7MW1KH1PHT', 'sys')
-      valid('1MZZNZS5cPQu8THtpqcTF3bQASBQoWr6zo', 'sys')
       valid('SdzKyvhD2Y3xJvGVSfx96NXszq6x9BZX34', 'sys')
       valid('SbmNaK9hVn9BUoPoPtTmXogfGfZd5Mophm', 'sys')
       valid('SQUDdLog219Hpcz6Zss4uXg6xU1pAcnbLF', 'sys')
       valid('STxiBMedbmA28ip1QMooZaTBHxyiwVSCSr', 'sys')
       valid('SV4yxaugDJB6WXT5hNJwN1Pz6M8TjrMmJ6', 'sys')
+      valid('sys1q4m765x694dsawzflaqr8reqc6neh8aj04gkklx', 'sys')
+      valid('sys1qzpuka2847ecyf62xw0996v7wh2ehkdaegf6ann', 'sys')
     })
     it('should return true for correct Populous addresses', () => {
       valid('0x0e48746feb5603ceb03c1c181ccc55c953d989dc', 'ppt')
@@ -568,7 +567,7 @@ describe('WAValidator.validate()', function () {
 
     it('should return false for incorrect bitcoincash addresses', function () {
       commonTests('bitcoincash')
-      //legacy
+      // legacy
       invalid('38ty1qB68gHsiyZ8k3RPeCJ1wYQPrUCPPr', 'bitcoincash', 'both', ['cashaddr'])
       invalid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', ['cashaddr'])
       invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['legacy'])
@@ -849,6 +848,13 @@ describe('WAValidator.validate()', function () {
       invalid('ARDOR-HFNE-a2VE-SMV3-DCRZ8', 'ardr')
       invalid('ARDOR-HFNE-E2VE-SMV3-DCRZ', 'ardr')
       invalid('ARD0R-HFNE-E2VE-SMV3-DCRZ8', 'ardr')
+    })
+    it('should return false for incorrect Syscoin Addresses', () => {
+      invalid('1EQUz46mFC5Wa4hbmfp7pzJa3tzNLWxyfr', 'sys')
+      invalid('1B5mKdSwRNuBvE7uZAbFCbzi7MW1KH1PHT', 'sys')
+      invalid('1MZZNZS5cPQu8THtpqcTF3bQASBQoWr6zo', 'sys')
+      // invalid('sys1qzpuka2847ecyf62xw0996v7wh2ehkdaegf6annn', 'sys')
+      invalid('dsfasys1qzpuka2847ecyf62xw0996v7wh2ehkdaegf6annn', 'sys')
     })
   })
 })
