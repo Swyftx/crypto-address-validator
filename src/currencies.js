@@ -26,6 +26,7 @@ const HBARValidator = require('./hbar_validator')
 const STXValidator = require('./stx_validator')
 const ALGOValidator = require('./algo_validator')
 const BCHValidator = require('./bitcoincash_validator')
+const SYSValidator = require('./sys_validator')
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -489,8 +490,8 @@ const CURRENCIES = [{
 }, {
   name: 'Syscoin',
   symbol: 'sys',
-  addressTypes: { prod: ['00', '3f'] },
-  validator: BTCValidator
+  addressTypes: { prod: ['3f'] },
+  validator: SYSValidator
 }, {
   name: 'Populous',
   symbol: 'ppt',
