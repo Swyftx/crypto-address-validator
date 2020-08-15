@@ -28,8 +28,23 @@ const ALGOValidator = require('./algo_validator')
 const BCHValidator = require('./bitcoincash_validator')
 const SYSValidator = require('./sys_validator')
 
+export type Currencies = Array<{
+    name: string,
+    symbol: string,
+    validator: {
+      // `currency` must be `any` to avoid recureferences
+      isValidAddress:(address:string, currency:any, networkType:string, addressFormats:string[])=>boolean,
+      verifyChecksum:(address:string)=>boolean
+    },
+    addressTypes?: { prod: string[], testnet?: string[] },
+    iAddressTypes?:{ prod: string[], testnet?: string[] },
+    expectedLength?: number,
+    hashFunction?: string,
+    regex?: RegExp,
+  }> 
+
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
-const CURRENCIES = [{
+const CURRENCIES:Currencies = [{
   name: 'Algorand',
   symbol: 'algo',
   validator: ALGOValidator

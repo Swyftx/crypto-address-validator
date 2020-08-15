@@ -1,4 +1,5 @@
 var currencies = require('./currencies')
+import {Currencies} from './currencies'
 
 var DEFAULT_CURRENCY_NAME = 'bitcoin'
 
@@ -13,7 +14,7 @@ module.exports = {
    * @param {Array} addressFormats Array of formats. For example ['legacy', 'slp ', 'cash']
    * @returns {Error|Boolean}
    */
-  validate: function (address, currencyNameOrSymbol, networkType, addressFormats) {
+  validate: function (address:string, currencyNameOrSymbol:string, networkType?:string, addressFormats?:string[]):boolean {
     var currency = currencies.getByNameOrSymbol(currencyNameOrSymbol || DEFAULT_CURRENCY_NAME)
 
     if (currency && currency.validator) {
@@ -28,5 +29,5 @@ module.exports = {
     throw new Error('Missing validator for currency: ' + currencyNameOrSymbol)
   },
 
-  CURRENCIES: currencies.CURRENCIES
+  CURRENCIES: currencies.CURRENCIES as Currencies
 }

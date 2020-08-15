@@ -1,3 +1,7 @@
+# Generated typescript files
+src/wallet_address_validator.[dj]*
+src/currencies.[dj]*
+
 # Logs
 logs
 *.log
