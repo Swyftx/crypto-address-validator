@@ -621,7 +621,20 @@ const CURRENCIES = [{
   name: 'Hedera Hashgraph',
   symbol: 'hbar',
   validator: HBARValidator
-}]
+},
+  {
+    name: 'ALQO',
+    symbol: 'xlq',
+    addressTypes: { prod: ['53'], testnet: [] },
+    validator: BTCValidator,
+  },
+  {
+    name: 'Phore',
+    symbol: 'phr',
+    addressTypes: { prod: ['37'], testnet: ['89', '8C'] },
+    validator: BTCValidator,
+  }
+]
 
 module.exports = {
   getByNameOrSymbol: function (currencyNameOrSymbol) {
