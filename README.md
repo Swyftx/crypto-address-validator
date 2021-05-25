@@ -6,8 +6,6 @@ Forked from [swyftx/api-crypto-address-validator](https://github.com/Swyftx/cryp
 which was forked from [ognus/wallet-address-validator](https://github.com/ognus/wallet-address-validator)
 and [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
 
-**File size is ~189.4 kB (minifed and gzipped - ~69.7% smaller)**.
-
 ## Installation
 
 #### NPM
