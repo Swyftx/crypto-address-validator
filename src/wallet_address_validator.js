@@ -1,4 +1,5 @@
 var currencies = require('./currencies')
+var networks = require('./network')
 
 var DEFAULT_CURRENCY_NAME = 'bitcoin'
 
@@ -27,6 +28,21 @@ module.exports = {
 
     throw new Error('Missing validator for currency: ' + currencyNameOrSymbol)
   },
+  validateByNetwork: function (address, networkByName, networkType, addressFormats) {
+    var network = networks.getByNetwork(networkByName || DEFAULT_CURRENCY_NAME)
 
-  CURRENCIES: currencies.CURRENCIES
+    if (network && network.validator) {
+
+      if(!Array.isArray(addressFormats)){
+        addressFormats = [];
+      }
+
+      return network.validator.isValidAddress(address, network, networkType, addressFormats)
+    }
+
+    throw new Error('Missing validator for network: ' + networkByName)
+  },
+
+  CURRENCIES: currencies.CURRENCIES,
+  NETWORKS: networks.NETWORKS
 }
