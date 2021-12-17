@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "preserveConstEnums": true,
+      "isolatedModules": true,
+      "sourceMap": true,
+      "outDir": "./dist",
+        // Needed for refactor, change&remove like comments bellow suggest
+      "noImplicitAny": false, // true
+      "types": ["node"] // remove
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "test", "dist"]
+  }
