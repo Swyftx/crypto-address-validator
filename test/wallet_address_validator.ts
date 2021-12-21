@@ -1,14 +1,16 @@
 import WAValidator from '../src/wallet_address_validator'
 import chai from 'chai'
+import { TCurrencyName } from '../src/types/currencies.types'
+import { TAddress, TNetworkType, TAddressFormats, AddressFormats } from '../src/types/validators.types'
 
 var expect = chai.expect
 
-function valid (address: string, currency?: string, networkType?: string, addressFormats?: string[]) {
+function valid (address: TAddress, currency?: TCurrencyName, networkType?: TNetworkType, addressFormats?: TAddressFormats) {
   let result = WAValidator.validate(address, currency, networkType, addressFormats)
   expect(result).to.equal(true)
 }
 
-function invalid (address: string, currency?: string, networkType?: string, addressFormats?: string[]) {
+function invalid (address: TAddress, currency?: TCurrencyName, networkType?: TNetworkType, addressFormats?: TAddressFormats) {
   let result = WAValidator.validate(address, currency, networkType, addressFormats)
   expect(result).to.equal(false)
 }
@@ -67,7 +69,7 @@ describe('WAValidator.validate()', function () {
       valid('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs', 'bitcoincash')
       valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoincash', 'testnet')
       valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoincash', 'both')
-      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'both', ['legacy'])
+      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'both', [AddressFormats.legacy])
 
       // p2sh addresses
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'bitcoincash')
@@ -75,12 +77,12 @@ describe('WAValidator.validate()', function () {
       valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'bitcoincash', 'testnet')
 
       // SLP addresses
-      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', ['all'])
-      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', ['slpaddr'])
+      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', [AddressFormats.all])
+      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', [AddressFormats.slpaddr])
 
       // Cash addresses
-      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['all'])
-      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['cashaddr'])
+      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', [AddressFormats.all])
+      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', [AddressFormats.cashaddr])
     })
 
     it('should return true for correct litecoin addresses', function () {
@@ -565,12 +567,12 @@ describe('WAValidator.validate()', function () {
     it('should return false for incorrect bitcoincash addresses', function () {
       commonTests('bitcoincash')
       // legacy
-      invalid('38ty1qB68gHsiyZ8k3RPeCJ1wYQPrUCPPr', 'bitcoincash', 'both', ['cashaddr'])
-      invalid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', ['cashaddr'])
-      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['legacy'])
-      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoin', 'both', ['all'])
-      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', ['slpaddr'])
-      invalid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'both', ['unknownformat'])
+      invalid('38ty1qB68gHsiyZ8k3RPeCJ1wYQPrUCPPr', 'bitcoincash', 'both', [AddressFormats.cashaddr])
+      invalid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', [AddressFormats.cashaddr])
+      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', [AddressFormats.legacy])
+      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoin', 'both', [AddressFormats.all])
+      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', [AddressFormats.slpaddr])
+      invalid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'both', [AddressFormats.unknown])
     })
 
     it('should return false for incorrect litecoin addresses', function () {

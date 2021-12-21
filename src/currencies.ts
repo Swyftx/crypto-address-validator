@@ -27,9 +27,11 @@ import STXValidator from './stx_validator'
 import ALGOValidator from './algo_validator'
 import BCHValidator from './bitcoincash_validator'
 import SYSValidator from './sys_validator'
+import { ICurrencies, TCurrency, TCurrencyName, TCurrencySymbol } from './types/currencies.types'
+import { HashFunctions } from './types/hashFunctions.types'
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
-const CURRENCIES = [{
+const CURRENCIES_DATA: TCurrency[] = [{
   name: 'Algorand',
   symbol: 'algo',
   validator: ALGOValidator
@@ -181,7 +183,7 @@ const CURRENCIES = [{
   name: 'Decred',
   symbol: 'dcr',
   addressTypes: { prod: ['073f', '071a'], testnet: ['0f21', '0efc'] },
-  hashFunction: 'blake256',
+  hashFunction: HashFunctions.blake256,
   expectedLength: 26,
   validator: BTCValidator
 }, {
@@ -249,7 +251,7 @@ const CURRENCIES = [{
   symbol: 'waves',
   addressTypes: { prod: ['0157'], testnet: ['0154'] },
   expectedLength: 26,
-  hashFunction: 'blake256keccak256',
+  hashFunction: HashFunctions.blake256keccak256,
   regex: /^[a-zA-Z0-9]{35}$/,
   validator: BTCValidator
 }, {
@@ -623,12 +625,14 @@ const CURRENCIES = [{
   validator: HBARValidator
 }]
 
-export default {
-  getByNameOrSymbol: function (currencyNameOrSymbol) {
+const currencies: ICurrencies = {
+  getByNameOrSymbol: (currencyNameOrSymbol) => {
     let nameOrSymbol = currencyNameOrSymbol.replace(' ', '').toLowerCase() // Remove spaces and make lowercase
-    return CURRENCIES.find(function (currency) {
+    return CURRENCIES_DATA.find((currency) => {
       return currency.name.replace(' ', '').toLowerCase() === nameOrSymbol || currency.symbol.replace(' ', '').toLowerCase() === nameOrSymbol
     })
   },
-  CURRENCIES
+  CURRENCIES: CURRENCIES_DATA
 }
+
+export default currencies

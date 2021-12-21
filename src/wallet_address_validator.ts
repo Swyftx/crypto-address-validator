@@ -1,10 +1,10 @@
 import currencies from './currencies'
+import { IValidator } from './types/validator.types';
 
 let DEFAULT_CURRENCY_NAME = 'bitcoin'
 
-export default {
-
-  /**
+const walletAddressValidator: IValidator = {
+ /**
    * Checks if a given address is valid for the given currency
    *
    * @param {String} address The target address
@@ -30,3 +30,5 @@ export default {
 
   CURRENCIES: currencies.CURRENCIES
 }
+
+export default walletAddressValidator
