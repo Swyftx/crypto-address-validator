@@ -1,4 +1,6 @@
-function isValidEOSAddress (address, currency, networkType) {
+import { TAddress, TBaseValidator } from "./types/validators.types"
+
+function isValidEOSAddress (address: TAddress) {
   let regex = /^[a-z0-9]+$/g // Must be numbers and lowercase letters only
   if (address.search(regex) !== -1 && address.length === 12) {
     return true
@@ -7,8 +9,9 @@ function isValidEOSAddress (address, currency, networkType) {
   }
 }
 
-export default {
-  isValidAddress: function (address, currency, networkType) {
-    return isValidEOSAddress(address, currency, networkType)
-  }
+const eosValidation: TBaseValidator = {
+  isValidAddress: isValidEOSAddress
 }
+
+
+export default eosValidation

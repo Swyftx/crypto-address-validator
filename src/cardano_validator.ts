@@ -1,6 +1,7 @@
 import cbor from 'cbor-js'
 import CRC from 'crc'
 import base58 from  './crypto/base58'
+import { TBaseValidator } from './types/validators.types'
 
 function getDecoded (address) {
   try {
@@ -12,7 +13,7 @@ function getDecoded (address) {
   }
 }
 
-export default {
+const cardanoValidation: TBaseValidator = {
   isValidAddress: function (address) {
     let decoded = getDecoded(address)
 
@@ -32,3 +33,5 @@ export default {
     return crc === validCrc
   }
 }
+
+export default cardanoValidation

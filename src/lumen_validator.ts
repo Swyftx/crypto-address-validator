@@ -1,15 +1,13 @@
 import baseX from 'base-x'
 import crc from 'crc'
+import { TChecksumValidator } from './types/validators.types'
 
 const ALLOWED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
 
 const codec = baseX(ALLOWED_CHARS)
 const regexp = new RegExp('^G[' + ALLOWED_CHARS + ']{55}$')
 
-export default {
-  /**
-     * lumen address validation
-     */
+const lumenValidator: TChecksumValidator = {
   isValidAddress: function (address) {
     if (regexp.test(address)) {
       return this.verifyChecksum(address)
@@ -46,3 +44,5 @@ export default {
     return true
   }
 }
+
+export default lumenValidator

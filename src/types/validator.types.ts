@@ -1,16 +1,11 @@
 import { TCurrency, TCurrencyName } from "./currencies.types";
-import { TAddress, TAddressFormats, TNetworkType } from "./validators.types";
-
-export type TIsValidAddress = (
-
-) => boolean
-
+import { TAddress, TAddressFormats, TNetType } from "./validators.types";
 
 export interface IValidator {
   validate: (
     address: TAddress,
     currency?: TCurrencyName,
-    networkType?: TNetworkType,
+    networkType?: TNetType,
     addressFormats?: TAddressFormats
   ) => Boolean,
   CURRENCIES: TCurrency[]

@@ -1,4 +1,6 @@
-function isValidHBarAddress (address) {
+import { TAddress, TBaseValidator } from "./types/validators.types"
+
+function isValidHBarAddress (address: TAddress) {
   const split = address.split('.')
   if (split[0] !== '0' || split[1] !== '0') {
     return false
@@ -8,8 +10,8 @@ function isValidHBarAddress (address) {
   }
 }
 
-export default {
-  isValidAddress: function (address, currency, networkType) {
-    return isValidHBarAddress(address)
-  }
+const hbarValidator: TBaseValidator = {
+  isValidAddress: isValidHBarAddress
 }
+
+export default hbarValidator

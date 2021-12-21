@@ -1,7 +1,9 @@
 import BCH from 'bchaddrjs-slp'
+import { NetTypes } from './types/net.types'
+import { AddressFormats, TBaseValidator } from './types/validators.types'
 
-let DEFAULT_ADDRESS_FORMAT = 'legacy'
-let DEFAULT_NETWORK_TYPE = 'prod'
+let DEFAULT_ADDRESS_FORMAT = AddressFormats.legacy
+let DEFAULT_NETWORK_TYPE = NetTypes.prod
 
 function isAValidAddress (address) {
   try {
@@ -37,8 +39,8 @@ function isValidAddressFormat (addressFormat) {
 
 function isValidNetworkType (address, networkType) {
   networkType = networkType.toLowerCase().trim()
-  if (networkType === 'prod' || networkType === 'testnet') {
-    if (networkType === 'prod') {
+  if (networkType === NetTypes.prod || networkType === NetTypes.testnet) {
+    if (networkType === NetTypes.prod) {
       return BCH.isMainnetAddress(address)
     }
 
@@ -103,16 +105,7 @@ function isValidBitcoinCashAddress (address, currency, networkType, addressForma
   return isValidNetworkType(address, networkType)
 }
 
-export default {
-  /**
-   * Checks if a given address is valid for the given currency
-   *
-   * @param {String} address The target address
-   * @param {Object} currency A currency from the ./currencies.js array
-   * @param {String} networkType Network Type. Could be 'prod', 'both' and 'testnet'
-   * @param {Array} addressFormats Array of formats. Options are: 'legacy', 'cashaddr', 'bitpay', 'slpaddr', 'all'
-   * @returns {Error|Boolean}
-   */
+export const bitcoincashValidator: TBaseValidator = {
   isValidAddress: function (address, currency, networkType, addressFormats) {
     networkType = networkType || DEFAULT_NETWORK_TYPE
     if (!addressFormats.length || !Array.isArray(addressFormats)) {
@@ -122,3 +115,5 @@ export default {
     return isValidBitcoinCashAddress(address, currency, networkType, addressFormats)
   }
 }
+
+export default bitcoincashValidator

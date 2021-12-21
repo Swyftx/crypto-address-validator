@@ -1,12 +1,18 @@
 import { base32 } from 'rfc4648'
 import { sha512_256 }  from 'js-sha512'
+import { TChecksumValidator } from './types/validators.types'
 
-export default {
-  isValidAddress: function (address, currency, networkType) {
+const correctPadding = (a: string): string => {
+  if (a.length % 8 === 0) return a.length.toString()
+  return a + '='.repeat((8 - a.length % 8))
+}
+
+const algoValidator: TChecksumValidator = {
+  isValidAddress: function (address) {
     return this.verifyChecksum(address)
   },
 
-  verifyChecksum: function (address) {
+  verifyChecksum: (address) => {
     if (address.length !== 58) {
       return false
     } else {
@@ -24,7 +30,6 @@ export default {
   }
 }
 
-function correctPadding (a) {
-  if (a.length % 8 === 0) return a.length
-  return a + '='.repeat((8 - a.length % 8))
-}
+export default algoValidator
+
+

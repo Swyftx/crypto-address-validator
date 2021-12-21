@@ -1,4 +1,5 @@
 import base58 from './crypto/base58';
+import { TBaseValidator } from './types/validators.types';
 
 function getDecoded (address) {
   try {
@@ -10,7 +11,7 @@ function getDecoded (address) {
   }
 }
 
-export default {
+const nxsValidator: TBaseValidator = {
   isValidAddress: function (address) {
     let decoded = getDecoded(address)
 
@@ -29,3 +30,5 @@ export default {
     return true
   }
 }
+
+export default nxsValidator

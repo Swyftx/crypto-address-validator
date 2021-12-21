@@ -1,7 +1,9 @@
+import { TBaseValidator } from "./types/validators.types"
+
 const ardorRegex = new RegExp('^ARDOR(-[A-Z0-9]{4}){3}(-[A-Z0-9]{5})$')
 
-export default {
-  isValidAddress: function (address, currency, networkType) {
+const ardrValidation: TBaseValidator = {
+  isValidAddress: function (address) {
     if (!ardorRegex.test(address)) {
       return false
     }
@@ -9,3 +11,5 @@ export default {
     return true
   }
 }
+
+export default ardrValidation

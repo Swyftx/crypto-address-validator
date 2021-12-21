@@ -1,6 +1,7 @@
 export enum NetTypes {
   prod = 'prod',
-  testnet = 'testnet'
+  testnet = 'testnet',
+  both = 'both'
 }
 
 export type TAddressType = string

@@ -1,15 +1,13 @@
 import cryptoUtils from './crypto/utils'
 import baseX from 'base-x'
+import { TChecksumValidator } from './types/validators.types'
 
 let ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz'
 
 let codec = baseX(ALLOWED_CHARS)
 let regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{24,34}$')
 
-export default {
-  /**
-     * ripple address validation
-     */
+const rippleValidator: TChecksumValidator = {
   isValidAddress: function (address) {
     if (regexp.test(address)) {
       return this.verifyChecksum(address)
@@ -26,3 +24,5 @@ export default {
     return computedChecksum === checksum
   }
 }
+
+export default rippleValidator

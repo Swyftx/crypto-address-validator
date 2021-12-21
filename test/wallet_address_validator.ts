@@ -1,16 +1,17 @@
 import WAValidator from '../src/wallet_address_validator'
 import chai from 'chai'
 import { TCurrencyName } from '../src/types/currencies.types'
-import { TAddress, TNetworkType, TAddressFormats, AddressFormats } from '../src/types/validators.types'
+import { TAddress, TNetType, AddressFormats, TAddressFormats } from '../src/types/validators.types'
+import { NetTypes } from '../src/types/net.types'
 
 var expect = chai.expect
 
-function valid (address: TAddress, currency?: TCurrencyName, networkType?: TNetworkType, addressFormats?: TAddressFormats) {
+function valid (address: TAddress, currency?: TCurrencyName, networkType?: TNetType, addressFormats?: TAddressFormats) {
   let result = WAValidator.validate(address, currency, networkType, addressFormats)
   expect(result).to.equal(true)
 }
 
-function invalid (address: TAddress, currency?: TCurrencyName, networkType?: TNetworkType, addressFormats?: TAddressFormats) {
+function invalid (address: TAddress, currency?: TCurrencyName, networkType?: TNetType, addressFormats?: TAddressFormats) {
   let result = WAValidator.validate(address, currency, networkType, addressFormats)
   expect(result).to.equal(false)
 }
@@ -23,11 +24,11 @@ describe('WAValidator.validate()', function () {
       valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'BTC')
       valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'Bitcoin')
       valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'btc')
-      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'btc', 'prod')
-      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'btc', 'both')
+      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'btc', NetTypes.prod)
+      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'btc', NetTypes.both)
       valid('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs', 'bitcoin')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoin', 'testnet')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoin', 'both')
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoin', NetTypes.testnet)
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoin', NetTypes.both)
 
       valid('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez')
       valid('116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd')
@@ -35,7 +36,7 @@ describe('WAValidator.validate()', function () {
       // p2sh addresses
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt')
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'bitcoin')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'bitcoin', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'bitcoin', NetTypes.testnet)
 
       // TODO broken for some reason after TS migration
       // segwit addresses
@@ -64,25 +65,25 @@ describe('WAValidator.validate()', function () {
       valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'BCH')
       valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'Bitcoin')
       valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch')
-      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'prod')
-      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'both')
+      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', NetTypes.prod)
+      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', NetTypes.both)
       valid('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs', 'bitcoincash')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoincash', 'testnet')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoincash', 'both')
-      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'both', [AddressFormats.legacy])
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoincash', NetTypes.testnet)
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bitcoincash', NetTypes.both)
+      valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', NetTypes.both, [AddressFormats.legacy])
 
       // p2sh addresses
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'bitcoincash')
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'bch')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'bitcoincash', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'bitcoincash', NetTypes.testnet)
 
       // SLP addresses
-      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', [AddressFormats.all])
-      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', [AddressFormats.slpaddr])
+      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', NetTypes.both, [AddressFormats.all])
+      valid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', NetTypes.both, [AddressFormats.slpaddr])
 
       // Cash addresses
-      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', [AddressFormats.all])
-      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', [AddressFormats.cashaddr])
+      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', NetTypes.both, [AddressFormats.all])
+      valid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', NetTypes.both, [AddressFormats.cashaddr])
     })
 
     it('should return true for correct litecoin addresses', function () {
@@ -90,13 +91,13 @@ describe('WAValidator.validate()', function () {
       valid('LVg2kJoFNg45Nbpy53h7Fe1wKyeXVRhMH9', 'LTC')
       valid('LTpYZG19YmfvY2bBDYtCKpunVRw7nVgRHW', 'litecoin')
       valid('Lb6wDP2kHGyWC7vrZuZAgV7V4ECyDdH7a6', 'litecoin')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'litecoin', 'testnet')
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'litecoin', NetTypes.testnet)
 
       // p2sh addresses
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'litecoin')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'litecoin', 'testnet')
-      valid('QW2SvwjaJU8LD6GSmtm1PHnBG2xPuxwZFy', 'litecoin', 'testnet')
-      valid('QjpzxpbLp5pCGsCczMbfh1uhC3P89QZavY', 'litecoin', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'litecoin', NetTypes.testnet)
+      valid('QW2SvwjaJU8LD6GSmtm1PHnBG2xPuxwZFy', 'litecoin', NetTypes.testnet)
+      valid('QjpzxpbLp5pCGsCczMbfh1uhC3P89QZavY', 'litecoin', NetTypes.testnet)
     })
 
     it('should return true for correct peercoin addresses', function () {
@@ -104,11 +105,11 @@ describe('WAValidator.validate()', function () {
       valid('PSbM1pGoE9dnAuVWvpQqTTYVpKZU41dNAz', 'peercoin')
       valid('PUULeHrJL2WujJkorc2RsUAR3SardKUauu', 'peercoin')
       valid('PUULeHrJL2WujJkorc2RsUAR3SardKUauu', 'PPC')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'peercoin', 'testnet')
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'peercoin', NetTypes.testnet)
 
       // p2sh addresses
       valid('pNms4CaWqgZUxbNZaA1yP2gPr3BYnez9EM', 'peercoin')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'peercoin', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'peercoin', NetTypes.testnet)
     })
 
     it('should return true for correct dogecoin addresses', function () {
@@ -117,11 +118,11 @@ describe('WAValidator.validate()', function () {
       valid('DPS6iZj7roHquvwRYXNBua9QtKPzigUUhM', 'dogecoin')
       valid('DPS6iZj7roHquvwRYXNBua9QtKPzigUUhM', 'DOGE')
       valid('DFs6qrdCp4K4evv6jU5R3y2WjaWQbXzGsX', 'DOGE')
-      // TODO: NEED A DOGECOIN TESTNET ADDRESS
+      // TODO: NEED A DOGECOINNetTypes.testnetADDRESS
 
       // p2sh addresses
       valid('A7JjzK9k9x5b2MkkQzqt91WZsuu7wTu6iS', 'dogecoin')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'dogecoin', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'dogecoin', NetTypes.testnet)
     })
 
     it('should return true for correct beavercoin addresses', function () {
@@ -129,11 +130,11 @@ describe('WAValidator.validate()', function () {
       valid('BC1LLYoE4mTCHTJhVYvLGxhRTwAHyWTQ49', 'beavercoin')
       valid('BBuyeg2vjtyFdMNj3LTxuVra4wJMKVAY9C', 'beavercoin')
       valid('BBuyeg2vjtyFdMNj3LTxuVra4wJMKVAY9C', 'BVC')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'beavercoin', 'testnet')
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'beavercoin', NetTypes.testnet)
 
       // p2sh addresses
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'beavercoin')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'beavercoin', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'beavercoin', NetTypes.testnet)
     })
 
     it('should return true for correct freicoin addresses', function () {
@@ -141,11 +142,11 @@ describe('WAValidator.validate()', function () {
       valid('1oNLrsHnBcR6dpaBpwz3LSwutbUNkNSjs', 'freicoin')
       valid('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez', 'freicoin')
       valid('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez', 'FRC')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'freicoin', 'testnet')
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'freicoin', NetTypes.testnet)
 
       // p2sh addresse
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'freicoin')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'freicoin', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'freicoin', NetTypes.testnet)
     })
 
     it('should return true for correct protoshares addresses', function () {
@@ -153,11 +154,11 @@ describe('WAValidator.validate()', function () {
       valid('Piev8TMX2fT5mFtgxx2TXJaqXP37weMPuD', 'protoshares')
       valid('PgsuLoe9ojRKFGJGVpqqk37gAqNJ4ozboD', 'protoshares')
       valid('PgsuLoe9ojRKFGJGVpqqk37gAqNJ4ozboD', 'PTS')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'protoshares', 'testnet')
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'protoshares', NetTypes.testnet)
 
       // p2sh addresses
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'protoshares')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'protoshares', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'protoshares', NetTypes.testnet)
     })
 
     it('should return true for correct megacoin addresses', function () {
@@ -165,11 +166,11 @@ describe('WAValidator.validate()', function () {
       valid('MSAkrhRyte7bz999Ga5SqYjzypFFYa2oEb', 'megacoin')
       valid('MLUTAtDQFcfo1QACWocLuufFq5fBDTpCHE', 'megacoin')
       valid('MLUTAtDQFcfo1QACWocLuufFq5fBDTpCHE', 'MEC')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'megacoin', 'testnet')
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'megacoin', NetTypes.testnet)
 
       // p2sh addresses
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'megacoin')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'megacoin', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'megacoin', NetTypes.testnet)
     })
 
     it('should return true for correct primecoin addresses', function () {
@@ -178,11 +179,11 @@ describe('WAValidator.validate()', function () {
       valid('ANHfTZnskKqaBU7oZuSha9SpbHU3YBfeKf', 'primecoin')
       valid('AYdiYMKSGYxLcZNDmqB8jNcck7SQibrfiK', 'primecoin')
       valid('AYdiYMKSGYxLcZNDmqB8jNcck7SQibrfiK', 'XPM')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'primecoin', 'testnet')
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'primecoin', NetTypes.testnet)
 
       // p2sh addresses
       valid('af5CvTQq7agDh717Wszb5QDbWb7nT2mukP', 'primecoin')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'primecoin', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'primecoin', NetTypes.testnet)
     })
 
     it('should return true for correct auroracoin addresses', function () {
@@ -191,11 +192,11 @@ describe('WAValidator.validate()', function () {
       valid('AUN1oaj5hjispGnczt8Aruw3TxgGyRqB3V', 'auroracoin')
       valid('AXGcBkGX6NiaDXj85C5dCrhTRUgwxSkKDK', 'auroracoin')
       valid('AXGcBkGX6NiaDXj85C5dCrhTRUgwxSkKDK', 'AUR')
-      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'auroracoin', 'testnet')
+      valid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'auroracoin', NetTypes.testnet)
 
       // p2sh addresses
       valid('3NJZLcZEEYBpxYEUGewU4knsQRn1WM5Fkt', 'auroracoin')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'auroracoin', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'auroracoin', NetTypes.testnet)
     })
 
     it('should return true for correct namecoin addresses', function () {
@@ -209,32 +210,32 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct BioCoin addresses', function () {
       valid('B7xseoLGk7hEpMDDeSvZDKmmiAMHWiccok', 'biocoin')
       valid('B8zjmYFGhWmiaQSJshfrnefE72xCapCkvo', 'biocoin')
-      valid('muH8LL42DiMs8GEQ6Grfi8KUw2uFvuKr1J', 'biocoin', 'testnet')
-      valid('muH8LL42DiMs8GEQ6Grfi8KUw2uFvuKr1J', 'BIO', 'testnet')
+      valid('muH8LL42DiMs8GEQ6Grfi8KUw2uFvuKr1J', 'biocoin', NetTypes.testnet)
+      valid('muH8LL42DiMs8GEQ6Grfi8KUw2uFvuKr1J', 'BIO', NetTypes.testnet)
       valid('B8zjmYFGhWmiaQSJshfrnefE72xCapCkvo', 'BIO')
     })
 
     it('should return true for correct Garlicoin addresses', function () {
       valid('GU2NtcNotWFiZjTp2Vdgf5CjeMfgsWYCua', 'garlicoin')
       valid('GNWeWaoQ6rv21ZFjJWT9vb91hXUzFTLkru', 'garlicoin')
-      valid('mjKbQTkgwzmsL3J86tdVzhyW9pc4NePqTb', 'garlicoin', 'testnet')
-      valid('mnYp36NuyRavMKQ9Q9Q6oGqoorAs9p3zYn', 'GRLC', 'testnet')
+      valid('mjKbQTkgwzmsL3J86tdVzhyW9pc4NePqTb', 'garlicoin', NetTypes.testnet)
+      valid('mnYp36NuyRavMKQ9Q9Q6oGqoorAs9p3zYn', 'GRLC', NetTypes.testnet)
       valid('GU2NtcNotWFiZjTp2Vdgf5CjeMfgsWYCua', 'GRLC')
     })
 
     it('should return true for correct Vertcoin addresses', function () {
       valid('VmoMjGf3zgZLy8sk3PMKd3xikZHXWvnYi7', 'vertcoin')
       valid('VmhHwXr3J8xMZpy62WuBGpu3xVvThWzcTQ', 'vertcoin')
-      valid('mvww6DEJ18dbyQUukpVQXvLgrNDJazZn1Y', 'vertcoin', 'testnet')
-      valid('mn3mdEE6cf1snxVsknNz4GRTdSrWXqYp7c', 'VTC', 'testnet')
+      valid('mvww6DEJ18dbyQUukpVQXvLgrNDJazZn1Y', 'vertcoin', NetTypes.testnet)
+      valid('mn3mdEE6cf1snxVsknNz4GRTdSrWXqYp7c', 'VTC', NetTypes.testnet)
       valid('Vri6Q4GgNFfdtcpxD961TotJwaSaYQCaL5', 'VTC')
     })
 
     it('should return true for correct BitcoinGold addresses', function () {
       valid('GW3JrQyHtoVfEFES3Y9JagiX3VSKQStLwj', 'bitcoingold')
       valid('GUDWdeMyAXQbrNFFivAhkJQ1GfBCFdc7JF', 'bitcoingold')
-      valid('mvww6DEJ18dbyQUukpVQXvLgrNDJazZn1Y', 'bitcoingold', 'testnet')
-      valid('mn3mdEE6cf1snxVsknNz4GRTdSrWXqYp7c', 'BTG', 'testnet')
+      valid('mvww6DEJ18dbyQUukpVQXvLgrNDJazZn1Y', 'bitcoingold', NetTypes.testnet)
+      valid('mn3mdEE6cf1snxVsknNz4GRTdSrWXqYp7c', 'BTG', NetTypes.testnet)
       valid('GSNFPRsdaM3MXrU5HW1AxgFwmUQC8HXK9F', 'BTG')
     })
 
@@ -242,8 +243,8 @@ describe('WAValidator.validate()', function () {
       valid('Dsesax2GJnMN4wwmWo5rJGq73dDK217Rh85', 'DCR')
       valid('DsYuxtvGRfN8rncXAndtLUpJm55F77K17RA', 'decred')
       valid('DsaXDG2NrJW8g4tFAb8n9MNx81Sn3Qc8AEV', 'decred')
-      valid('TsijUgejaRnLKF5WAbpUxNtwKGUiKVeXLr7', 'decred', 'testnet')
-      valid('TsZ9QmAoadF12hGvyALp6qvaF4be3BmLqG9', 'dcr', 'testnet')
+      valid('TsijUgejaRnLKF5WAbpUxNtwKGUiKVeXLr7', 'decred', NetTypes.testnet)
+      valid('TsZ9QmAoadF12hGvyALp6qvaF4be3BmLqG9', 'dcr', NetTypes.testnet)
     })
 
     it('should return true for correct Digibyte addresses', function () {
@@ -289,7 +290,7 @@ describe('WAValidator.validate()', function () {
       valid('Xx4dYKgz3Zcv6kheaqog3fynaKWjbahb6b', 'dash')
       valid('XcY4WJ6Z2Q8w7vcYER1JypC8s2oa3SQ1b1', 'DASH')
       valid('XqMkVUZnqe3w4xvgdZRtZoe7gMitDudGs4', 'dash')
-      valid('yPv7h2i8v3dJjfSH4L3x91JSJszjdbsJJA', 'dash', 'testnet')
+      valid('yPv7h2i8v3dJjfSH4L3x91JSJszjdbsJJA', 'dash', NetTypes.testnet)
     })
 
     it('should return true for correct neo addresses', function () {
@@ -304,69 +305,69 @@ describe('WAValidator.validate()', function () {
     it('should return true for correct qtum addresses', function () {
       valid('QNjUiD3bVVZwYTc5AhpeQbS1mfb2guyWhe', 'qtum')
       valid('QVZnSrMwKp6AL4FjUPPnfFgsma6j1DXQXu', 'QTUM')
-      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'qtum', 'testnet')
+      valid('2MxKEf2su6FGAUfCEAHreGFQvEYrfYNHvL7', 'qtum', NetTypes.testnet)
     })
 
     it('should return true for correct votecoin addresses', function () {
       valid('t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'votecoin')
       valid('t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'VOT')
-      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'votecoin', 'testnet')
+      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'votecoin', NetTypes.testnet)
     })
 
     it('should return true for correct bitcoinz addresses', function () {
       valid('t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'bitcoinz')
       valid('t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'BTCZ')
-      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'bitcoinz', 'testnet')
+      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'bitcoinz', NetTypes.testnet)
     })
 
     it('should return true for correct zclassic addresses', function () {
       valid('t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'zclassic')
       valid('t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'ZCL')
-      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'zclassic', 'testnet')
+      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'zclassic', NetTypes.testnet)
     })
 
     it('should return true for correct hush addresses', function () {
       valid('t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'hush')
       valid('t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'HUSH')
-      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'hush', 'testnet')
+      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'hush', NetTypes.testnet)
     })
 
     it('should return true for correct zcash addresses', function () {
       valid('t1U9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'zcash')
       valid('t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'ZEC')
-      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'zcash', 'testnet')
+      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'zcash', NetTypes.testnet)
     })
 
     it('should return true for correct bitcoinprivate addresses', function () {
       valid('b1M4XXPFhwMb1SP33yhzn3h9qWXjujkgep4', 'bitcoinprivate')
       // valid('bx....', 'BTCP');
-      // valid('nx....', 'bitcoinprivate', 'testnet');
+      // valid('nx....', 'bitcoinprivate', NetTypes.testnet);
     })
 
     it('should return true for correct snowgem addresses', function () {
       valid('s1fx7WBkjB4UH6qQjPp6Ysmtr1C1JiTK2Yw', 'snowgem')
       valid('s3d27MhkBRt3ha2UuxhjXaYF4DCnttTMnL1', 'SNG')
-      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'snowgem', 'testnet')
+      valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'snowgem', NetTypes.testnet)
     })
 
     it('should return true for correct zencash/horizen addresses', function () {
       valid('znhiGGfYRepxkBjXYvA2kFrXiC351i9ta4z', 'zencash')
       valid('zssEdGnZCQ9G86LZFtbynMn1hYTVhn6eYCL', 'ZEN')
-      valid('ztmWMDLWjbruCJxKmmfAZiT6QAQdiv5F291', 'zencash', 'testnet')
+      valid('ztmWMDLWjbruCJxKmmfAZiT6QAQdiv5F291', 'zencash', NetTypes.testnet)
       valid('znauTfxFLirRXFXKubFyxjbT5WjBotQzeEt', 'horizen')
     })
 
     it('should return true for correct komodo addresses', function () {
       valid('R9R5HirAzqDcWrWGiJEL115dpV3QB3hobH', 'komodo')
       valid('RAvj2KKVUohTu3hVdNJ4U6hQi7TNawpacH', 'KMD')
-      // valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'komodo', 'testnet');
+      // valid('t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'komodo', NetTypes.testnet);
     })
 
     it('should return true for correct Bankex addresses', function () {
       valid('0xeac39e1bc802baae3d4b9cb518f3f60374bbad6c', 'bankex')
       valid('0x45245bc59219eeaaf6cd3f382e078a461ff9de7b', 'BKX')
-      valid('0xf40d80FCfa5cdEa0bB1E570c2D52132ac9bC6aEC', 'bankex', 'testnet')
-      valid('0x8A7395f281EeCf2B471B689E87Cf4C7fa8bb957d', 'BKX', 'testnet')
+      valid('0xf40d80FCfa5cdEa0bB1E570c2D52132ac9bC6aEC', 'bankex', NetTypes.testnet)
+      valid('0x8A7395f281EeCf2B471B689E87Cf4C7fa8bb957d', 'BKX', NetTypes.testnet)
     })
 
     it('should return true for correct BitTorrent addresses', () => {
@@ -553,11 +554,10 @@ describe('WAValidator.validate()', function () {
       invalid('%%@', currency) // reject invalid base58 string
       invalid('1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa', currency) // reject invalid address
       invalid('bd839e4f6fadb293ba580df5dea7814399989983', currency) // reject transaction id's
-      // testnet
-      invalid('', currency, 'testnet') // reject blank
-      invalid('%%@', currency, 'testnet') // reject invalid base58 string
-      invalid('1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa', currency, 'testnet') // reject invalid address
-      invalid('bd839e4f6fadb293ba580df5dea7814399989983', currency, 'testnet') // reject transaction id's
+      //NetTypes.testnet      invalid('', currency, NetTypes.testnet) // reject blank
+      invalid('%%@', currency, NetTypes.testnet) // reject invalid base58 string
+      invalid('1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa', currency, NetTypes.testnet) // reject invalid address
+      invalid('bd839e4f6fadb293ba580df5dea7814399989983', currency, NetTypes.testnet) // reject transaction id's
     }
 
     it('should return false for incorrect bitcoin addresses', function () {
@@ -567,12 +567,12 @@ describe('WAValidator.validate()', function () {
     it('should return false for incorrect bitcoincash addresses', function () {
       commonTests('bitcoincash')
       // legacy
-      invalid('38ty1qB68gHsiyZ8k3RPeCJ1wYQPrUCPPr', 'bitcoincash', 'both', [AddressFormats.cashaddr])
-      invalid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', 'both', [AddressFormats.cashaddr])
-      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', [AddressFormats.legacy])
-      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoin', 'both', [AddressFormats.all])
-      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', 'both', [AddressFormats.slpaddr])
-      invalid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', 'both', [AddressFormats.unknown])
+      invalid('38ty1qB68gHsiyZ8k3RPeCJ1wYQPrUCPPr', 'bitcoincash', NetTypes.both, [AddressFormats.cashaddr])
+      invalid('pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsvryq5wf0k', 'bitcoincash', NetTypes.both, [AddressFormats.cashaddr])
+      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', NetTypes.both, [AddressFormats.legacy])
+      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoin', NetTypes.both, [AddressFormats.all])
+      invalid('bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g', 'bitcoincash', NetTypes.both, [AddressFormats.slpaddr])
+      invalid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bch', NetTypes.both, [AddressFormats.unknown])
     })
 
     it('should return false for incorrect litecoin addresses', function () {
@@ -638,8 +638,8 @@ describe('WAValidator.validate()', function () {
     it('should return false for incorrect bankex addresses', function () {
       invalid('1SQHtwR5oJRKLfiWQ2APsAd9miUc4k2ez', 'bankex')
       invalid('116CGDLddrZhMrTwhCVJXtXQpxygTT1kHd', 'BKX')
-      invalid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bankex', 'testnet')
-      invalid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'BKX', 'testnet')
+      invalid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'bankex', NetTypes.testnet)
+      invalid('mzBc4XEFSdzCDcTxAgf6EZXgsZWpztRhef', 'BKX', NetTypes.testnet)
     })
 
     it('should return false for incorrect digibyte addresses', function () {
@@ -685,62 +685,62 @@ describe('WAValidator.validate()', function () {
       commonTests('votecoin')
       invalid('t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'votecoin')
       invalid('t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'VOT')
-      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'votecoin', 'testnet')
+      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'votecoin', NetTypes.testnet)
     })
 
     it('should return false for incorrect bitcoinz addresses', function () {
       commonTests('bitcoinz')
       invalid('t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'bitcoinz')
       invalid('t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'BTCZ')
-      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'bitcoinz', 'testnet')
+      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'bitcoinz', NetTypes.testnet)
     })
 
     it('should return false for incorrect zclassic addresses', function () {
       commonTests('zclassic')
       invalid('t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'zclassic')
       invalid('t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'ZCL')
-      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'zclassic', 'testnet')
+      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'zclassic', NetTypes.testnet)
     })
 
     it('should return false for incorrect hush addresses', function () {
       invalid('t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'hush')
       invalid('t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'HUSH')
-      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'hush', 'testnet')
+      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'hush', NetTypes.testnet)
     })
 
     it('should return false for incorrect zcash addresses', function () {
       commonTests('zcash')
       invalid('t1Y9yhDa5XEjgfnTgZoKddeSiEN1aoLkQxq', 'zcash')
       invalid('t3Yz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd', 'ZEC')
-      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'zcash', 'testnet')
+      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'zcash', NetTypes.testnet)
     })
 
     it('should return false for incorrect bitcoinprivate addresses', function () {
       commonTests('bitcoinprivate')
       invalid('b1Y4XXPFhwMb1SP33yhzn3h9qWXjujkgep4', 'bitcoinprivate')
       // invalid('bx....', 'BTCP');
-      // invalid('nx....', 'bitcoinprivate', 'testnet');
+      // invalid('nx....', 'bitcoinprivate', NetTypes.testnet);
     })
 
     it('should return false for incorrect snowgem addresses', function () {
       commonTests('snowgem')
       invalid('s1Yx7WBkjB4UH6qQjPp6Ysmtr1C1JiTK2Yw', 'snowgem')
       invalid('s3Y27MhkBRt3ha2UuxhjXaYF4DCnttTMnL1', 'SNG')
-      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'snowgem', 'testnet')
+      invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'snowgem', NetTypes.testnet)
     })
 
     it('should return false for incorrect zencash addresses', function () {
       commonTests('zencash')
       invalid('znYiGGfYRepxkBjXYvA2kFrXiC351i9ta4z', 'zencash')
       invalid('zsYEdGnZCQ9G86LZFtbynMn1hYTVhn6eYCL', 'ZEN')
-      invalid('ztYWMDLWjbruCJxKmmfAZiT6QAQdiv5F291', 'zencash', 'testnet')
+      invalid('ztYWMDLWjbruCJxKmmfAZiT6QAQdiv5F291', 'zencash', NetTypes.testnet)
     })
 
     it('should return false for incorrect komodo addresses', function () {
       commonTests('komodo')
       invalid('R9Y5HirAzqDcWrWGiJEL115dpV3QB3hobH', 'komodo')
       invalid('RAYj2KKVUohTu3hVdNJ4U6hQi7TNawpacH', 'KMD')
-      // invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'komodo', 'testnet');
+      // invalid('t2YNzUUx8mWBCRYPRezvA363EYXyEpHokyi', 'komodo', NetTypes.testnet);
     })
     it('should return false for incorrect BitTorrent addresses', () => {
       invalid('TJED82157WeEcP67wtKK5BeV6rMagJfeA4', 'btt')

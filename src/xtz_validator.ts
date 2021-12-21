@@ -1,6 +1,7 @@
 import base58 from './crypto/base58';
+import { TDecode, TDecodeValidator } from './types/validators.types';
 
-const getDecoded = (address) => {
+const getDecoded: TDecode = (address) => {
   try {
     return base58.decode(address)
   } catch (e) {
@@ -8,7 +9,8 @@ const getDecoded = (address) => {
     return null
   }
 }
-export default {
+
+const xtzValidator: TDecodeValidator = {
   isValidAddress: (address) => {
     let decoded = getDecoded(address)
 
@@ -18,6 +20,7 @@ export default {
 
     return true
   },
-
   getDecoded
 }
+
+export default xtzValidator

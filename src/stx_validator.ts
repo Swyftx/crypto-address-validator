@@ -1,6 +1,7 @@
 import { c32addressDecode } from 'c32check';
+import { TChecksumValidator } from './types/validators.types';
 
-export default {
+const stxValidator: TChecksumValidator = {
   isValidAddress: function (address, currency, networkType) {
     return this.verifyChecksum(address)
   },
@@ -17,3 +18,5 @@ export default {
     return valid
   }
 }
+
+export default stxValidator

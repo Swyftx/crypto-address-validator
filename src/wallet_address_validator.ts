@@ -4,7 +4,7 @@ import { IValidator } from './types/validator.types';
 let DEFAULT_CURRENCY_NAME = 'bitcoin'
 
 const walletAddressValidator: IValidator = {
- /**
+  /**
    * Checks if a given address is valid for the given currency
    *
    * @param {String} address The target address

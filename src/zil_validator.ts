@@ -1,10 +1,11 @@
 import utils from './crypto/utils'
+import { TChecksumValidator } from './types/validators.types'
 
 const ALLOWED_CHARS = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
 
 let regexp = new RegExp('^(zil)1([' + ALLOWED_CHARS + ']+)$') // zil + bech32 separated by '1'
 
-export default {
+const zilValidator: TChecksumValidator = {
   isValidAddress: function (address, currency, networkType) {
     let match = regexp.exec(address)
     if (match !== null) {
@@ -23,3 +24,5 @@ export default {
     }
   }
 }
+
+export default zilValidator

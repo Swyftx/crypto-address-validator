@@ -1,11 +1,16 @@
 import cryptoUtils from './crypto/utils'
 import cnBase58 from './crypto/cnBase58'
+import { TAddress, TBaseValidator } from './types/validators.types'
+import { NetTypes, TAddressType } from './types/net.types'
+import { TCurrency } from './types/currencies.types'
 
-let DEFAULT_NETWORK_TYPE = 'prod'
+// TODO refactor
+
+let DEFAULT_NETWORK_TYPE = NetTypes.prod
 let addressRegTest = new RegExp('^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{95}$')
 let integratedAddressRegTest = new RegExp('^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{106}$')
 
-function validateNetwork (decoded, currency, networkType, addressType) {
+const validateNetwork = (decoded: string, currency: TCurrency, networkType: NetTypes, addressType: TAddress) => {
   let network = currency.addressTypes
   if (addressType === 'integrated') {
     network = currency.iAddressTypes
@@ -14,18 +19,18 @@ function validateNetwork (decoded, currency, networkType, addressType) {
   let networkByte = parseInt(decoded.substr(0, 2), 16).toString()
 
   switch (networkType) {
-    case 'prod':
+    case NetTypes.prod:
       return network.prod.indexOf(networkByte) !== -1
-    case 'testnet':
+    case NetTypes.testnet:
       return network.testnet.indexOf(networkByte) !== -1
-    case 'both':
+    case NetTypes.both:
       return network.prod.indexOf(networkByte) !== -1 || network.testnet.indexOf(networkByte) !== -1
     default:
       return false
   }
 }
 
-function hextobin (hex) {
+function hexToBin (hex: string): null | Uint8Array {
   if (hex.length % 2 !== 0) return null
   let res = new Uint8Array(hex.length / 2)
   for (let i = 0; i < hex.length / 2; ++i) {
@@ -34,10 +39,10 @@ function hextobin (hex) {
   return res
 }
 
-export default {
+export const moneroValidator: TBaseValidator = {
   isValidAddress: function (address, currency, networkType) {
     networkType = networkType || DEFAULT_NETWORK_TYPE
-    let addressType = 'standard'
+    let addressType: TAddressType = 'standard'
     if (!addressRegTest.test(address)) {
       if (integratedAddressRegTest.test(address)) {
         addressType = 'integrated'
@@ -49,11 +54,15 @@ export default {
     let decodedAddrStr = cnBase58.decode(address)
     if (!decodedAddrStr) { return false }
 
-    if (!validateNetwork(decodedAddrStr, currency, networkType, addressType)) { return false }
+    if (!validateNetwork(decodedAddrStr, currency, networkType, addressType)) {
+      return false
+    }
 
     let addrChecksum = decodedAddrStr.slice(-8)
-    let hashChecksum = cryptoUtils.keccak256Checksum(hextobin(decodedAddrStr.slice(0, -8)))
+    let hashChecksum = cryptoUtils.keccak256Checksum(hexToBin(decodedAddrStr.slice(0, -8)))
 
     return addrChecksum === hashChecksum
   }
 }
+
+export default moneroValidator

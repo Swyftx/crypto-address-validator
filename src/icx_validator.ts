@@ -1,3 +1,5 @@
+import { TBaseValidator } from "./types/validators.types"
+
 function isValidICXAddress (address, currency, networkType) {
   let regex = /^hx[0-9a-f]{40}$/g // Begins with hx followed by 40 hex chars
   if (address.search(regex) !== -1) {
@@ -7,8 +9,8 @@ function isValidICXAddress (address, currency, networkType) {
   }
 }
 
-export default {
-  isValidAddress: function (address, currency, networkType) {
-    return isValidICXAddress(address, currency, networkType)
-  }
+const icxValidator: TBaseValidator = {
+  isValidAddress: isValidICXAddress
 }
+
+export default icxValidator

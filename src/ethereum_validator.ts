@@ -1,26 +1,8 @@
 import cryptoUtils from './crypto/utils'
+import { TChecksumValidator } from './types/validators.types'
 
-const verifyChecksum = (address) => {
-  // Check each case
-  address = address.replace('0x', '')
-
-  let addressHash = cryptoUtils.keccak256(address.toLowerCase())
-
-  for (let i = 0; i < 40; i++) {
-    // The nth letter should be uppercase if the nth digit of casemap is 1
-    if (
-      (parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) ||
-      (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])
-    ) {
-      return false
-    }
-  }
-
-  return true
-}
-
-export default {
-  isValidAddress: (address) => {
+const ethereumValidator: TChecksumValidator = {
+  isValidAddress: function(address) {
     if (!/^0x[0-9a-fA-F]{40}$/.test(address)) {
       // Check if it has the basic requirements of an address
       return false
@@ -32,7 +14,25 @@ export default {
     }
 
     // Otherwise check each case
-    return verifyChecksum(address)
+    return this.verifyChecksum(address)
   },
-  verifyChecksum
+  verifyChecksum: function(rawAddress)  {
+    const address = rawAddress.replace('0x', '')
+
+    const addressHash = cryptoUtils.keccak256(address.toLowerCase())
+
+    for (let i = 0; i < 40; i++) {
+      // The nth letter should be uppercase if the nth digit of casemap is 1
+      if (
+        (parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) ||
+        (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])
+      ) {
+        return false
+      }
+    }
+
+    return true
+  }
 }
+
+export default ethereumValidator

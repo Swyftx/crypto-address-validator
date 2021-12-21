@@ -1,4 +1,6 @@
-function isValidBTSAddress (address, currency, networkType) {
+import { TAddress, TBaseValidator } from "./types/validators.types"
+
+function isValidBTSAddress (address: TAddress) {
   let regex = /^[a-z0-9-.]+$/g // Must be numbers and lowercase letters only
   if (address.search(regex) !== -1) {
     return true
@@ -7,8 +9,10 @@ function isValidBTSAddress (address, currency, networkType) {
   }
 }
 
-export default {
+const btsValidator: TBaseValidator = {
   isValidAddress: function (address, currency, networkType) {
-    return isValidBTSAddress(address, currency, networkType)
+    return isValidBTSAddress(address)
   }
 }
+
+export default btsValidator
