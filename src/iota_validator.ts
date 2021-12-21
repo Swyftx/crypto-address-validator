@@ -1,11 +1,11 @@
-var IOTA = require('@iota/validators')
+import IOTA from '@iota/validators'
 
 function isValidIotaAddress (address, currency, networkType) {
-  var isValid = IOTA.isAddress(address)
+  let isValid = IOTA.isAddress(address)
   return isValid
 }
 
-module.exports = {
+export default {
   isValidAddress: function (address, currency, networkType) {
     return isValidIotaAddress(address, currency, networkType)
   }

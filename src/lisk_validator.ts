@@ -1,5 +1,5 @@
 function isValidLiskAddress (address, currency, networkType) {
-  var regex = /^[0-9]{1,20}L$/g // Must be numbers only for the first 1 - 20 charactors with a capital L at the end
+  let regex = /^[0-9]{1,20}L$/g // Must be numbers only for the first 1 - 20 charactors with a capital L at the end
   if (address.search(regex) !== -1) {
     return true
   } else {
@@ -7,7 +7,7 @@ function isValidLiskAddress (address, currency, networkType) {
   }
 }
 
-module.exports = {
+export default {
   isValidAddress: function (address, currency, networkType) {
     return isValidLiskAddress(address, currency, networkType)
   }

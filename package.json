@@ -270,13 +270,13 @@
   "scripts": {
     "bundle": "yarn run prepare",
     "minify": "uglifyjs -c -m -o dist/wallet-address-validator.min.js -- dist/wallet-address-validator.js",
-    "test:node": "mocha test",
+    "test:node": "mocha -r ts-node/register test/*.ts",
     "test:browser": "echo Temp bypass until jenkins setup",
     "test:browser_": "karma start",
-    "test": "yarn run bundle && yarn run minify && npm run test:node && npm run test:browser",
-    "start": "npm run bundle && npm run minify && npm test",
+    "test": "yarn run bundle && npm run test:node && npm run test:browser",
+    "start": "npm run bundle && npm test",
     "generateReadme": "node debug/generateReadme.js && git add README.md dist/wallet-address-validator.min.js.gz package.json",
-    "createMin": "yarn run bundle && yarn run minify && git add dist/wallet-address-validator.js dist/wallet-address-validator.min.js",
+    "createMin": "yarn run bundle && git add dist/wallet-address-validator.js dist/wallet-address-validator.min.js",
     "preversion": "yarn run createMin && yarn run generateReadme",
     "postversion": "git push origin HEAD --follow-tags && hub pull-request -o -b dev -m v%npm_package_version%",
     "prepare": "tsc"
@@ -293,8 +293,11 @@
     "rfc4648": "^1.3.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/expect": "^24.3.0",
+    "@types/mocha": "^9.0.0",
     "browserify": "^17.0.0",
-    "chai": "^4.1.2",
+    "chai": "^4.3.4",
     "eslint-config-standard": "^16.0.3",
     "karma": "^6.3.9",
     "karma-chai": "^0.1.0",
@@ -305,6 +308,7 @@
     "node-gzip": "^1.1.2",
     "prettysize": "^2.0.0",
     "standard": "^16.0.4",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.4",
     "uglify-es": "^3.3.10"
   },

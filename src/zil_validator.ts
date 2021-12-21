@@ -1,10 +1,10 @@
-var utils = require('./crypto/utils')
+import utils from './crypto/utils'
 
 const ALLOWED_CHARS = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
 
-var regexp = new RegExp('^(zil)1([' + ALLOWED_CHARS + ']+)$') // zil + bech32 separated by '1'
+let regexp = new RegExp('^(zil)1([' + ALLOWED_CHARS + ']+)$') // zil + bech32 separated by '1'
 
-module.exports = {
+export default {
   isValidAddress: function (address, currency, networkType) {
     let match = regexp.exec(address)
     if (match !== null) {
@@ -15,7 +15,7 @@ module.exports = {
   },
 
   verifyChecksum: function (address) {
-    var decoded = utils.bech32.decode(address)
+    let decoded = utils.bech32.decode(address)
     if (decoded !== null) {
       return decoded.data.length === 32
     } else {

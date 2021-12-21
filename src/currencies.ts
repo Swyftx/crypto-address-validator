@@ -1,32 +1,32 @@
-const XRPValidator = require('./ripple_validator')
-const ETHValidator = require('./ethereum_validator')
-const BTCValidator = require('./bitcoin_validator')
-const ADAValidator = require('./cardano_validator')
-const XMRValidator = require('./monero_validator')
-const NANOValidator = require('./nano_validator')
-const LSKValidator = require('./lisk_validator')
-const IOTAValidator = require('./iota_validator')
-const EOSValidator = require('./eos_validator')
-const XLMValidator = require('./lumen_validator')
-const AUDValidator = require('./aud_validator')
-const NEMValidator = require('./nem_validator')
-const BTSValidator = require('./bts_validator')
-const ICXValidator = require('./icx_validator')
-const AEValidator = require('./ae_validator')
-const SCValidator = require('./sc_validator')
-const ATOMValidator = require('./atom_validator')
-const STEEMValidator = require('./steem_validator')
-const ARDRValidator = require('./ardr_validator')
-const BNBValidator = require('./bnb_validator')
-const ZILValidator = require('./zil_validator')
-const NXSValidator = require('./nxs_validator')
-const IOSTValidator = require('./iost_validator')
-const XTZValidator = require('./xtz_validator')
-const HBARValidator = require('./hbar_validator')
-const STXValidator = require('./stx_validator')
-const ALGOValidator = require('./algo_validator')
-const BCHValidator = require('./bitcoincash_validator')
-const SYSValidator = require('./sys_validator')
+import XRPValidator from './ripple_validator'
+import ETHValidator from './ethereum_validator'
+import BTCValidator from './bitcoin_validator'
+import ADAValidator from './cardano_validator'
+import XMRValidator from './monero_validator'
+import NANOValidator from './nano_validator'
+import LSKValidator from './lisk_validator'
+import IOTAValidator from './iota_validator'
+import EOSValidator from './eos_validator'
+import XLMValidator from './lumen_validator'
+import AUDValidator from './aud_validator'
+import NEMValidator from './nem_validator'
+import BTSValidator from './bts_validator'
+import ICXValidator from './icx_validator'
+import AEValidator from './ae_validator'
+import SCValidator from './sc_validator'
+import ATOMValidator from './atom_validator'
+import STEEMValidator from './steem_validator'
+import ARDRValidator from './ardr_validator'
+import BNBValidator from './bnb_validator'
+import ZILValidator from './zil_validator'
+import NXSValidator from './nxs_validator'
+import IOSTValidator from './iost_validator'
+import XTZValidator from './xtz_validator'
+import HBARValidator from './hbar_validator'
+import STXValidator from './stx_validator'
+import ALGOValidator from './algo_validator'
+import BCHValidator from './bitcoincash_validator'
+import SYSValidator from './sys_validator'
 
 // defines P2PKH and P2SH address types for standard (prod) and testnet networks
 const CURRENCIES = [{
@@ -623,9 +623,9 @@ const CURRENCIES = [{
   validator: HBARValidator
 }]
 
-module.exports = {
+export default {
   getByNameOrSymbol: function (currencyNameOrSymbol) {
-    var nameOrSymbol = currencyNameOrSymbol.replace(' ', '').toLowerCase() // Remove spaces and make lowercase
+    let nameOrSymbol = currencyNameOrSymbol.replace(' ', '').toLowerCase() // Remove spaces and make lowercase
     return CURRENCIES.find(function (currency) {
       return currency.name.replace(' ', '').toLowerCase() === nameOrSymbol || currency.symbol.replace(' ', '').toLowerCase() === nameOrSymbol
     })

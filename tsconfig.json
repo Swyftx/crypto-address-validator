@@ -1,14 +1,16 @@
 {
     "compilerOptions": {
-      "module": "commonjs",
+      "module": "CommonJS",
       "preserveConstEnums": true,
       "isolatedModules": true,
       "sourceMap": true,
       "outDir": "./dist",
-        // Needed for refactor, change&remove like comments bellow suggest
+      // Needed for refactor, change&remove like comments bellow suggest
+      "allowJs": true, // remove
       "noImplicitAny": false, // true
-      "types": ["node"] // remove
+      "types": ["mocha", "node"], // remove
+      "esModuleInterop": true // remove
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "test/*"],
     "exclude": ["node_modules", "test", "dist"]
   }

@@ -8,7 +8,7 @@ function isValidHBarAddress (address) {
   }
 }
 
-module.exports = {
+export default {
   isValidAddress: function (address, currency, networkType) {
     return isValidHBarAddress(address)
   }

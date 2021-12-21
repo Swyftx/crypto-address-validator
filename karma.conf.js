@@ -1,13 +1,15 @@
 // Karma configuration
 module.exports = function (config) {
     config.set({
-        basePath: '',
+        basePath: './',
 
-        frameworks: ['mocha', 'chai', 'karma-typescript'],
+        frameworks: ['mocha', 'chai', 'jasmine', 'karma-typescript'],
 
         files: [
-            'dist/wallet-address-validator.min.js',
-            'test/**/*.ts'
+            'test/wallet_address_validator.ts',
+            'test/*.spec.ts',
+            'src/test/wallet_address_validator.ts',
+            'src/test/wallet_address_validator.js',
         ],
 
         preprocessors: {

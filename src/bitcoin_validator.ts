@@ -1,8 +1,8 @@
-var base58 = require('./crypto/base58')
-var segwit = require('./crypto/segwit_addr')
-var cryptoUtils = require('./crypto/utils')
+import cryptoUtils from './crypto/utils'
+import base58 from './crypto/base58'
+import segwit from './crypto/segwit_addr'
 
-var DEFAULT_NETWORK_TYPE = 'prod'
+let DEFAULT_NETWORK_TYPE = 'prod'
 
 function getDecoded (address) {
   try {
@@ -18,7 +18,7 @@ function getChecksum (hashFunction, payload) {
   switch (hashFunction) {
     // blake then keccak hash chain
     case 'blake256keccak256':
-      var blake = cryptoUtils.blake2b256(payload)
+      let blake = cryptoUtils.blake2b256(payload)
       return cryptoUtils.keccak256Checksum(Buffer.from(blake, 'hex'))
     case 'blake256':
       return cryptoUtils.blake256Checksum(payload)
@@ -33,12 +33,12 @@ function getChecksum (hashFunction, payload) {
 function getAddressType (address, currency) {
   currency = currency || {}
   // should be 25 bytes per btc address spec and 26 decred
-  var expectedLength = currency.expectedLength || 25
-  var hashFunction = currency.hashFunction || 'sha256'
-  var decoded = getDecoded(address)
+  let expectedLength = currency.expectedLength || 25
+  let hashFunction = currency.hashFunction || 'sha256'
+  let decoded = getDecoded(address)
 
   if (decoded) {
-    var length = decoded.length
+    let length = decoded.length
 
     if (length !== expectedLength) {
       return null
@@ -50,11 +50,11 @@ function getAddressType (address, currency) {
       }
     }
 
-    var checksum = cryptoUtils.toHex(decoded.slice(length - 4, length))
+    let checksum = cryptoUtils.toHex(decoded.slice(length - 4, length))
 
-    var body = cryptoUtils.toHex(decoded.slice(0, length - 4))
+    let body = cryptoUtils.toHex(decoded.slice(0, length - 4))
 
-    var goodChecksum = getChecksum(hashFunction, body)
+    let goodChecksum = getChecksum(hashFunction, body)
 
     return checksum === goodChecksum ? cryptoUtils.toHex(decoded.slice(0, expectedLength - 24)) : null
   }
@@ -65,8 +65,8 @@ function getAddressType (address, currency) {
 function isValidP2PKHandP2SHAddress (address, currency, networkType) {
   networkType = networkType || DEFAULT_NETWORK_TYPE
 
-  var correctAddressTypes
-  var addressType = getAddressType(address, currency)
+  let correctAddressTypes
+  let addressType = getAddressType(address, currency)
 
   if (addressType) {
     if (networkType === 'prod' || networkType === 'testnet') {
@@ -81,7 +81,7 @@ function isValidP2PKHandP2SHAddress (address, currency, networkType) {
   return false
 }
 
-module.exports = {
+export default {
   isValidAddress: function (address, currency, networkType) {
     return isValidP2PKHandP2SHAddress(address, currency, networkType) || segwit.isValidAddress(address)
   }

@@ -1,6 +1,6 @@
-var { c32addressDecode } = require('c32check')
+import { c32addressDecode } from 'c32check';
 
-module.exports = {
+export default {
   isValidAddress: function (address, currency, networkType) {
     return this.verifyChecksum(address)
   },

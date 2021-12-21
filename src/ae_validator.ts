@@ -1,10 +1,10 @@
-var base58 = require('./crypto/base58')
+import base58 from './crypto/base58'
+
 
 const ALLOWED_CHARS = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
-var regexp = new RegExp('^(ak_)([' + ALLOWED_CHARS + ']+)$') // Begins with ak_ followed by
-
-module.exports = {
+let regexp = new RegExp('^(ak_)([' + ALLOWED_CHARS + ']+)$') // Begins with ak_ followed by
+export default {
   isValidAddress: function (address, currency, networkType) {
     let match = regexp.exec(address)
     if (match !== null) {
@@ -15,7 +15,7 @@ module.exports = {
   },
 
   verifyChecksum: function (address) {
-    var decoded = base58.decode(address)
+    let decoded = base58.decode(address)
     decoded.splice(-4, 4) // remove last 4 elements. Why is base 58 adding them?
     return decoded.length === 32
   }

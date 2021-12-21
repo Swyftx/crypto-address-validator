@@ -1,8 +1,8 @@
-const base58 = require('./crypto/base58')
+import base58 from './crypto/base58';
 
 function getDecoded (address) {
   try {
-    var decoded = base58.decode(address)
+    let decoded = base58.decode(address)
     return decoded
   } catch (e) {
     // if decoding fails, assume invalid address
@@ -10,9 +10,9 @@ function getDecoded (address) {
   }
 }
 
-module.exports = {
+export default {
   isValidAddress: function (address) {
-    var decoded = getDecoded(address)
+    let decoded = getDecoded(address)
 
     if (!decoded) {
       return false

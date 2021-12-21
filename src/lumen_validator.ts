@@ -1,12 +1,12 @@
-const baseX = require('base-x')
-const crc = require('crc')
+import baseX from 'base-x'
+import crc from 'crc'
 
 const ALLOWED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
 
 const codec = baseX(ALLOWED_CHARS)
 const regexp = new RegExp('^G[' + ALLOWED_CHARS + ']{55}$')
 
-module.exports = {
+export default {
   /**
      * lumen address validation
      */

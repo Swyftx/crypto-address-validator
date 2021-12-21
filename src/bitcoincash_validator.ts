@@ -1,7 +1,7 @@
-var BCH = require('bchaddrjs-slp')
+import BCH from 'bchaddrjs-slp'
 
-var DEFAULT_ADDRESS_FORMAT = 'legacy'
-var DEFAULT_NETWORK_TYPE = 'prod'
+let DEFAULT_ADDRESS_FORMAT = 'legacy'
+let DEFAULT_NETWORK_TYPE = 'prod'
 
 function isAValidAddress (address) {
   try {
@@ -13,7 +13,7 @@ function isAValidAddress (address) {
 }
 
 function isValidAddressFormat (addressFormat) {
-  var validAddressFormat = false
+  let validAddressFormat = false
   switch (addressFormat) {
     case 'all':
       validAddressFormat = true
@@ -50,11 +50,11 @@ function isValidNetworkType (address, networkType) {
 }
 
 function isValidBitcoinCashAddress (address, currency, networkType, addressFormats) {
-  var isValid = false
+  let isValid = false
 
-  for (var i = 0; i < addressFormats.length; i++) {
+  for (let i = 0; i < addressFormats.length; i++) {
 
-    var addressFormat = addressFormats[i].toLowerCase().trim()
+    let addressFormat = addressFormats[i].toLowerCase().trim()
     if (!isValidAddressFormat(addressFormat)) {
       continue
     }
@@ -103,7 +103,7 @@ function isValidBitcoinCashAddress (address, currency, networkType, addressForma
   return isValidNetworkType(address, networkType)
 }
 
-module.exports = {
+export default {
   /**
    * Checks if a given address is valid for the given currency
    *

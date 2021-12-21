@@ -1,25 +1,27 @@
-var utils = require('./crypto/utils')
+import utils from './crypto/utils'
 
 const ALLOWED_CHARS = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
+const regexp = new RegExp('^(cosmos)1([' + ALLOWED_CHARS + ']+)$') // cosmos + bech32 separated by '1'
 
-var regexp = new RegExp('^(cosmos)1([' + ALLOWED_CHARS + ']+)$') // cosmos + bech32 separated by '1'
+const verifyChecksum = (address) => {
+  let decoded = utils.bech32.decode(address)
+  if (decoded !== null) {
+    return decoded.data.length === 32
+  } else {
+    return false
+  }
+}
 
-module.exports = {
-  isValidAddress: function (address, currency, networkType) {
+export default {
+
+  isValidAddress: (address, currency, networkType) => {
     let match = regexp.exec(address)
     if (match !== null) {
-      return this.verifyChecksum(address)
+      return verifyChecksum(address)
     } else {
       return false
     }
   },
 
-  verifyChecksum: function (address) {
-    var decoded = utils.bech32.decode(address)
-    if (decoded !== null) {
-      return decoded.data.length === 32
-    } else {
-      return false
-    }
-  }
+  verifyChecksum
 }

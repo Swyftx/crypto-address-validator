@@ -1,7 +1,7 @@
-const { base32 } = require('rfc4648')
-const sha512256 = require('js-sha512').sha512_256
+import { base32 } from 'rfc4648'
+import { sha512_256 }  from 'js-sha512'
 
-module.exports = {
+export default {
   isValidAddress: function (address, currency, networkType) {
     return this.verifyChecksum(address)
   },
@@ -16,7 +16,7 @@ module.exports = {
       const checksum = decoded.slice(-4).toString('hex')
 
       // Hash Address - Checksum
-      const hash = sha512256.create()
+      const hash = sha512_256.create()
       hash.update(addr)
       const code = hash.hex().slice(-8)
       return code === checksum

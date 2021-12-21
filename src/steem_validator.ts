@@ -2,7 +2,7 @@ const accountRegex = new RegExp('^[a-z0-9-.]{3,}$')
 const segmentRegex = new RegExp('^[a-z][a-z0-9-]+[a-z0-9]$')
 const doubleDashRegex = new RegExp('--')
 
-module.exports = {
+export default {
   isValidAddress: function (address, currency, networkType) {
     if (!accountRegex.test(address)) {
       return false

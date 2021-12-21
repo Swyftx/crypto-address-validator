@@ -1,8 +1,8 @@
-var currencies = require('./currencies')
+import currencies from './currencies'
 
-var DEFAULT_CURRENCY_NAME = 'bitcoin'
+let DEFAULT_CURRENCY_NAME = 'bitcoin'
 
-module.exports = {
+export default {
 
   /**
    * Checks if a given address is valid for the given currency
@@ -14,7 +14,7 @@ module.exports = {
    * @returns {Error|Boolean}
    */
   validate: function (address, currencyNameOrSymbol, networkType, addressFormats) {
-    var currency = currencies.getByNameOrSymbol(currencyNameOrSymbol || DEFAULT_CURRENCY_NAME)
+    let currency = currencies.getByNameOrSymbol(currencyNameOrSymbol || DEFAULT_CURRENCY_NAME)
 
     if (currency && currency.validator) {
 

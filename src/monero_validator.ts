@@ -1,12 +1,12 @@
-var cryptoUtils = require('./crypto/utils')
-var cnBase58 = require('./crypto/cnBase58')
+import cryptoUtils from './crypto/utils'
+import cnBase58 from './crypto/cnBase58'
 
-var DEFAULT_NETWORK_TYPE = 'prod'
-var addressRegTest = new RegExp('^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{95}$')
-var integratedAddressRegTest = new RegExp('^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{106}$')
+let DEFAULT_NETWORK_TYPE = 'prod'
+let addressRegTest = new RegExp('^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{95}$')
+let integratedAddressRegTest = new RegExp('^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{106}$')
 
 function validateNetwork (decoded, currency, networkType, addressType) {
-  var network = currency.addressTypes
+  let network = currency.addressTypes
   if (addressType === 'integrated') {
     network = currency.iAddressTypes
   }
@@ -27,17 +27,17 @@ function validateNetwork (decoded, currency, networkType, addressType) {
 
 function hextobin (hex) {
   if (hex.length % 2 !== 0) return null
-  var res = new Uint8Array(hex.length / 2)
-  for (var i = 0; i < hex.length / 2; ++i) {
+  let res = new Uint8Array(hex.length / 2)
+  for (let i = 0; i < hex.length / 2; ++i) {
     res[i] = parseInt(hex.slice(i * 2, i * 2 + 2), 16)
   }
   return res
 }
 
-module.exports = {
+export default {
   isValidAddress: function (address, currency, networkType) {
     networkType = networkType || DEFAULT_NETWORK_TYPE
-    var addressType = 'standard'
+    let addressType = 'standard'
     if (!addressRegTest.test(address)) {
       if (integratedAddressRegTest.test(address)) {
         addressType = 'integrated'
@@ -46,13 +46,13 @@ module.exports = {
       }
     }
 
-    var decodedAddrStr = cnBase58.decode(address)
+    let decodedAddrStr = cnBase58.decode(address)
     if (!decodedAddrStr) { return false }
 
     if (!validateNetwork(decodedAddrStr, currency, networkType, addressType)) { return false }
 
-    var addrChecksum = decodedAddrStr.slice(-8)
-    var hashChecksum = cryptoUtils.keccak256Checksum(hextobin(decodedAddrStr.slice(0, -8)))
+    let addrChecksum = decodedAddrStr.slice(-8)
+    let hashChecksum = cryptoUtils.keccak256Checksum(hextobin(decodedAddrStr.slice(0, -8)))
 
     return addrChecksum === hashChecksum
   }

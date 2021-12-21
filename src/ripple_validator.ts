@@ -1,12 +1,12 @@
-var cryptoUtils = require('./crypto/utils')
-var baseX = require('base-x')
+import cryptoUtils from './crypto/utils'
+import baseX from 'base-x'
 
-var ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz'
+let ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz'
 
-var codec = baseX(ALLOWED_CHARS)
-var regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{24,34}$')
+let codec = baseX(ALLOWED_CHARS)
+let regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{24,34}$')
 
-module.exports = {
+export default {
   /**
      * ripple address validation
      */
@@ -19,9 +19,9 @@ module.exports = {
   },
 
   verifyChecksum: function (address) {
-    var bytes = codec.decode(address)
-    var computedChecksum = cryptoUtils.sha256Checksum(cryptoUtils.toHex(bytes.slice(0, -4)))
-    var checksum = cryptoUtils.toHex(bytes.slice(-4))
+    let bytes = codec.decode(address)
+    let computedChecksum = cryptoUtils.sha256Checksum(cryptoUtils.toHex(bytes.slice(0, -4)))
+    let checksum = cryptoUtils.toHex(bytes.slice(-4))
 
     return computedChecksum === checksum
   }
