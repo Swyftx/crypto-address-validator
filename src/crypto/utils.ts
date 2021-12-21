@@ -6,7 +6,7 @@ import BECH32 from './bech32'
 
 const { keccak256 } = sha3
 
-const numberToHex = (number) => {
+const numberToHex = (number: number): string => {
   let hex = Math.round(number).toString(16)
 
   if (hex.length === 1) {
@@ -16,44 +16,45 @@ const numberToHex = (number) => {
   return hex
 }
 
-const toHex = (arrayOfBytes) => {
+// TODO refactor
+const toHex = (arrayOfNumbers: number[] | Buffer) => {
   let hex = ''
 
-  for (var i = 0; i < arrayOfBytes.length; i++) {
-    hex += numberToHex(arrayOfBytes[i])
+  for (var i = 0; i < arrayOfNumbers.length; i++) {
+    hex += numberToHex(arrayOfNumbers[i])
   }
 
   return hex
 }
 
-const sha256 = (hexString) => {
+const sha256 = (hexString: string): string => {
   var sha = new JsSHA('SHA-256', 'HEX')
   sha.update(hexString)
 
   return sha.getHash('HEX')
 }
 
-const sha256Checksum = (payload) => {
+const sha256Checksum = (payload: any): string => {
   return sha256(sha256(payload)).substr(0, 8)
 }
 
-const blake256 = (hexString) => {
+const blake256 = (hexString: string): string => {
   return new Blake256().update(hexString, 'hex').digest('hex')
 }
 
-const blake256Checksum = (payload) => {
+const blake256Checksum = (payload: any): string => {
   return blake256(blake256(payload)).substr(0, 8)
 }
 
-const blake2b = (hexString, outlen) => {
+const blake2b = (hexString: string, outlen: number): string => {
   return new Blake2B(outlen).update(Buffer.from(hexString, 'hex')).digest('hex')
 }
 
-const keccak256Checksum = (payload) => {
+const keccak256Checksum = (payload: any): string => {
   return keccak256(payload).toString().substr(0, 8)
 }
 
-const blake2b256 = (hexString) => {
+const blake2b256 = (hexString: string): string => {
   // return new Blake2B(32).update(Buffer.from(hexString, 'hex'), 32).digest('hex') // Idk why second 32 as argument is here
   return new Blake2B(32).update(Buffer.from(hexString, 'hex')).digest('hex')
 }
