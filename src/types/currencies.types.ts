@@ -1,4 +1,4 @@
-import { HashFunctions, THashFunctions } from "./hashFunctions.types"
+import { HashFunctions } from "./hashFunctions.types"
 import { TAddressTypes } from "./net.types"
 import { TBaseValidator, TChecksumValidator } from "./validators.types"
 

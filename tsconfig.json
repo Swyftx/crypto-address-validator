@@ -4,6 +4,7 @@
       "preserveConstEnums": true,
       "isolatedModules": true,
       "sourceMap": true,
+      "declaration": true,
       "outDir": "./dist",
       // Needed for refactor, change&remove like comments bellow suggest
       "allowJs": true, // remove

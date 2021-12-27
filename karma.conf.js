@@ -6,10 +6,7 @@ module.exports = function (config) {
         frameworks: ['mocha', 'chai', 'jasmine', 'karma-typescript'],
 
         files: [
-            'test/wallet_address_validator.ts',
-            'test/*.spec.ts',
-            'src/test/wallet_address_validator.ts',
-            'src/test/wallet_address_validator.js',
+            'test/*.ts',
         ],
 
         preprocessors: {
