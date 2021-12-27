@@ -40,12 +40,12 @@ describe('WAValidator.validate()', function () {
 
       // TODO broken for some reason after TS migration
       // segwit addresses
-      // valid('BC1QW508D6QEJXTDG4Y5R3ZARletY0C5XW7KV8F3T4', 'bitcoin')
+      valid('BC1QW508D6QEJXTDG4Y5R3ZARletY0C5XW7KV8F3T4', 'bitcoin')
       // valid('tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0sl5k7', 'bitcoin')
       // valid('bc1pw508d6qejxtdg4y5r3zarlety0c5xw7kw508d6qejxtdg4y5r3zarlety0c5xw7k7grplx', 'bitcoin')
       // valid('BC1SW50QA3JX3S', 'bitcoin')
       // valid('bc1zw508d6qejxtdg4y5r3zarletyvg6kdaj', 'bitcoin')
-      // valid('tb1qqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesrxh6hy', 'bitcoin')
+      valid('tb1qqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesrxh6hy', 'bitcoin')
 
       invalid('tc1qw508d6qejxtdg4y5r3zarlety0c5xw7kg3g4ty', 'bitcoin')
       invalid('bc1qw508d6qejxtdg4y5r3zarlety0c5xw7kv8f3t5', 'bitcoin')

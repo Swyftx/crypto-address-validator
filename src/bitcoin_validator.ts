@@ -1,9 +1,13 @@
 import cryptoUtils from './crypto/utils'
 import base58 from './crypto/base58'
 import segwit from './crypto/segwit_addr'
-import { TBaseValidator } from './types/validators.types'
+console.log('🚀🚀🚀 ~ segwit', segwit.isValidAddress)
+import { TAddress, TBaseValidator } from './types/validators.types'
+import { TCurrency } from './types/currencies.types'
+import { NetTypes } from './types/net.types'
+import { HashFunctions } from './types/hashFunctions.types'
 
-let DEFAULT_NETWORK_TYPE = 'prod'
+let DEFAULT_NETWORK_TYPE = NetTypes.prod
 
 function getDecoded (address) {
   try {
@@ -18,24 +22,27 @@ function getChecksum (hashFunction, payload) {
   // Each currency may implement different hashing algorithm
   switch (hashFunction) {
     // blake then keccak hash chain
-    case 'blake256keccak256':
+    case HashFunctions.blake256keccak256:
       let blake = cryptoUtils.blake2b256(payload)
       return cryptoUtils.keccak256Checksum(Buffer.from(blake, 'hex'))
-    case 'blake256':
+    case HashFunctions.blake256:
       return cryptoUtils.blake256Checksum(payload)
-    case 'keccak256':
+    case HashFunctions.keccak256:
       return cryptoUtils.keccak256Checksum(payload)
-    case 'sha256':
+    case HashFunctions.sha256:
     default:
       return cryptoUtils.sha256Checksum(payload)
   }
 }
 
-function getAddressType (address, currency) {
-  currency = currency || {}
+function getAddressType (address: TAddress, currency: TCurrency | null | undefined) {
   // should be 25 bytes per btc address spec and 26 decred
+  if(!currency) {
+    return false
+  }
+
   let expectedLength = currency.expectedLength || 25
-  let hashFunction = currency.hashFunction || 'sha256'
+  let hashFunction = currency.hashFunction || HashFunctions.sha256
   let decoded = getDecoded(address)
 
   if (decoded) {
@@ -63,14 +70,13 @@ function getAddressType (address, currency) {
   return null
 }
 
-function isValidP2PKHandP2SHAddress (address, currency, networkType) {
-  networkType = networkType || DEFAULT_NETWORK_TYPE
-
-  let correctAddressTypes
-  let addressType = getAddressType(address, currency)
+function isValidP2PKHandP2SHAddress (address: TAddress, currency: TCurrency, networkType: NetTypes = DEFAULT_NETWORK_TYPE) {
+  const addressType = getAddressType(address, currency)
 
   if (addressType) {
-    if (networkType === 'prod' || networkType === 'testnet') {
+    let correctAddressTypes
+
+    if (networkType === NetTypes.prod || networkType === NetTypes.testnet) {
       correctAddressTypes = currency.addressTypes[networkType]
     } else {
       correctAddressTypes = currency.addressTypes.prod.concat(currency.addressTypes.testnet)
