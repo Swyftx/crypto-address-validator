@@ -1,6 +1,8 @@
 import { base32 } from 'rfc4648'
-import { sha512_256 }  from 'js-sha512'
+import jsSha512  from 'js-sha512'
 import { TChecksumValidator } from './types/validators.types'
+
+const { sha512_256 } = jsSha512
 
 const correctPadding = (a: string): string => {
   if (a.length % 8 === 0) return a.length.toString()

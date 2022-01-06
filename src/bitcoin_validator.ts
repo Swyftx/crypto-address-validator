@@ -1,7 +1,6 @@
 import cryptoUtils from './crypto/utils'
 import base58 from './crypto/base58'
 import segwit from './crypto/segwit_addr'
-console.log('🚀🚀🚀 ~ segwit', segwit.isValidAddress)
 import { TAddress, TBaseValidator } from './types/validators.types'
 import { TCurrency } from './types/currencies.types'
 import { NetTypes } from './types/net.types'
