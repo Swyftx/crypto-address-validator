@@ -33,8 +33,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Parts of the project are originally copyright (c) 2014-2017, MyMonero.com
 */
 
+interface IBase58 {
+  decode: (str: string) => string
+  encode: (hex: string) => string
+  encode_block: (data: any, buf: Uint8Array, index: number) => Uint8Array
+  decode_block: (data: any, buf: Uint8Array, index: number) => Uint8Array
+}
+
 var cnBase58 = (function () {
-  var b58 = {}
+  // TODO refactor to remove partial
+  var b58: Partial<IBase58> = {}
 
   var alphabet_str = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
   var alphabet = []
@@ -126,7 +134,6 @@ var cnBase58 = (function () {
     return res
   }
 
-  // @ts-expect-error
   b58.encode_block = function (data, buf, index) {
     if (data.length < 1 || data.length > full_encoded_block_size) {
       throw 'Invalid block length: ' + data.length
@@ -146,7 +153,6 @@ var cnBase58 = (function () {
     return buf
   }
 
-  // @ts-expect-error
   b58.encode = function (hex) {
     var data = hextobin(hex)
     if (data.length === 0) {
@@ -162,17 +168,14 @@ var cnBase58 = (function () {
       res[i] = alphabet[0]
     }
     for (i = 0; i < full_block_count; i++) {
-      // @ts-expect-error
       res = b58.encode_block(data.subarray(i * full_block_size, i * full_block_size + full_block_size), res, i * full_encoded_block_size)
     }
     if (last_block_size > 0) {
-      // @ts-expect-error
       res = b58.encode_block(data.subarray(full_block_count * full_block_size, full_block_count * full_block_size + last_block_size), res, full_block_count * full_encoded_block_size)
     }
     return bintostr(res)
   }
 
-  // @ts-expect-error
   b58.decode_block = function (data, buf, index) {
     if (data.length < 1 || data.length > full_encoded_block_size) {
       throw 'Invalid block length: ' + data.length
@@ -204,9 +207,8 @@ var cnBase58 = (function () {
     return buf
   }
 
-  // @ts-expect-error
-  b58.decode = function (enc) {
-    enc = strtobin(enc)
+  b58.decode = function (encInit) {
+    let enc = strtobin(encInit)
     if (enc.length === 0) {
       return ''
     }
@@ -219,11 +221,9 @@ var cnBase58 = (function () {
     var data_size = full_block_count * full_block_size + last_block_decoded_size
     var data = new Uint8Array(data_size)
     for (var i = 0; i < full_block_count; i++) {
-      // @ts-expect-error
       data = b58.decode_block(enc.subarray(i * full_encoded_block_size, i * full_encoded_block_size + full_encoded_block_size), data, i * full_block_size)
     }
     if (last_block_size > 0) {
-      // @ts-expect-error
       data = b58.decode_block(enc.subarray(full_block_count * full_encoded_block_size, full_block_count * full_encoded_block_size + last_block_size), data, full_block_count * full_block_size)
     }
     return bintohex(data)
