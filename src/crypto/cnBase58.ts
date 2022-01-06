@@ -1,4 +1,4 @@
-var JSBigInt = require('./biginteger')['JSBigInt']
+import BigNumberJs from 'bignumber.js'
 
 /**
 Copyright (c) 2017, moneroexamples
@@ -47,7 +47,7 @@ var cnBase58 = (function () {
   var full_block_size = 8
   var full_encoded_block_size = 11
 
-  var UINT64_MAX = new JSBigInt(2).pow(64)
+  var UINT64_MAX = new BigNumberJs(2).pow(64)
 
   function hextobin (hex) {
     if (hex.length % 2 !== 0) throw 'Hex string has invalid length!'
@@ -86,26 +86,26 @@ var cnBase58 = (function () {
     if (data.length < 1 || data.length > 8) {
       throw 'Invalid input length'
     }
-    var res = JSBigInt.ZERO
-    var twopow8 = new JSBigInt(2).pow(8)
+    var res = new BigNumberJs(0)
+    var twopow8 = new BigNumberJs(2).pow(8)
     var i = 0
     switch (9 - data.length) {
       case 1:
-        res = res.add(data[i++])
+        res = res.plus(data[i++])
       case 2:
-        res = res.multiply(twopow8).add(data[i++])
+        res = res.multipliedBy(twopow8).plus(data[i++])
       case 3:
-        res = res.multiply(twopow8).add(data[i++])
+        res = res.multipliedBy(twopow8).plus(data[i++])
       case 4:
-        res = res.multiply(twopow8).add(data[i++])
+        res = res.multipliedBy(twopow8).plus(data[i++])
       case 5:
-        res = res.multiply(twopow8).add(data[i++])
+        res = res.multipliedBy(twopow8).plus(data[i++])
       case 6:
-        res = res.multiply(twopow8).add(data[i++])
+        res = res.multipliedBy(twopow8).plus(data[i++])
       case 7:
-        res = res.multiply(twopow8).add(data[i++])
+        res = res.multipliedBy(twopow8).plus(data[i++])
       case 8:
-        res = res.multiply(twopow8).add(data[i++])
+        res = res.multipliedBy(twopow8).plus(data[i++])
         break
       default:
         throw 'Impossible condition'
@@ -113,19 +113,20 @@ var cnBase58 = (function () {
     return res
   }
 
-  function uint64_to_8be (num, size) {
+  function uint64_to_8be (num: BigNumberJs, size) {
     var res = new Uint8Array(size)
     if (size < 1 || size > 8) {
       throw 'Invalid input length'
     }
-    var twopow8 = new JSBigInt(2).pow(8)
+    var twopow8 = new BigNumberJs(2).pow(8)
     for (var i = size - 1; i >= 0; i--) {
-      res[i] = num.remainder(twopow8).toJSValue()
-      num = num.divide(twopow8)
+      res[i] = num.modulo(twopow8.toNumber()).toNumber()
+      num = num.dividedBy(twopow8)
     }
     return res
   }
 
+  // @ts-expect-error
   b58.encode_block = function (data, buf, index) {
     if (data.length < 1 || data.length > full_encoded_block_size) {
       throw 'Invalid block length: ' + data.length
@@ -133,8 +134,8 @@ var cnBase58 = (function () {
     var num = uint8_be_to_64(data)
     var i = encoded_block_sizes[data.length] - 1
     // while num > 0
-    while (num.compare(0) === 1) {
-      var div = num.divRem(alphabet_size)
+    while (num.isGreaterThan(0)) {
+      var div = num.modulo(alphabet_size)
       // remainder = num % alphabet_size
       var remainder = div[1]
       // num = num / alphabet_size
@@ -145,6 +146,7 @@ var cnBase58 = (function () {
     return buf
   }
 
+  // @ts-expect-error
   b58.encode = function (hex) {
     var data = hextobin(hex)
     if (data.length === 0) {
@@ -160,14 +162,17 @@ var cnBase58 = (function () {
       res[i] = alphabet[0]
     }
     for (i = 0; i < full_block_count; i++) {
+      // @ts-expect-error
       res = b58.encode_block(data.subarray(i * full_block_size, i * full_block_size + full_block_size), res, i * full_encoded_block_size)
     }
     if (last_block_size > 0) {
+      // @ts-expect-error
       res = b58.encode_block(data.subarray(full_block_count * full_block_size, full_block_count * full_block_size + last_block_size), res, full_block_count * full_encoded_block_size)
     }
     return bintostr(res)
   }
 
+  // @ts-expect-error
   b58.decode_block = function (data, buf, index) {
     if (data.length < 1 || data.length > full_encoded_block_size) {
       throw 'Invalid block length: ' + data.length
@@ -177,28 +182,29 @@ var cnBase58 = (function () {
     if (res_size <= 0) {
       throw 'Invalid block size'
     }
-    var res_num = new JSBigInt(0)
-    var order = new JSBigInt(1)
+    var res_num = new BigNumberJs(0)
+    var order = new BigNumberJs(1)
     for (var i = data.length - 1; i >= 0; i--) {
       var digit = alphabet.indexOf(data[i])
       if (digit < 0) {
         throw 'Invalid symbol'
       }
-      var product = order.multiply(digit).add(res_num)
+      var product = order.multipliedBy(digit).plus(res_num)
       // if product > UINT64_MAX
-      if (product.compare(UINT64_MAX) === 1) {
+      if (product.isGreaterThan(UINT64_MAX)) {
         throw 'Overflow'
       }
       res_num = product
-      order = order.multiply(alphabet_size)
+      order = order.multipliedBy(alphabet_size)
     }
-    if (res_size < full_block_size && (new JSBigInt(2).pow(8 * res_size).compare(res_num) <= 0)) {
+    if (res_size < full_block_size && (new BigNumberJs(2).pow(8 * res_size).isLessThanOrEqualTo(0))) {
       throw 'Overflow 2'
     }
     buf.set(uint64_to_8be(res_num, res_size), index)
     return buf
   }
 
+  // @ts-expect-error
   b58.decode = function (enc) {
     enc = strtobin(enc)
     if (enc.length === 0) {
@@ -213,9 +219,11 @@ var cnBase58 = (function () {
     var data_size = full_block_count * full_block_size + last_block_decoded_size
     var data = new Uint8Array(data_size)
     for (var i = 0; i < full_block_count; i++) {
+      // @ts-expect-error
       data = b58.decode_block(enc.subarray(i * full_encoded_block_size, i * full_encoded_block_size + full_encoded_block_size), data, i * full_block_size)
     }
     if (last_block_size > 0) {
+      // @ts-expect-error
       data = b58.decode_block(enc.subarray(full_block_count * full_encoded_block_size, full_block_count * full_encoded_block_size + last_block_size), data, full_block_count * full_block_size)
     }
     return bintohex(data)
@@ -223,4 +231,6 @@ var cnBase58 = (function () {
 
   return b58
 })()
-module.exports = cnBase58
+
+
+export default cnBase58

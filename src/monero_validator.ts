@@ -51,6 +51,7 @@ export const moneroValidator: TBaseValidator = {
       }
     }
 
+    // @ts-expect-error
     let decodedAddrStr = cnBase58.decode(address)
     if (!decodedAddrStr) { return false }
 
