@@ -1,5 +1,5 @@
 import cryptoUtils from './crypto/utils'
-import base58 from './crypto/base58'
+import base58 from 'bs58'
 import segwit from './crypto/segwit_addr'
 import { TAddress, TBaseValidator } from './types/validators.types'
 import { TCurrency } from './types/currencies.types'

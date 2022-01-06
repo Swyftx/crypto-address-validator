@@ -1,9 +1,9 @@
-import base58 from './crypto/base58';
+import { base58_to_binary } from 'base58-js'
 import { TBaseValidator } from './types/validators.types';
 
 function getDecoded (address) {
   try {
-    let decoded = base58.decode(address)
+    let decoded = base58_to_binary(address)
     return decoded
   } catch (e) {
     // if decoding fails, assume invalid address

@@ -1,4 +1,4 @@
-import base58 from './crypto/base58'
+import base58 from 'bs58'
 import { TChecksumValidator } from './types/validators.types'
 
 
@@ -17,9 +17,8 @@ const aeValidator: TChecksumValidator = {
   },
 
   verifyChecksum: (address) => {
-    let decoded = base58.decode(address)
-    decoded.splice(-4, 4) // remove last 4 elements. Why is base 58 adding them?
-    return decoded.length === 32
+    let decodedBuffer = base58.decode(address)
+    return decodedBuffer.length === 32 + 4 // add 4 because base is adding 4 characters, why is base 58 adding them?
   }
 }
 

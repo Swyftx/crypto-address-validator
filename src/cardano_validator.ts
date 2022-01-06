@@ -1,12 +1,12 @@
 import cbor from 'cbor-js'
 import CRC from 'crc'
-import base58 from  './crypto/base58'
+import { base58_to_binary } from 'base58-js'
 import { TBaseValidator } from './types/validators.types'
 
 function getDecoded (address) {
   try {
-    let decoded = base58.decode(address)
-    return cbor.decode(new Uint8Array(decoded).buffer)
+    const decodedRaw = base58_to_binary(address)
+    return cbor.decode(decodedRaw.buffer)
   } catch (e) {
     // if decoding fails, assume invalid address
     return null

@@ -37,6 +37,7 @@
   "dependencies": {
     "@iota/validators": "^1.0.0-beta.6",
     "base-x": "^3.0.4",
+    "base58-js": "^1.0.0",
     "bchaddrjs-slp": "^0.2.8",
     "bignumber.js": "^9.0.2",
     "c32check": "^1.0.1",
