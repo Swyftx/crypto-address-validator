@@ -1,19 +1,17 @@
 // Karma configuration
 module.exports = function (config) {
     config.set({
-        basePath: './',
+        basePath: '',
 
-        frameworks: ['mocha', 'chai', 'jasmine', 'karma-typescript'],
+        frameworks: ['mocha', 'chai'],
 
         files: [
-            'test/*.ts',
-        ],
+        {
+          pattern: './dist/ramp-crypto-address-validator.umd.js',
+        }
+      ],
 
-        preprocessors: {
-            "**/*.ts": "karma-typescript" // *.tsx for React Jsx
-        },
-
-        reporters: ['progress', 'karma-typescript'],
+        reporters: ['progress'],
 
         port: 9876,
 
@@ -21,10 +19,10 @@ module.exports = function (config) {
 
         logLevel: config.LOG_INFO,
 
-        browsers: ['ChromeHeadless'],
+        browsers: ['Chrome'],
 
         singleRun: true,
 
-        concurrency: Infinity
+        concurrency: Infinity,
     })
 };

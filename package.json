@@ -1,9 +1,9 @@
 {
   "name": "@ramp/api-crypto-address-validator",
   "description": "Wallet address validator for Bitcoin and other Altcoins.",
-  "main": "dist/ramp-instant-sdk.umd.js",
-  "module": "dist/ramp-instant-sdk.es5.js",
-  "typings": "dist/types/ramp-instant-sdk.d.ts",
+  "main": "dist/ramp-crypto-address-validator.umd.js",
+  "module": "dist/ramp-crypto-address-validator.es5.js",
+  "typings": "dist/types/ramp-crypto-address-validator.d.ts",
   "version": "1.13.1",
   "author": "Swyftx",
   "publishConfig": {
@@ -24,8 +24,7 @@
   "scripts": {
     "minify": "uglifyjs -c -m -o dist/wallet-address-validator.min.js -- dist/wallet-address-validator.js",
     "test:node": "mocha -r ts-node/register test/*.ts",
-    "test:browser": "echo Temp bypass until jenkins setup",
-    "test:browser_": "karma start",
+    "test:browser": "karma start",
     "test": "yarn run bundle && npm run test:node && npm run test:browser",
     "start": "npm run bundle && npm test",
     "generateReadme": "node debug/generateReadme.js && git add README.md dist/wallet-address-validator.min.js.gz package.json",
@@ -40,6 +39,7 @@
     "base58-js": "^1.0.0",
     "bchaddrjs-slp": "^0.2.8",
     "bignumber.js": "^9.0.2",
+    "buffer": "^6.0.3",
     "c32check": "^1.0.1",
     "cbor-js": "^0.1.0",
     "crc": "^3.8.0",
@@ -66,6 +66,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-polyfill-node": "^0.8.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-typescript2": "^0.31.1",
     "standard": "^16.0.4",

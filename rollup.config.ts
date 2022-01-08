@@ -3,6 +3,7 @@ import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import typescript from 'rollup-plugin-typescript2';
+import nodePolyfills from 'rollup-plugin-polyfill-node'
 
 const pkg = require('./package.json');
 
@@ -10,13 +11,18 @@ const libraryName = 'crypto-address-validator';
 
 export default {
   input: `src/wallet_address_validator.ts`,
+  // external: ['buffer/'],
   output: [
-    { format: 'umd', file: `./dist/${pkg.main}`, name: libraryName, sourcemap: true},
-    { format: 'es', file: `./dist/${pkg.module}`, sourcemap: true},
+    { format: 'umd', file: pkg.main, name: libraryName, sourcemap: true},
+    {
+      format: 'es',
+      file: pkg.module,
+      sourcemap: true,
+    },
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-  external: [],
   plugins: [
+    nodePolyfills(),
     // Allow json resolution
     json(),
     // Compile TypeScript files
@@ -24,6 +30,7 @@ export default {
       useTsconfigDeclarationDir: true,
       objectHashIgnoreUnknownHack: false,
       clean: true,
+
     }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
@@ -34,5 +41,5 @@ export default {
 
     // Resolve source maps to the original source
     sourceMaps(),
-  ],
+  ]
 };

@@ -7,7 +7,7 @@ const ALLOWED_CHARS = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxy
 let regexp = new RegExp('^(ak_)([' + ALLOWED_CHARS + ']+)$') // Begins with ak_ followed by
 
 const aeValidator: TChecksumValidator = {
-  isValidAddress: function (address, currency, networkType) {
+  isValidAddress: function (address) {
     let match = regexp.exec(address)
     if (match !== null) {
       return this.verifyChecksum(match[2])
