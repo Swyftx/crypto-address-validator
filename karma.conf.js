@@ -1,27 +1,53 @@
 // Karma configuration
+const webpack = require('webpack')
 module.exports = function (config) {
     config.set({
-        basePath: '',
+      basePath: '',
 
-        frameworks: ['mocha', 'chai'],
+      frameworks: ['mocha', 'chai', 'webpack'],
 
-        files: [
-          'dist/test/wallet_address_validator.js',
-          'dist/ramp-crypto-address-validator.umd.js'
+      files: [
+        'dist/lib/test/wallet_address_validator.js',
+        // 'dist/ramp-crypto-address-validator.umd.js'
       ],
 
-        reporters: ['progress'],
+      plugins: [
+        'karma-webpack',
+        'karma-chai',
+        'karma-mocha',
+      ],
 
-        port: 9876,
+      reporters: ['progress'],
 
-        colors: true,
+      port: 9876,
 
-        logLevel: config.LOG_INFO,
+      colors: true,
 
-        browsers: ['Chrome'],
+      logLevel: config.LOG_INFO,
 
-        singleRun: true,
+      preprocessors: {
+        // add webpack as preprocessor
+        'dist/lib/test/wallet_address_validator.js': [ 'webpack' ]
+      },
 
-        concurrency: Infinity,
+      // browsers: ['Chrome'],
+
+      singleRun: false,
+
+      concurrency: Infinity,
+
+      webpack: {
+        resolve: {
+          fallback: {
+            stream: 'stream-browserify',
+            buffer: require.resolve('buffer/')
+          }
+        },
+        plugins: [
+          new webpack.ProvidePlugin({
+            Buffer: ['buffer', 'Buffer'],
+          }),
+        ]
+      }
     })
 };

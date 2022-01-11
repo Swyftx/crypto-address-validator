@@ -1,9 +1,7 @@
 import commonjs from 'rollup-plugin-commonjs';
-import json from 'rollup-plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import typescript from 'rollup-plugin-typescript2';
-import nodePolyfills from 'rollup-plugin-polyfill-node'
 
 const pkg = require('./package.json');
 
@@ -22,8 +20,6 @@ export default {
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
   plugins: [
-    // Allow json resolution
-    json(),
     // Compile TypeScript files
     typescript({
       useTsconfigDeclarationDir: true,
@@ -32,8 +28,12 @@ export default {
 
     }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
-    commonjs(),
-    nodeResolve(),
+    commonjs({
+      ignoreGlobal: true
+    }),
+    nodeResolve({
+      preferBuiltins: false
+    }),
 
     // Resolve source maps to the original source
     sourceMaps(),

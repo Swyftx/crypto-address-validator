@@ -24,7 +24,7 @@
   "scripts": {
     "minify": "uglifyjs -c -m -o dist/wallet-address-validator.min.js -- dist/wallet-address-validator.js",
     "test:node": "mocha -r ts-node/register test/*.ts",
-    "test:browser": "karma start",
+    "test:browser": "yarn run build && karma start",
     "test": "yarn run bundle && npm run test:node && npm run test:browser",
     "start": "npm run bundle && npm test",
     "generateReadme": "node debug/generateReadme.js && git add README.md dist/wallet-address-validator.min.js.gz package.json",
@@ -73,7 +73,6 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-polyfill-node": "^0.8.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-typescript2": "^0.31.1",
     "standard": "^16.0.4",
