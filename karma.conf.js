@@ -6,9 +6,8 @@ module.exports = function (config) {
         frameworks: ['mocha', 'chai'],
 
         files: [
-        {
-          pattern: './dist/ramp-crypto-address-validator.umd.js',
-        }
+          'dist/test/wallet_address_validator.js',
+          'dist/ramp-crypto-address-validator.umd.js'
       ],
 
         reporters: ['progress'],

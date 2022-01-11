@@ -1,10 +1,9 @@
 import JsSHA from 'jssha'
+import createKeccakHash from 'keccak';
+import {bech32 as Bech32} from 'bech32'
+import {blake2bHex} from 'blakejs'
 import Blake256 from './blake256'
-import sha3  from './sha3';
-import Blake2B from './blake2b'
-import BECH32 from './bech32'
 
-const { keccak256 } = sha3
 
 const numberToHex = (number: number): string => {
   let hex = Math.round(number).toString(16)
@@ -38,25 +37,37 @@ const sha256Checksum = (payload: any): string => {
   return sha256(sha256(payload)).substr(0, 8)
 }
 
-const blake256 = (hexString: string): string => {
-  return new Blake256().update(hexString, 'hex').digest('hex')
-}
+// Keccak
+const keccak256 = (payload: Buffer | string): string =>
+  createKeccakHash('keccak256').update(Buffer.from(payload)).digest('hex').toString()
 
-const blake256Checksum = (payload: any): string => {
-  return blake256(blake256(payload)).substr(0, 8)
-}
+const keccak256Checksum = (payload: Buffer | string): string =>
+  keccak256(payload).toString().substr(0, 8)
 
-const blake2b = (hexString: string, outlen: number): string => {
-  return new Blake2B(outlen).update(Buffer.from(hexString, 'hex')).digest('hex')
-}
 
-const keccak256Checksum = (payload: any): string => {
-  return keccak256(payload).toString().substr(0, 8)
-}
+// Blake
+const blake2b = (hexString: string, outlen: number): string => blake2bHex(hexString, undefined, outlen)
 
-const blake2b256 = (hexString: string): string => {
-  // return new Blake2B(32).update(Buffer.from(hexString, 'hex'), 32).digest('hex') // Idk why second 32 as argument is here
-  return new Blake2B(32).update(Buffer.from(hexString, 'hex')).digest('hex')
+const blake2b256 = (hexString: string): string => blake2b(hexString, 32);
+
+// Blake256
+const blake256 = (hexString: string): string =>
+  new Blake256().update(hexString, 'hex').digest('hex')
+
+const blake256Checksum = (payload: any): string =>
+  blake256(blake256(payload)).substr(0, 8)
+
+// Bech32
+const bech32 = {
+  encode: (payload: any): string => Bech32.encode('', payload),
+  decode: (payload: string): {data: number[], hrp: string} => {
+    const {prefix, words} = Bech32.decode(payload)
+
+    return {
+      data: words,
+      hrp: prefix
+    }
+  }
 }
 
 export default {
@@ -70,5 +81,5 @@ export default {
     keccak256Checksum,
     blake2b256,
     keccak256,
-    bech32: BECH32
+    bech32
 }

@@ -6,6 +6,9 @@ import { NetTypes } from '../src/types/net.types'
 
 var expect = chai.expect
 
+const isBrowser = typeof window !== 'undefined'
+
+
 function valid (address: TAddress, currency?: TCurrencyName, networkType?: TNetType, addressFormats?: TAddressFormats) {
   let result = WAValidator.validate(address, currency, networkType, addressFormats)
   expect(result).to.equal(true)

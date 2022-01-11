@@ -59,7 +59,7 @@ export const moneroValidator: TBaseValidator = {
     }
 
     let addrChecksum = decodedAddrStr.slice(-8)
-    let hashChecksum = cryptoUtils.keccak256Checksum(hexToBin(decodedAddrStr.slice(0, -8)))
+    let hashChecksum = cryptoUtils.keccak256Checksum(Buffer.from(hexToBin(decodedAddrStr.slice(0, -8))))
 
     return addrChecksum === hashChecksum
   }
