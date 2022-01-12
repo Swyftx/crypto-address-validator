@@ -2,13 +2,11 @@ import { TCurrency, TCurrencyName } from "./currencies.types";
 import { TAddress, TAddressFormats, TNetType } from "./validators.types";
 
 export interface IValidator {
-  validate: (
+  validate(
     address: TAddress,
     currency?: TCurrencyName,
     networkType?: TNetType,
     addressFormats?: TAddressFormats
-  ) => Boolean,
-  CURRENCIES: TCurrency[]
+  ): Boolean;
+  CURRENCIES: TCurrency[];
 }
-
-

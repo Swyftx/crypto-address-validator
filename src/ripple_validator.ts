@@ -1,28 +1,32 @@
-import cryptoUtils from './crypto/utils'
-import baseX from 'base-x'
-import { TChecksumValidator } from './types/validators.types'
+import baseX from "base-x";
 
-let ALLOWED_CHARS = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz'
+import cryptoUtils from "./crypto/utils";
+import { TChecksumValidator } from "./types/validators.types";
 
-let codec = baseX(ALLOWED_CHARS)
-let regexp = new RegExp('^r[' + ALLOWED_CHARS + ']{24,34}$')
+const ALLOWED_CHARS =
+  "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz";
+
+const codec = baseX(ALLOWED_CHARS);
+const regexp = new RegExp("^r[" + ALLOWED_CHARS + "]{24,34}$");
 
 const rippleValidator: TChecksumValidator = {
-  isValidAddress: function (address) {
+  isValidAddress(address) {
     if (regexp.test(address)) {
-      return this.verifyChecksum(address)
+      return this.verifyChecksum(address);
     }
 
-    return false
+    return false;
   },
 
-  verifyChecksum: function (address) {
-    let bytes = codec.decode(address)
-    let computedChecksum = cryptoUtils.sha256Checksum(cryptoUtils.toHex(bytes.slice(0, -4)))
-    let checksum = cryptoUtils.toHex(bytes.slice(-4))
+  verifyChecksum(address) {
+    const bytes = codec.decode(address);
+    const computedChecksum = cryptoUtils.sha256Checksum(
+      cryptoUtils.toHex(bytes.slice(0, -4))
+    );
+    const checksum = cryptoUtils.toHex(bytes.slice(-4));
 
-    return computedChecksum === checksum
-  }
-}
+    return computedChecksum === checksum;
+  },
+};
 
-export default rippleValidator
+export default rippleValidator;

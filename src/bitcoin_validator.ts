@@ -1,96 +1,111 @@
-import cryptoUtils from './crypto/utils'
-import base58 from 'bs58'
-import segwit from './crypto/segwit_addr'
-import { TAddress, TBaseValidator } from './types/validators.types'
-import { TCurrency } from './types/currencies.types'
-import { NetTypes } from './types/net.types'
-import { HashFunctions } from './types/hashFunctions.types'
+import base58 from "bs58";
 
-let DEFAULT_NETWORK_TYPE = NetTypes.prod
+import segwit from "./crypto/segwit_addr";
+import cryptoUtils from "./crypto/utils";
+import { TCurrency } from "./types/currencies.types";
+import { HashFunctions } from "./types/hashFunctions.types";
+import { NetTypes } from "./types/net.types";
+import { TAddress, TBaseValidator } from "./types/validators.types";
 
-function getDecoded (address) {
+const DEFAULT_NETWORK_TYPE = NetTypes.prod;
+
+function getDecoded(address) {
   try {
-    return base58.decode(address)
+    return base58.decode(address);
   } catch (e) {
     // if decoding fails, assume invalid address
-    return null
+    return null;
   }
 }
 
-function getChecksum (hashFunction, payload) {
+function getChecksum(hashFunction, payload) {
   // Each currency may implement different hashing algorithm
   switch (hashFunction) {
     // blake then keccak hash chain
     case HashFunctions.blake256keccak256:
-      let blake = cryptoUtils.blake2b256(payload)
-      return cryptoUtils.keccak256Checksum(Buffer.from(blake, 'hex'))
+      const blake = cryptoUtils.blake2b256(payload);
+      return cryptoUtils.keccak256Checksum(Buffer.from(blake, "hex"));
     case HashFunctions.blake256:
-      return cryptoUtils.blake256Checksum(payload)
+      return cryptoUtils.blake256Checksum(payload);
     case HashFunctions.keccak256:
-      return cryptoUtils.keccak256Checksum(payload)
+      return cryptoUtils.keccak256Checksum(payload);
     case HashFunctions.sha256:
     default:
-      return cryptoUtils.sha256Checksum(payload)
+      return cryptoUtils.sha256Checksum(payload);
   }
 }
 
-function getAddressType (address: TAddress, currency: TCurrency | null | undefined) {
+function getAddressType(
+  address: TAddress,
+  currency: TCurrency | null | undefined
+) {
   // should be 25 bytes per btc address spec and 26 decred
-  if(!currency) {
-    return false
+  if (!currency) {
+    return false;
   }
 
-  let expectedLength = currency.expectedLength || 25
-  let hashFunction = currency.hashFunction || HashFunctions.sha256
-  let decoded = getDecoded(address)
+  const expectedLength = currency.expectedLength || 25;
+  const hashFunction = currency.hashFunction || HashFunctions.sha256;
+  const decoded = getDecoded(address);
 
   if (decoded) {
-    let length = decoded.length
+    const length = decoded.length;
 
     if (length !== expectedLength) {
-      return null
+      return null;
     }
 
     if (currency.regex) {
       if (!currency.regex.test(address)) {
-        return false
+        return false;
       }
     }
 
-    let checksum = cryptoUtils.toHex(decoded.slice(length - 4, length))
+    const checksum = cryptoUtils.toHex(decoded.slice(length - 4, length));
 
-    let body = cryptoUtils.toHex(decoded.slice(0, length - 4))
+    const body = cryptoUtils.toHex(decoded.slice(0, length - 4));
 
-    let goodChecksum = getChecksum(hashFunction, body)
+    const goodChecksum = getChecksum(hashFunction, body);
 
-    return checksum === goodChecksum ? cryptoUtils.toHex(decoded.slice(0, expectedLength - 24)) : null
+    return checksum === goodChecksum
+      ? cryptoUtils.toHex(decoded.slice(0, expectedLength - 24))
+      : null;
   }
 
-  return null
+  return null;
 }
 
-function isValidP2PKHandP2SHAddress (address: TAddress, currency: TCurrency, networkType: NetTypes = DEFAULT_NETWORK_TYPE) {
-  const addressType = getAddressType(address, currency)
+function isValidP2PKHandP2SHAddress(
+  address: TAddress,
+  currency: TCurrency,
+  networkType: NetTypes = DEFAULT_NETWORK_TYPE
+) {
+  const addressType = getAddressType(address, currency);
 
   if (addressType) {
-    let correctAddressTypes
+    let correctAddressTypes;
 
     if (networkType === NetTypes.prod || networkType === NetTypes.testnet) {
-      correctAddressTypes = currency.addressTypes[networkType]
+      correctAddressTypes = currency.addressTypes[networkType];
     } else {
-      correctAddressTypes = currency.addressTypes.prod.concat(currency.addressTypes.testnet)
+      correctAddressTypes = currency.addressTypes.prod.concat(
+        currency.addressTypes.testnet
+      );
     }
 
-    return correctAddressTypes.indexOf(addressType) >= 0
+    return correctAddressTypes.indexOf(addressType) >= 0;
   }
 
-  return false
+  return false;
 }
 
 const bitCoinValidator: TBaseValidator = {
-  isValidAddress: function (address, currency, networkType) {
-    return isValidP2PKHandP2SHAddress(address, currency, networkType) || segwit.isValidAddress(address)
-  }
-}
+  isValidAddress(address, currency, networkType) {
+    return (
+      isValidP2PKHandP2SHAddress(address, currency, networkType) ||
+      segwit.isValidAddress(address)
+    );
+  },
+};
 
-export default bitCoinValidator
+export default bitCoinValidator;

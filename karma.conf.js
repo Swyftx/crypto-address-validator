@@ -2,13 +2,12 @@
 const webpack = require('webpack')
 module.exports = function (config) {
     config.set({
-      basePath: '',
+      basePath: '.',
 
       frameworks: ['mocha', 'chai', 'webpack'],
 
       files: [
         'dist/lib/test/wallet_address_validator.js',
-        // 'dist/ramp-crypto-address-validator.umd.js'
       ],
 
       plugins: [
@@ -21,20 +20,12 @@ module.exports = function (config) {
 
       port: 9876,
 
-      colors: true,
-
       logLevel: config.LOG_INFO,
 
       preprocessors: {
         // add webpack as preprocessor
         'dist/lib/test/wallet_address_validator.js': [ 'webpack' ]
       },
-
-      // browsers: ['Chrome'],
-
-      singleRun: false,
-
-      concurrency: Infinity,
 
       webpack: {
         resolve: {
@@ -48,6 +39,14 @@ module.exports = function (config) {
             Buffer: ['buffer', 'Buffer'],
           }),
         ]
-      }
+      },
+
+      browsers: ['ChromeHeadless'],
+
+      singleRun: false,
+
+      concurrency: Infinity,
+
+      colors: true,
     })
 };

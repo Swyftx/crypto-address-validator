@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "baseUrl": ".",
       "declarationDir": "dist/types",
       "outDir": "dist/lib",
       "preserveConstEnums": true,
@@ -11,7 +12,7 @@
       "noImplicitAny": false, // true
       "types": ["mocha", "node"], // remove
       "esModuleInterop": true, // remove
-      "allowSyntheticDefaultImports": true // check
+      "allowSyntheticDefaultImports": true, // check
     },
     "include": ["src/**/*", "test/**/*"],
     "exclude": ["node_modules", "dist"]

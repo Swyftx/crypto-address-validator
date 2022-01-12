@@ -1,13 +1,14 @@
-import IOTA from '@iota/validators'
-import { TBaseValidator } from './types/validators.types'
+import IOTA from "@iota/validators";
 
-function isValidIotaAddress (address) {
-  let isValid = IOTA.isAddress(address)
-  return isValid
+import { TBaseValidator } from "./types/validators.types";
+
+function isValidIotaAddress(address) {
+  const isValid = IOTA.isAddress(address);
+  return isValid;
 }
 
 const iotaValidator: TBaseValidator = {
-  isValidAddress: isValidIotaAddress
-}
+  isValidAddress: isValidIotaAddress,
+};
 
-export default iotaValidator
+export default iotaValidator;

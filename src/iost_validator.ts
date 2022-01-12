@@ -1,9 +1,9 @@
-import { TBaseValidator } from "./types/validators.types"
+import { TBaseValidator } from "./types/validators.types";
 
-const iostRegex = new RegExp('^[a-z0-9_]{5,11}$')
+const iostRegex = new RegExp("^[a-z0-9_]{5,11}$");
 
 export const iostValidator: TBaseValidator = {
-  isValidAddress: (address) => iostRegex.test(address)
-}
+  isValidAddress: (address) => iostRegex.test(address),
+};
 
-export default iostValidator
+export default iostValidator;

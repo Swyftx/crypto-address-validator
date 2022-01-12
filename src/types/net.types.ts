@@ -1,13 +1,13 @@
 export enum NetTypes {
-  prod = 'prod',
-  testnet = 'testnet',
-  both = 'both'
+  prod = "prod",
+  testnet = "testnet",
+  both = "both",
 }
 
-export type TAddressType = string
+export type TAddressType = string;
 
 export type TAddressTypes = {
-  [key in NetTypes]?: TAddressType[]
+  [key in NetTypes]?: TAddressType[];
 } & {
-  [NetTypes.prod]: TAddressType[]
-}
+  [NetTypes.prod]: TAddressType[];
+};

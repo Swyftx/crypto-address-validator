@@ -1,30 +1,34 @@
-import cryptoUtils from './crypto/utils';
-import baseX from 'base-x';
-import { TBaseValidator, TChecksumValidator } from './types/validators.types';
+import baseX from "base-x";
 
-let ALLOWED_CHARS = '13456789abcdefghijkmnopqrstuwxyz'
+import cryptoUtils from "./crypto/utils";
+import { TBaseValidator, TChecksumValidator } from "./types/validators.types";
 
-let codec = baseX(ALLOWED_CHARS)
+const ALLOWED_CHARS = "13456789abcdefghijkmnopqrstuwxyz";
+
+const codec = baseX(ALLOWED_CHARS);
 // https://github.com/nanocurrency/raiblocks/wiki/Accounts,-Keys,-Seeds,-and-Wallet-Identifiers
-let regexp = new RegExp('^(xrb|nano)_([' + ALLOWED_CHARS + ']{60})$')
+const regexp = new RegExp("^(xrb|nano)_([" + ALLOWED_CHARS + "]{60})$");
 
 const nanoValidator: TChecksumValidator = {
-  isValidAddress: function (address) {
+  isValidAddress(address) {
     if (regexp.test(address)) {
-      return this.verifyChecksum(address)
+      return this.verifyChecksum(address);
     }
 
-    return false
+    return false;
   },
 
-  verifyChecksum: function (address) {
-    let bytes = codec.decode(regexp.exec(address)[2]).slice(-37)
+  verifyChecksum(address) {
+    const bytes = codec.decode(regexp.exec(address)[2]).slice(-37);
     // https://github.com/nanocurrency/raiblocks/blob/master/rai/lib/numbers.cpp#L73
-    let computedChecksum = cryptoUtils.blake2b(cryptoUtils.toHex(bytes.slice(0, -5)), 5)
-    let checksum = cryptoUtils.toHex(bytes.slice(-5).reverse())
+    const computedChecksum = cryptoUtils.blake2b(
+      cryptoUtils.toHex(bytes.slice(0, -5)),
+      5
+    );
+    const checksum = cryptoUtils.toHex(bytes.slice(-5).reverse());
 
-    return computedChecksum === checksum
-  }
-}
+    return computedChecksum === checksum;
+  },
+};
 
-export default nanoValidator
+export default nanoValidator;
