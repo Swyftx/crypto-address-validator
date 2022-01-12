@@ -1,5 +1,7 @@
 // Karma configuration
 const webpack = require('webpack')
+process.env.CHROME_BIN = require('puppeteer').executablePath()
+
 module.exports = function (config) {
     config.set({
       basePath: '.',
@@ -12,6 +14,7 @@ module.exports = function (config) {
 
       plugins: [
         'karma-webpack',
+        'karma-chrome-launcher',
         'karma-chai',
         'karma-mocha',
       ],
@@ -43,7 +46,7 @@ module.exports = function (config) {
 
       browsers: ['ChromeHeadless'],
 
-      singleRun: false,
+      singleRun: true,
 
       concurrency: Infinity,
 
