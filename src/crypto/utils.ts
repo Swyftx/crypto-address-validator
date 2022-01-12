@@ -1,11 +1,10 @@
 import JsSHA from 'jssha'
 import createKeccakHash from 'keccak';
+import createBlakeHash from 'blake-hash'
 import {bech32 as Bech32} from 'bech32'
 import {blake2bHex} from 'blakejs'
-import Blake256 from './blake256'
 
-
-const numberToHex = (number: number): string => {
+export const numberToHex = (number: number): string => {
   let hex = Math.round(number).toString(16)
 
   if (hex.length === 1) {
@@ -16,7 +15,7 @@ const numberToHex = (number: number): string => {
 }
 
 // TODO refactor
-const toHex = (arrayOfNumbers: number[] | Buffer) => {
+export const toHex = (arrayOfNumbers: number[] | Buffer) => {
   let hex = ''
 
   for (var i = 0; i < arrayOfNumbers.length; i++) {
@@ -26,46 +25,52 @@ const toHex = (arrayOfNumbers: number[] | Buffer) => {
   return hex
 }
 
-const sha256 = (hexString: string): string => {
+export const sha256 = (hexString: string): string => {
   var sha = new JsSHA('SHA-256', 'HEX')
   sha.update(hexString)
 
   return sha.getHash('HEX')
 }
 
-const sha256Checksum = (payload: any): string => {
+export const sha256Checksum = (payload: any): string => {
   return sha256(sha256(payload)).substr(0, 8)
 }
 
 // Keccak
-const keccak256 = (payload: Buffer | string): string =>
+export const keccak256 = (payload: Buffer | string): string =>
   createKeccakHash('keccak256').update(Buffer.from(payload)).digest('hex').toString()
 
-const keccak256Checksum = (payload: Buffer | string): string =>
+export const keccak256Checksum = (payload: Buffer | string): string =>
   keccak256(payload).toString().substr(0, 8)
 
-
 // Blake
-const blake2b = (hexString: string, outlen: number): string => blake2bHex(hexString, undefined, outlen)
+export const blake2b = (hexString: string, outlen: number): string => blake2bHex(hexString, undefined, outlen)
 
-const blake2b256 = (hexString: string): string => blake2b(hexString, 32);
+export const blake2b256 = (hexString: string): string => blake2b(hexString, 32);
 
 // Blake256
-const blake256 = (hexString: string): string =>
-  new Blake256().update(hexString, 'hex').digest('hex')
+export const blake256 = (hexString: string): string =>
+  createBlakeHash('blake256').update(hexString, 'hex').digest('hex')
 
-const blake256Checksum = (payload: any): string =>
+export const blake256Checksum = (payload: any): string =>
   blake256(blake256(payload)).substr(0, 8)
 
 // Bech32
-const bech32 = {
-  encode: (payload: any): string => Bech32.encode('', payload),
+export const bech32 = {
+  // bech32 npm package prefix is bech32 HRP
+  // Read more here https://support.avax.network/en/articles/4587392-what-is-bech32
+  encode: (hrp: string, payload: ArrayLike<number>): string => Bech32.encode(hrp, payload),
   decode: (payload: string): {data: number[], hrp: string} => {
-    const {prefix, words} = Bech32.decode(payload)
+    try {
+      const {prefix, words} = Bech32.decode(payload)
 
-    return {
-      data: words,
-      hrp: prefix
+      const base32Part = words
+      return {
+        data: base32Part,
+        hrp: prefix
+      }
+    } catch {
+      return null
     }
   }
 }

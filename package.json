@@ -40,6 +40,7 @@
     "bchaddrjs-slp": "^0.2.8",
     "bech32": "^2.0.0",
     "bignumber.js": "^9.0.2",
+    "blake-hash": "^2.0.0",
     "blakejs": "^1.1.1",
     "c32check": "^1.0.1",
     "cbor-js": "^0.1.0",
