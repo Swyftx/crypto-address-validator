@@ -1,10 +1,8 @@
 import WAValidator from '../src/wallet_address_validator'
-import chai from 'chai'
+import { expect }  from 'chai'
 import { TCurrencyName } from '../src/types/currencies.types'
 import { TAddress, TNetType, AddressFormats, TAddressFormats } from '../src/types/validators.types'
 import { NetTypes } from '../src/types/net.types'
-
-var expect = chai.expect
 
 function valid (address: TAddress, currency?: TCurrencyName, networkType?: TNetType, addressFormats?: TAddressFormats) {
   let result = WAValidator.validate(address, currency, networkType, addressFormats)
