@@ -6,9 +6,6 @@ import { NetTypes } from '../src/types/net.types'
 
 var expect = chai.expect
 
-const isBrowser = typeof window !== 'undefined'
-
-
 function valid (address: TAddress, currency?: TCurrencyName, networkType?: TNetType, addressFormats?: TAddressFormats) {
   let result = WAValidator.validate(address, currency, networkType, addressFormats)
   expect(result).to.equal(true)
@@ -22,7 +19,7 @@ function invalid (address: TAddress, currency?: TCurrencyName, networkType?: TNe
 describe('WAValidator.validate()', function () {
   describe('valid results', function () {
     it('should return true for correct bitcoin addresses', function () {
-      // valid('12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP', 'bitcoin')
+      valid('12KYrjTdVGjFMtaxERSk3gphreJ5US8aUP', 'bitcoin')
       valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'bitcoin')
       valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'BTC')
       valid('12QeMLzSrB8XH8FvEzPMVoRxVAzTr5XM2y', 'Bitcoin')
