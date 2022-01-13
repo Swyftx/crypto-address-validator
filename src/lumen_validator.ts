@@ -21,17 +21,16 @@ const lumenValidator: TChecksumValidator = {
     const decodedAddress = codec.decode(encodedAddress);
     const versionByte = decodedAddress[0];
     const payload = decodedAddress.slice(0, -2);
-    // const data = payload.slice(1)
     const checksum = decodedAddress.slice(-2);
 
     if (encodedAddress !== codec.encode(decodedAddress)) {
-      // console.log('not base 32')
+      // not base 32'
       return false;
     }
 
     if (versionByte !== 6 << 3) {
       // ? !== 48
-      // console.log('wrong version')
+      // wrong version
       return false;
     }
 
@@ -39,7 +38,7 @@ const lumenValidator: TChecksumValidator = {
     calculatedChecksum.writeUInt16LE(crc.crc16xmodem(payload), 0);
 
     if (Buffer.compare(checksum, calculatedChecksum) !== 0) {
-      // console.log('checksum missmatch')
+      // checksum missmatch
       return false;
     }
 

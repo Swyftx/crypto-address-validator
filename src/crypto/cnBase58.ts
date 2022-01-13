@@ -41,7 +41,6 @@ interface IBase58 {
 }
 
 const cnBase58 = (() => {
-  // TODO refactor to remove partial
   const b58: Partial<IBase58> = {};
 
   const alphabet_str =

@@ -25,17 +25,6 @@ plugins:
   - eslint-plugin-prettier
 
 rules:
-  # '@typescript-eslint/explicit-member-accessibility':
-  #   - error
-  #   - accessibility: explicit
-  #     overrides:
-  #       constructors: off
-  # '@typescript-eslint/no-empty-function': error
-  # '@typescript-eslint/no-empty-interface': error
-  # '@typescript-eslint/semi':
-  #   - error
-  #   - always
-  # '@typescript-eslint/unified-signatures': error
   arrow-parens:
     - off
     - always
@@ -50,19 +39,5 @@ rules:
   simple-import-sort/imports:
     - error
     - groups: # see https://github.com/lydell/eslint-plugin-simple-import-sort#custom-grouping
-        - ["^\\u0000"] # side-effect imports
         - ["^@?\\w"] # regular npm packages
-        - ['^@ramp-instant'] # instant packages
-        - ['^@(app|assets|shared|store|tests)'] # internal path aliases
         - ["^\\."] # sibling files
-        - ['^[.].*[.]scss$'] # styles
-
-  # ToDo - It'd be nice to enable those rules
-  '@typescript-eslint/no-unnecessary-type-assertion': off
-  '@typescript-eslint/unbound-method': off
-  '@typescript-eslint/no-unsafe-call': off
-  '@typescript-eslint/ban-types': off
-  '@typescript-eslint/naming-convention': off
-  '@typescript-eslint/no-use-before-define': off
-  '@typescript-eslint/quotes': off
-  '@typescript-eslint/no-unsafe-return': off

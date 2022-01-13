@@ -61,7 +61,7 @@ export const blake256Checksum = (payload: any): string =>
 
 // Bech32
 export const bech32 = {
-  // bech32 npm package prefix is bech32 HRP
+  // bech32 npm package prefix argument/property is bech32 HRP
   // Read more here https://support.avax.network/en/articles/4587392-what-is-bech32
   encode: (hrp: string, payload: ArrayLike<number>): string =>
     Bech32.encode(hrp, payload),

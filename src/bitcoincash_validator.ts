@@ -15,6 +15,7 @@ function isAValidAddress(address) {
   }
 }
 
+// TODO refactor
 function isValidAddressFormat(addressFormat) {
   let validAddressFormat = false;
   switch (addressFormat) {
