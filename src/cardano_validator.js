@@ -1,6 +1,7 @@
 var cbor = require('cbor-js')
 var CRC = require('crc')
 var base58 = require('./crypto/base58')
+var bech32 = require('./crypto/bech32')
 
 function getDecoded (address) {
   try {
@@ -12,9 +13,8 @@ function getDecoded (address) {
   }
 }
 
-module.exports = {
-  isValidAddress: function (address) {
-    var decoded = getDecoded(address)
+function isByron(address) {
+  var decoded = getDecoded(address)
 
     if (!decoded || (!Array.isArray(decoded) && decoded.length !== 2)) {
       return false
@@ -30,5 +30,15 @@ module.exports = {
     var crc = CRC.crc32(tagged)
 
     return crc === validCrc
+}
+
+function isShelley(address) {
+  var decoded = bech32.decode(address)
+  return decoded !== null
+}
+
+module.exports = {
+  isValidAddress: function (address) {
+    return isByron(address) || isShelley(address)
   }
 }

@@ -546,6 +546,15 @@ describe('WAValidator.validate()', function () {
       valid('0x48337b8dd78a9761a73d0fbb8f5c8a0ddda32d85', 'eng')
       valid('0xda816e2122a8a39b0926bfa84edd3d42477e9efd', 'eng')
     })
+
+    it('should return true for correct ADA addresses', () => {
+      valid('addr1sjck9mdmfyhzvjhydcjllgj9vjvl522w0573ncustrrr2rg7h9azg4cyqd36yyd48t5ut72hgld0fg2xfvz82xgwh7wal6g2xt8n996s3xvu5g', 'ada')
+      valid('addr1qxkyhslnaw9w34qu7h7ulhhxtrms5hjgfez6g6mmy7tre6g46as4mxxqzarsjfhef8gpcx64mmdt0ae9dhmacclhvepqrl7j7j', 'ada')
+      valid('addr1vypr00ss7hkqejmvh53xkyf0p9q0a4z2uprxmx6njc463vgst3pe4', 'ada')
+      valid('addr1qx6nj63rslzt9s8f6n97r5yszhhz0yvhemehehfrpa6ywkzfvwnyln6dkahl4ju7a42qsvxg9ke5qrl4xma56swpz35q86w42j', 'ada')
+      valid('Ae2tdPwUPEZFRbyhz3cpfC2CumGzNkFBN2L42rcUc2yjQpEkxDbkPodpMAi', 'ada')
+      valid('37btjrVyb4KEB2STADSsj3MYSAdj52X5FrFWpw2r7Wmj2GDzXjFRsHWuZqrw7zSkwopv8Ci3VWeg6bisU9dgJxW5hb2MZYeduNKbQJrqz3zVBsu9nT', 'ada')
+    })
   })
 
   describe('invalid results', function () {
@@ -855,6 +864,12 @@ describe('WAValidator.validate()', function () {
       invalid('1MZZNZS5cPQu8THtpqcTF3bQASBQoWr6zo', 'sys')
       // invalid('sys1qzpuka2847ecyf62xw0996v7wh2ehkdaegf6annn', 'sys')
       invalid('dsfasys1qzpuka2847ecyf62xw0996v7wh2ehkdaegf6annn', 'sys')
+    })
+    it('should return false for incorrect ADA Addresses', () => {
+      invalid('1EQUz46mFC5Wa4hbmfp7pzJa3tzNLWxyfr', 'ada')
+      invalid('0xda816e2122a8a39b0926bfa84edd3d42477e9efE', 'ada')
+      invalid('38ty1qB68gHsiyZ8k3RPeCJ1wYQPrUCPPr', 'ada')
+      invalid('addr1nervermindsjck9mdmfyhzvjhydcjllgj9vjvl522w0573ncustrrr2rg7h9azg4cyqd36yyd48t5ut72hgld0fg2xfvz82xgwh7wal6g2xt8n996s3xvu5g', 'ada')
     })
   })
 })

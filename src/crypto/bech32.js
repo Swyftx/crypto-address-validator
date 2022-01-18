@@ -96,7 +96,7 @@ function decode (bechString) {
   }
   bechString = bechString.toLowerCase()
   var pos = bechString.lastIndexOf('1')
-  if (pos < 1 || pos + 7 > bechString.length || bechString.length > 90) {
+  if (pos < 1 || pos + 7 > bechString.length) {
     return null
   }
   var hrp = bechString.substring(0, pos)
