@@ -1,4 +1,4 @@
-import { TAddress } from "./types/validators.types";
+import { TAddress, TBaseValidator } from "./types/validators.types";
 
 function isValidLiskAddress(address: TAddress) {
   const regex = /^[0-9]{6,10}$/g; // Must be numbers only for the first 1 - 20 charactors with a capital L at the end
@@ -9,7 +9,7 @@ function isValidLiskAddress(address: TAddress) {
   }
 }
 
-export const audValidator = {
+export const audValidator: TBaseValidator = {
   isValidAddress(address) {
     return isValidLiskAddress(address);
   },

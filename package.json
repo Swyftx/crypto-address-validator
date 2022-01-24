@@ -47,8 +47,7 @@
     "blakejs": "^1.1.1",
     "bs58": "^4.0.1",
     "c32check": "^1.0.1",
-    "cbor-js": "^0.1.0",
-    "crc": "^3.8.0",
+    "cbor": "^8.1.0",
     "js-sha512": "^0.8.0",
     "jssha": "3.2.0",
     "keccak": "^3.0.2",
@@ -56,6 +55,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.1.3",
+    "@types/bluebird": "^3.5.36",
     "@types/bs58": "^4.0.1",
     "@types/chai": "^4.3.0",
     "@types/expect": "^24.3.0",

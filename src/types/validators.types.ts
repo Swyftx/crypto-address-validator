@@ -25,6 +25,7 @@ export type TIsValidAddress = (
 
 export type TChecksum = (address: TAddress) => boolean;
 export type TDecode = (address: TAddress) => number[] | null;
+export type TDecodeBuffer = (address: TAddress) => Buffer | null;
 
 export type TBaseValidator<T = unknown> = {
   isValidAddress: TIsValidAddress;

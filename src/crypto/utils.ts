@@ -1,4 +1,5 @@
 import { bech32 as Bech32 } from "bech32";
+// @ts-ignore types are not available atm
 import createBlakeHash from "blake-hash";
 import { blake2bHex } from "blakejs";
 import JsSHA from "jssha";

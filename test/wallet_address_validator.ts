@@ -711,7 +711,7 @@ describe("WAValidator.validate()", () => {
   });
 
   describe("invalid results", () => {
-    function commonTests(currency) {
+    function commonTests(currency: TCurrencyName) {
       invalid("", currency); // reject blank
       invalid("%%@", currency); // reject invalid base58 string
       invalid("1A1zP1ePQGefi2DMPTifTL5SLmv7DivfNa", currency); // reject invalid address

@@ -45,7 +45,7 @@ const cnBase58 = (() => {
 
   const alphabet_str =
     "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-  const alphabet = [];
+  const alphabet: number[] = [];
   for (let i = 0; i < alphabet_str.length; i++) {
     alphabet.push(alphabet_str.charCodeAt(i));
   }
@@ -57,7 +57,7 @@ const cnBase58 = (() => {
 
   const UINT64_MAX = new BigNumberJs(2).pow(64);
 
-  function hextobin(hex) {
+  function hextobin(hex: string) {
     if (hex.length % 2 !== 0) throw new Error("Hex string has invalid length!");
     const res = new Uint8Array(hex.length / 2);
     for (let i = 0; i < hex.length / 2; ++i) {
@@ -66,7 +66,7 @@ const cnBase58 = (() => {
     return res;
   }
 
-  function bintohex(bin) {
+  function bintohex(bin: string | any[] | Uint8Array) {
     const out = [];
     for (let i = 0; i < bin.length; ++i) {
       out.push(("0" + bin[i].toString(16)).slice(-2));
@@ -74,7 +74,7 @@ const cnBase58 = (() => {
     return out.join("");
   }
 
-  function strtobin(str) {
+  function strtobin(str: string) {
     const res = new Uint8Array(str.length);
     for (let i = 0; i < str.length; i++) {
       res[i] = str.charCodeAt(i);
@@ -82,7 +82,7 @@ const cnBase58 = (() => {
     return res;
   }
 
-  function bintostr(bin) {
+  function bintostr(bin: string | any[] | Uint8Array) {
     const out = [];
     for (let i = 0; i < bin.length; i++) {
       out.push(String.fromCharCode(bin[i]));
@@ -90,7 +90,7 @@ const cnBase58 = (() => {
     return out.join("");
   }
 
-  function uint8_be_to_64(data) {
+  function uint8_be_to_64(data: string | any[]) {
     if (data.length < 1 || data.length > 8) {
       throw new Error("Invalid input length");
     }
@@ -121,7 +121,7 @@ const cnBase58 = (() => {
     return res;
   }
 
-  function uint64_to_8be(num: BigNumberJs, size) {
+  function uint64_to_8be(num: BigNumberJs, size: number) {
     const res = new Uint8Array(size);
     if (size < 1 || size > 8) {
       throw new Error("Invalid input length");
@@ -142,12 +142,11 @@ const cnBase58 = (() => {
     let i = encoded_block_sizes[data.length] - 1;
     // while num > 0
     while (num.isGreaterThan(0)) {
-      const div = num.modulo(alphabet_size);
       // remainder = num % alphabet_size
-      const remainder = div[1];
+      const remainder = num.modulo(alphabet_size);
       // num = num / alphabet_size
-      num = div[0];
-      buf[index + i] = alphabet[remainder.toJSValue()];
+      num = num.dividedBy(alphabet_size);
+      buf[index + i] = alphabet[remainder.toNumber()];
       i--;
     }
     return buf;

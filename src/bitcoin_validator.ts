@@ -5,20 +5,26 @@ import cryptoUtils from "./crypto/utils";
 import { TCurrency } from "./types/currencies.types";
 import { HashFunctions } from "./types/hashFunctions.types";
 import { NetTypes } from "./types/net.types";
-import { TAddress, TBaseValidator } from "./types/validators.types";
+import {
+  TAddress,
+  TBaseValidator,
+  TChecksum,
+  TChecksumValidator,
+  TDecodeBuffer,
+} from "./types/validators.types";
 
 const DEFAULT_NETWORK_TYPE = NetTypes.prod;
 
-function getDecoded(address) {
+const getDecoded: TDecodeBuffer = (address) => {
   try {
     return base58.decode(address);
   } catch (e) {
     // if decoding fails, assume invalid address
     return null;
   }
-}
+};
 
-function getChecksum(hashFunction, payload) {
+const getChecksum = (hashFunction: HashFunctions, payload: TAddress) => {
   // Each currency may implement different hashing algorithm
   switch (hashFunction) {
     // blake then keccak hash chain
@@ -33,7 +39,7 @@ function getChecksum(hashFunction, payload) {
     default:
       return cryptoUtils.sha256Checksum(payload);
   }
-}
+};
 
 function getAddressType(
   address: TAddress,

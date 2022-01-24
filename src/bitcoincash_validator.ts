@@ -1,22 +1,28 @@
 import BCH from "bchaddrjs-slp";
 
 import { NetTypes } from "./types/net.types";
-import { AddressFormats, TBaseValidator } from "./types/validators.types";
+import {
+  AddressFormats,
+  TAddress,
+  TBaseValidator,
+  TIsValidAddress,
+  TNetType,
+} from "./types/validators.types";
 
 const DEFAULT_ADDRESS_FORMAT = AddressFormats.legacy;
 const DEFAULT_NETWORK_TYPE = NetTypes.prod;
 
-function isAValidAddress(address) {
+const isAValidAddress: TIsValidAddress = (address) => {
   try {
     BCH.decodeAddress(address);
     return true;
   } catch (error) {
     return false;
   }
-}
+};
 
 // TODO refactor
-function isValidAddressFormat(addressFormat) {
+const isValidAddressFormat = (addressFormat: TAddress): boolean => {
   let validAddressFormat = false;
   switch (addressFormat) {
     case "all":
@@ -37,10 +43,9 @@ function isValidAddressFormat(addressFormat) {
   }
 
   return validAddressFormat;
-}
+};
 
-function isValidNetworkType(address, networkType) {
-  networkType = networkType.toLowerCase().trim();
+const isValidNetworkType = (address: TAddress, networkType: TNetType) => {
   if (networkType === NetTypes.prod || networkType === NetTypes.testnet) {
     if (networkType === NetTypes.prod) {
       return BCH.isMainnetAddress(address);
@@ -51,14 +56,14 @@ function isValidNetworkType(address, networkType) {
 
   // TODO: check if this is okay? Defaults to true if not prod or testnet? Probably 'both'?
   return true;
-}
+};
 
-function isValidBitcoinCashAddress(
+const isValidBitcoinCashAddress: TIsValidAddress = (
   address,
-  currency,
+  _currency,
   networkType,
   addressFormats
-) {
+) => {
   let isValid = false;
 
   for (let i = 0; i < addressFormats.length; i++) {
@@ -109,7 +114,7 @@ function isValidBitcoinCashAddress(
   }
 
   return isValidNetworkType(address, networkType);
-}
+};
 
 export const bitcoincashValidator: TBaseValidator = {
   isValidAddress(address, currency, networkType, addressFormats) {
