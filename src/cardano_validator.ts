@@ -1,18 +1,18 @@
-import { base58_to_binary } from "base58-js";
+import base58 from "bs58";
 import cbor from "cbor-js";
 import CRC from "crc";
 
-import { TBaseValidator } from "./types/validators.types";
+import { TBaseValidator, TDecodeBuffer } from "./types/validators.types";
 
-function getDecoded(address) {
+const getDecoded: TDecodeBuffer = (address) => {
   try {
-    const decodedRaw = base58_to_binary(address);
+    const decodedRaw = base58.decode(address);
     return cbor.decode(decodedRaw.buffer);
   } catch (e) {
     // if decoding fails, assume invalid address
     return null;
   }
-}
+};
 
 const cardanoValidation: TBaseValidator = {
   isValidAddress(address) {

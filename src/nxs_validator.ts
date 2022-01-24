@@ -1,16 +1,16 @@
-import { base58_to_binary } from "base58-js";
+import base58 from "bs58";
 
-import { TBaseValidator } from "./types/validators.types";
+import { TBaseValidator, TDecodeBuffer } from "./types/validators.types";
 
-function getDecoded(address) {
+const getDecoded: TDecodeBuffer = (address) => {
   try {
-    const decoded = base58_to_binary(address);
+    const decoded = base58.decode(address);
     return decoded;
   } catch (e) {
     // if decoding fails, assume invalid address
     return null;
   }
-}
+};
 
 const nxsValidator: TBaseValidator = {
   isValidAddress(address) {

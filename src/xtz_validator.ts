@@ -1,10 +1,10 @@
-import { base58_to_binary } from "base58-js";
+import base58 from "bs58";
 
-import { TDecode, TDecodeValidator } from "./types/validators.types";
+import { TDecodeBuffer, TDecodeValidator } from "./types/validators.types";
 
-const getDecoded: TDecode = (address) => {
+const getDecoded: TDecodeBuffer = (address) => {
   try {
-    return base58_to_binary(address);
+    return base58.decode(address);
   } catch (e) {
     // if decoding fails, assume invalid address
     return null;
@@ -21,7 +21,7 @@ const xtzValidator: TDecodeValidator = {
 
     return true;
   },
-  getDecoded,
+  getDecoded: (address) => Array.from(getDecoded(address)),
 };
 
 export default xtzValidator;
