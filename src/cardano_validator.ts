@@ -1,6 +1,6 @@
 import base58 from "bs58";
-import cbor from "cbor-js";
-import CRC from "crc";
+import cbor from "cbor";
+import crc32 from "crc/crc32";
 
 import { TBaseValidator, TDecodeBuffer } from "./types/validators.types";
 
@@ -29,7 +29,7 @@ const cardanoValidation: TBaseValidator = {
     }
 
     // get crc of the payload
-    const crc = CRC.crc32(tagged);
+    const crc = crc32(new Uint8Array(tagged));
 
     return crc === validCrc;
   },

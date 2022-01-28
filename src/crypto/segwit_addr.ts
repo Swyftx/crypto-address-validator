@@ -22,7 +22,6 @@
 
 import { bech32 } from "./utils";
 
-// @ts-expect-error
 function convertbits(data, frombits, tobits, pad) {
   let acc = 0;
   let bits = 0;
@@ -50,7 +49,6 @@ function convertbits(data, frombits, tobits, pad) {
   return ret;
 }
 
-// @ts-expect-error
 function decode(hrp, addr) {
   const dec = bech32.decode(addr);
   if (
@@ -71,7 +69,6 @@ function decode(hrp, addr) {
   return { version: dec.data[0], program: res };
 }
 
-// @ts-expect-error
 function encode(hrp, version, program) {
   const ret = bech32.encode(
     hrp,
@@ -83,7 +80,6 @@ function encode(hrp, version, program) {
   return ret;
 }
 
-// @ts-expect-error
 function isValidAddress(address) {
   let hrp = "bc";
   let ret = decode(hrp, address);

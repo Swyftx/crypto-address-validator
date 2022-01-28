@@ -1,5 +1,5 @@
 import baseX from "base-x";
-import crc from "crc";
+import crc16xmodem from "crc/calculators/crc16xmodem";
 
 import { TChecksumValidator } from "./types/validators.types";
 
@@ -35,7 +35,7 @@ const lumenValidator: TChecksumValidator = {
     }
 
     const calculatedChecksum = Buffer.alloc(2);
-    calculatedChecksum.writeUInt16LE(crc.crc16xmodem(payload), 0);
+    calculatedChecksum.writeUInt16LE(crc16xmodem(payload), 0);
 
     if (Buffer.compare(checksum, calculatedChecksum) !== 0) {
       // checksum missmatch
