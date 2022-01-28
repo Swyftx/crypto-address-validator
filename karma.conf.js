@@ -9,7 +9,7 @@ module.exports = function (config) {
       frameworks: ['mocha', 'chai', 'webpack'],
 
       files: [
-        'dist/lib/test/wallet_address_validator.js',
+        'test/wallet_address_validator.ts',
       ],
 
       plugins: [
@@ -23,11 +23,11 @@ module.exports = function (config) {
 
       port: 9876,
 
-      logLevel: config.LOG_INFO,
+      logLevel: config.DEBUG_INFO,
 
       preprocessors: {
         // add webpack as preprocessor
-        'dist/lib/test/wallet_address_validator.js': [ 'webpack' ]
+        'test/wallet_address_validator.ts': [ 'webpack' ]
       },
 
       webpack: {
@@ -35,13 +35,25 @@ module.exports = function (config) {
           fallback: {
             stream: 'stream-browserify',
             buffer: require.resolve('buffer/')
-          }
+          },
+          extensions: ['.ts', '.js'],
         },
         plugins: [
           new webpack.ProvidePlugin({
             Buffer: ['buffer', 'Buffer'],
           }),
-        ]
+        ],
+        module: {
+          rules: [
+            {
+              use: 'ts-loader',
+              exclude: /node_modules/,
+            },
+          ],
+        },
+        output: {
+          libraryTarget: "global"
+        }
       },
 
       browsers: ['ChromeHeadless'],

@@ -9,7 +9,6 @@ const libraryName = 'crypto-address-validator';
 
 export default {
   input: `src/wallet_address_validator.ts`,
-  // external: ['buffer/'],
   output: [
     { format: 'umd', file: pkg.main, name: libraryName, sourcemap: true},
     {
