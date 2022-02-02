@@ -7,6 +7,7 @@
       "isolatedModules": true,
       "sourceMap": true,
       "declaration": true,
+      "lib": ["ES2015"],
       // Needed for refactor, change&remove like comments bellow suggest
       "allowJs": true, // remove
       "noImplicitAny": false, // true
@@ -15,5 +16,5 @@
       "allowSyntheticDefaultImports": true, // check
     },
     "include": ["src/**/*", "test/**/*"],
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["node_modules", "dist", "test"]
   }

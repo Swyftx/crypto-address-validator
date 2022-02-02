@@ -623,16 +623,6 @@ describe("WAValidator.validate()", () => {
       valid("bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23", "bnb");
       valid("bnb142q467df6jun6rt5u2ar58sp47hm5f9wvz2cvg", "bnb");
     });
-    it("should return true for correct Monero addresses", () => {
-      valid(
-        "8BMsVKsZ6kdUVWi4o67iWTe3ZaGL4Qc7KjfLVcPer4v2jNTKfEoXtJoL48EHt8cqdZWBQkjzttygpHJyhZcnqLb1JTfVkim",
-        "xmr"
-      );
-      valid(
-        "45HqZMyS2VmKzD4V17U7fT2HZj9ZgYgBXJsAJHkjj8QFVuhCxRSxsJB8HrZmGVyFr8HEsDxbKhFCyVLiauFtiPknJeDFAMj",
-        "xmr"
-      );
-    });
     it("should return true for correct Nexus addresses", () => {
       valid("2RytMNwUzYs6gn7YToq7xhnrb1xx1pDM5kqXxvKjDkgEum9acPx", "nxs");
       valid("2R9DtwPRUn7fjgnQd7bCbEkaWcwGY5dhrRwPqcNqvxMM9gJk2vM", "nxs");

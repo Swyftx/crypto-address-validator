@@ -13,10 +13,8 @@ import ETHValidator from "./ethereum_validator";
 import HBARValidator from "./hbar_validator";
 import ICXValidator from "./icx_validator";
 import IOSTValidator from "./iost_validator";
-import IOTAValidator from "./iota_validator";
 import LSKValidator from "./lisk_validator";
 import XLMValidator from "./lumen_validator";
-import XMRValidator from "./monero_validator";
 import NANOValidator from "./nano_validator";
 import NEMValidator from "./nem_validator";
 import NXSValidator from "./nxs_validator";
@@ -28,8 +26,6 @@ import SYSValidator from "./sys_validator";
 import {
   ICurrencies,
   TCurrency,
-  TCurrencyName,
-  TCurrencySymbol,
 } from "./types/currencies.types";
 import { HashFunctions } from "./types/hashFunctions.types";
 import XTZValidator from "./xtz_validator";
@@ -337,13 +333,6 @@ const CURRENCIES_DATA: TCurrency[] = [
     validator: ADAValidator,
   },
   {
-    name: "Monero",
-    symbol: "xmr",
-    addressTypes: { prod: ["18", "42"], testnet: ["53", "63"] },
-    iAddressTypes: { prod: ["19"], testnet: ["54"] },
-    validator: XMRValidator,
-  },
-  {
     name: "Aragon",
     symbol: "ant",
     validator: ETHValidator,
@@ -537,11 +526,6 @@ const CURRENCIES_DATA: TCurrency[] = [
     name: "Lisk",
     symbol: "lsk",
     validator: LSKValidator,
-  },
-  {
-    name: "Iota",
-    symbol: "iota",
-    validator: IOTAValidator,
   },
   {
     name: "EOS",
@@ -762,11 +746,12 @@ const CURRENCIES_DATA: TCurrency[] = [
 
 const currencies: ICurrencies = {
   getByNameOrSymbol: (currencyNameOrSymbol) => {
-    const nameOrSymbol = currencyNameOrSymbol.replace(" ", "").toLowerCase(); // Remove spaces and make lowercase
+    const normalizeNameOrSymbol = (nameOrSymbol) => nameOrSymbol.replace(" ", "").toLowerCase()
+    const normalizedNameOrSymbol = normalizeNameOrSymbol(currencyNameOrSymbol); // Remove spaces and make lowercase
     return CURRENCIES_DATA.find((currency) => {
       return (
-        currency.name.replace(" ", "").toLowerCase() === nameOrSymbol ||
-        currency.symbol.replace(" ", "").toLowerCase() === nameOrSymbol
+        normalizeNameOrSymbol(currency.name) === normalizedNameOrSymbol ||
+        normalizeNameOrSymbol(currency.symbol) === normalizedNameOrSymbol
       );
     });
   },
