@@ -23,7 +23,7 @@ module.exports = function (config) {
 
       port: 9876,
 
-      logLevel: config.DEBUG_INFO,
+      logLevel: config.LOG_INFO,
 
       preprocessors: {
         // add webpack as preprocessor
@@ -31,18 +31,6 @@ module.exports = function (config) {
       },
 
       webpack: {
-        resolve: {
-          fallback: {
-            stream: 'stream-browserify',
-            buffer: require.resolve('buffer/')
-          },
-          extensions: ['.ts', '.js'],
-        },
-        plugins: [
-          new webpack.ProvidePlugin({
-            Buffer: ['buffer', 'Buffer'],
-          }),
-        ],
         module: {
           rules: [
             {
@@ -50,9 +38,6 @@ module.exports = function (config) {
               exclude: /node_modules/,
             },
           ],
-        },
-        output: {
-          libraryTarget: "global"
         }
       },
 
