@@ -8,8 +8,6 @@ import { NetTypes } from "./types/net.types";
 import {
   TAddress,
   TBaseValidator,
-  TChecksum,
-  TChecksumValidator,
   TDecodeBuffer,
 } from "./types/validators.types";
 
