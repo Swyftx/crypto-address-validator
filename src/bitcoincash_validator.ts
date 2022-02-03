@@ -117,17 +117,24 @@ const isValidBitcoinCashAddress: TIsValidAddress = (
 };
 
 export const bitcoincashValidator: TBaseValidator = {
-  isValidAddress(address, currency, networkType, addressFormats) {
-    networkType = networkType || DEFAULT_NETWORK_TYPE;
-    if (!addressFormats.length || !Array.isArray(addressFormats)) {
-      addressFormats = [DEFAULT_ADDRESS_FORMAT];
-    }
+  isValidAddress(
+    address,
+    currency,
+    networkType = DEFAULT_NETWORK_TYPE,
+    addressFormats
+  ) {
+    const isInAddressFormat =
+      !addressFormats.length || !Array.isArray(addressFormats);
+
+    const checkedAddress = isInAddressFormat
+      ? [DEFAULT_ADDRESS_FORMAT]
+      : addressFormats;
 
     return isValidBitcoinCashAddress(
       address,
       currency,
       networkType,
-      addressFormats
+      checkedAddress
     );
   },
 };
