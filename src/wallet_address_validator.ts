@@ -9,9 +9,11 @@ const walletAddressValidator: IValidator = {
    *
    * @param {String} address The target address
    * @param {String} currencyNameOrSymbol The name or the symbol/ticker of the currency
-   * @param {String} networkType Network Type. Could be 'prod', 'both' and 'testnet'
-   * @param {Array} addressFormats Array of formats. For example ['legacy', 'slp ', 'cash']
+   * @param {String} [networkType] Network Type. Could be 'prod', 'both' and 'testnet'
+   * @param {Array} [addressFormats] Array of formats. For example ['legacy', 'slp ', 'cash']
    * @returns {Error|Boolean}
+   *
+   * @throws {InvalidArgumentException} Error(`Missing validator for currency: ${currencyNameOrSymbol}`)
    */
   validate(address, currencyNameOrSymbol, networkType, addressFormats) {
     const currency = currencies.getByNameOrSymbol(
