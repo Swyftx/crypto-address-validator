@@ -1,7 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import sourceMaps from 'rollup-plugin-sourcemaps';
 import typescript from 'rollup-plugin-typescript2';
+import { uglify } from "rollup-plugin-uglify";
 
 const pkg = require('./package.json');
 
@@ -31,15 +31,13 @@ export default {
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
 
+    uglify(),
     // Compile TypeScript files
     // MUST BE AFTER nodeResolve
     typescript({
       useTsconfigDeclarationDir: true,
       objectHashIgnoreUnknownHack: false,
       clean: true,
-    }),
-
-    // Resolve source maps to the original source
-    sourceMaps(),
+    })
   ]
 };
