@@ -9,7 +9,7 @@ import {
   TAddressFormats,
   TNetType,
 } from "../src/types/validators.types";
-import WAValidator from "../dist/ramp-crypto-address-validator.es5.js";
+import WAValidator from "../dist/ramp-crypto-address-validator.umd.js";
 
 const valid = (
   address: TAddress,

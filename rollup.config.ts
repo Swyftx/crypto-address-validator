@@ -26,7 +26,9 @@ export default {
   // Order is important, look for packages github/npm
   plugins: [
 
-    nodeResolve(),
+    nodeResolve({
+      browser: true, // This disabled binding for some crypto modules like keccak
+    }),
 
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
@@ -38,6 +40,6 @@ export default {
       useTsconfigDeclarationDir: true,
       objectHashIgnoreUnknownHack: false,
       clean: true,
-    })
+    }),
   ]
 };

@@ -26,6 +26,7 @@
     "test:node": "mocha -r ts-node/register test/*.ts",
     "test:browser": "karma start",
     "test": "yarn run build && npm run test:node && npm run test:browser",
+    "test:nobuild": "npm run test:node && npm run test:browser",
     "start": "npm run build && npm test",
     "lint": "eslint --ext .ts .",
     "lint:fix": "yarn lint --fix",
@@ -39,6 +40,8 @@
   },
   "dependencies": {
     "@iota/validators": "^1.0.0-beta.30",
+    "@rollup/plugin-json": "^4.1.0",
+    "@stacks/network": "^3.2.0",
     "base-x": "^3.0.4",
     "bchaddrjs-slp": "^0.2.14",
     "bech32": "^2.0.0",
@@ -47,13 +50,13 @@
     "blakejs": "^1.1.1",
     "bs58": "^4.0.1",
     "buffer": "^6.0.3",
-    "c32check": "^1.0.1",
     "cbor": "^8.1.0",
     "crc": "^4.1.0",
     "js-sha512": "^0.8.0",
     "jssha": "3.2.0",
     "keccak": "^3.0.2",
-    "rfc4648": "^1.3.0"
+    "rfc4648": "^1.3.0",
+    "stacks-utils": "^0.1.5"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
