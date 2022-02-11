@@ -21,12 +21,8 @@ import NXSValidator from "./nxs_validator";
 import XRPValidator from "./ripple_validator";
 import SCValidator from "./sc_validator";
 import STEEMValidator from "./steem_validator";
-import STXValidator from "./stx_validator";
 import SYSValidator from "./sys_validator";
-import {
-  ICurrencies,
-  TCurrency,
-} from "./types/currencies.types";
+import { ICurrencies, TCurrency } from "./types/currencies.types";
 import { HashFunctions } from "./types/hashFunctions.types";
 import XTZValidator from "./xtz_validator";
 import ZILValidator from "./zil_validator";
@@ -665,11 +661,6 @@ const CURRENCIES_DATA: TCurrency[] = [
     validator: STEEMValidator,
   },
   {
-    name: "Blockstack",
-    symbol: "stx",
-    validator: STXValidator,
-  },
-  {
     name: "Enjin Coin",
     symbol: "enj",
     validator: ETHValidator,
@@ -746,7 +737,8 @@ const CURRENCIES_DATA: TCurrency[] = [
 
 const currencies: ICurrencies = {
   getByNameOrSymbol: (currencyNameOrSymbol) => {
-    const normalizeNameOrSymbol = (nameOrSymbol) => nameOrSymbol.replace(" ", "").toLowerCase()
+    const normalizeNameOrSymbol = (nameOrSymbol) =>
+      nameOrSymbol.replace(" ", "").toLowerCase();
     const normalizedNameOrSymbol = normalizeNameOrSymbol(currencyNameOrSymbol); // Remove spaces and make lowercase
     return CURRENCIES_DATA.find((currency) => {
       return (
