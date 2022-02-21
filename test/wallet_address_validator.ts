@@ -667,13 +667,6 @@ describe("WAValidator.validate()", () => {
       valid("AGwa8wyKtSFC8JWZ6ccyX4vpf9paAm153R", "ong");
       valid("AXu57dhdNDnA5drqJUM2KfoMqgaLwmZwoP", "ong");
     });
-    it("should return true for correct Blockstacks addresses", () => {
-      valid("SP1YWFP80QE1GD65MPGCXE509R0662DXJ9ANCKWDD", "stx");
-      valid("SP1P72Z3704VMT3DMHPP2CB8TGQWGDBHD3RPR9GZS", "stx");
-      valid("SP2ZKDH78NGAMTE1WKCTWRFKYWA2BDZPTVF93TXH6", "stx");
-      valid("SP3WV3VC6GM1WF215SDHP0MESQ3BNXHB1N6TPB70S", "stx");
-      valid("SP1P72Z3704VMT3DMHPP2CB8TGQWGDBHD3RPR9GZS", "stx");
-    });
     it("should return true for correct Aave Lend addresses", () => {
       valid("0x80fB784B7eD66730e8b1DBd9820aFD29931aab03", "lend");
       valid("0xb1f8272a7b7cad00e465652cf6cbe28a03f5c161", "lend");
