@@ -5,7 +5,7 @@
   "module": "dist/ramp-crypto-address-validator.es5.js",
   "typings": "dist/types/wallet_address_validator.d.ts",
   "version": "1.0.0",
-  "author": "RampNetwork",
+  "author": "Ramp Network <contact@ramp.network>",
   "publishConfig": {
     "access": "public"
   },
