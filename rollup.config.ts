@@ -28,6 +28,7 @@ export default {
 
     nodeResolve({
       browser: true, // This disabled binding for some crypto modules like keccak
+      preferBuiltins: true
     }),
 
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
