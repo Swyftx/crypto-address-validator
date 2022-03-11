@@ -1,27 +1,70 @@
 // Karma configuration
+const webpack = require('webpack')
+const path = require('path')
+process.env.CHROME_BIN = require('puppeteer').executablePath()
+
+const testFileName = 'test/wallet_address_validator.ts'
+
 module.exports = function (config) {
     config.set({
-        basePath: '',
+      basePath: '.',
 
-        frameworks: ['mocha', 'chai'],
+      frameworks: ['mocha', 'chai', 'webpack'],
 
-        files: [
-            'dist/wallet-address-validator.min.js',
-            'test/**/*.js'
+      files: [
+        testFileName,
+      ],
+
+      plugins: [
+        'karma-webpack',
+        'karma-chrome-launcher',
+        'karma-chai',
+        'karma-mocha',
+      ],
+
+      reporters: ['progress'],
+
+      port: 9876,
+
+      logLevel: config.LOG_INFO,
+
+      preprocessors: {
+        // add webpack as preprocessor
+        [testFileName]: [ 'webpack' ]
+      },
+
+      webpack: {
+        module: {
+          rules: [
+            {
+              test: /\.ts?$/,
+              use: 'ts-loader',
+              exclude: /node_modules/,
+            },
+          ],
+        },
+
+        resolve: {
+          fallback: {
+            crypto: require.resolve('crypto-browserify'),
+            stream: 'stream-browserify',
+            buffer: require.resolve('buffer/'),
+          },
+          extensions: ['.ts', '.js'],
+        },
+        plugins: [
+          new webpack.ProvidePlugin({
+            Buffer: ['buffer', 'Buffer'],
+          }),
         ],
+      },
 
-        reporters: ['progress'],
+      browsers: ['ChromeHeadless'],
 
-        port: 9876,
+      singleRun: true,
 
-        colors: true,
+      concurrency: Infinity,
 
-        logLevel: config.LOG_INFO,
-
-        browsers: ['ChromeHeadless'],
-
-        singleRun: true,
-
-        concurrency: Infinity
+      colors: true,
     })
 };
