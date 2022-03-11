@@ -1,3 +1,5 @@
+# ⚠️ New readme.md WIP
+
 # @swyftx/api-crypto-address-validator
 Simple wallet address validator for validating Bitcoin and 130 (and counting) other altcoin addresses in **Node.js and browser**.
 
