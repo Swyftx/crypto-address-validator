@@ -1,9 +1,15 @@
 import currencies from "./currencies";
-import { IValidator } from "./types/validator.types";
+import {
+  Currencies,
+  HashFunctions,
+  NetTypes,
+  Validator,
+  Validators,
+} from "./types";
 
 const DEFAULT_CURRENCY_NAME = "bitcoin";
 
-const walletAddressValidator: IValidator = {
+const walletAddressValidator: Validator.IValidator = {
   /**
    * Checks if a given address is valid for the given currency
    *
@@ -11,7 +17,7 @@ const walletAddressValidator: IValidator = {
    * @param {String} currencyNameOrSymbol The name or the symbol/ticker of the currency
    * @param {String} [networkType] Network Type. Could be 'prod', 'both' and 'testnet'
    * @param {Array} [addressFormats] Array of formats. For example ['legacy', 'slp ', 'cash']
-   * @returns {Error|Boolean}
+   * @returns {Error|boolean}
    *
    * @throws {InvalidArgumentException} Error(`Missing validator for currency: ${currencyNameOrSymbol}`)
    */
@@ -40,3 +46,4 @@ const walletAddressValidator: IValidator = {
 };
 
 export default walletAddressValidator;
+export { Currencies, Validator, HashFunctions, NetTypes, Validators };

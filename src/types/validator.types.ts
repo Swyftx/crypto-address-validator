@@ -7,6 +7,6 @@ export interface IValidator {
     currency?: TCurrencyName,
     networkType?: TNetType,
     addressFormats?: TAddressFormats
-  ): Boolean;
+  ): boolean;
   CURRENCIES: TCurrency[];
 }

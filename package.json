@@ -4,6 +4,9 @@
   "main": "dist/ramp-crypto-address-validator.umd.js",
   "module": "dist/ramp-crypto-address-validator.es5.js",
   "typings": "dist/types/wallet_address_validator.d.ts",
+  "files": [
+    "dist/**"
+  ],
   "version": "1.0.0",
   "author": "Ramp Network <contact@ramp.network>",
   "publishConfig": {
@@ -22,7 +25,6 @@
     "url": "https://github.com/RampNetwork/crypto-address-validator"
   },
   "scripts": {
-    "minify": "uglifyjs -c -m -o dist/wallet-address-validator.min.js -- dist/wallet-address-validator.js",
     "test:node": "mocha -r ts-node/register test/*.ts",
     "test:browser": "karma start",
     "test": "yarn run build && npm run test:node && npm run test:browser",
@@ -30,13 +32,9 @@
     "start": "npm run build && npm test",
     "lint": "eslint --ext .ts .",
     "lint:fix": "yarn lint --fix",
-    "generateReadme": "node debug/generateReadme.js && git add README.md dist/wallet-address-validator.min.js.gz package.json",
-    "createMin": "yarn run bundle && git add dist/wallet-address-validator.js dist/wallet-address-validator.min.js",
-    "preversion": "yarn run createMin && yarn run generateReadme",
-    "postversion": "git push origin HEAD --follow-tags && hub pull-request -o -b dev -m v%npm_package_version%",
     "build:ts": "tsc",
     "build:rollup": "rollup -c rollup.config.ts",
-    "build": "yarn run build:ts && yarn run build:rollup"
+    "build": "rimraf dist && yarn run build:rollup"
   },
   "dependencies": {
     "@iota/validators": "^1.0.0-beta.30",
@@ -92,6 +90,7 @@
     "prettier": "^2.5.1",
     "prettysize": "^2.0.0",
     "puppeteer": "^13.1.2",
+    "rimraf": "^3.0.2",
     "rollup": "^2.67.0",
     "rollup-plugin-typescript2": "^0.31.2",
     "rollup-plugin-uglify": "^6.0.4",
