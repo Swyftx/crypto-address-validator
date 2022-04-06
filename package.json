@@ -4,7 +4,9 @@
   "main": "dist/ramp-crypto-address-validator.umd.js",
   "module": "dist/ramp-crypto-address-validator.es5.js",
   "typings": "dist/types/wallet_address_validator.d.ts",
-  "files": ["dist/**"],
+  "files": [
+    "dist/**"
+  ],
   "version": "1.0.0",
   "author": "Ramp Network <contact@ramp.network>",
   "publishConfig": {
@@ -32,7 +34,7 @@
     "lint:fix": "yarn lint --fix",
     "build:ts": "tsc",
     "build:rollup": "rollup -c rollup.config.ts",
-    "build": "rm -rf dist && yarn run build:rollup"
+    "build": "rimraf dist && yarn run build:rollup"
   },
   "dependencies": {
     "@iota/validators": "^1.0.0-beta.30",
@@ -88,6 +90,7 @@
     "prettier": "^2.5.1",
     "prettysize": "^2.0.0",
     "puppeteer": "^13.1.2",
+    "rimraf": "^3.0.2",
     "rollup": "^2.67.0",
     "rollup-plugin-typescript2": "^0.31.2",
     "rollup-plugin-uglify": "^6.0.4",
