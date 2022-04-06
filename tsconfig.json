@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "baseUrl": ".",
-      "declarationDir": "dist/types",
+      "declarationDir": "dist",
       "outDir": "dist/lib",
       "preserveConstEnums": true,
       "isolatedModules": true,

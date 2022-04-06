@@ -1,9 +1,15 @@
 import currencies from "./currencies";
-import { IValidator } from "./types/validator.types";
+import {
+  Currencies,
+  HashFunctions,
+  NetTypes,
+  Validator,
+  Validators,
+} from "./types";
 
 const DEFAULT_CURRENCY_NAME = "bitcoin";
 
-const walletAddressValidator: IValidator = {
+const walletAddressValidator: Validator.IValidator = {
   /**
    * Checks if a given address is valid for the given currency
    *
@@ -40,3 +46,4 @@ const walletAddressValidator: IValidator = {
 };
 
 export default walletAddressValidator;
+export { Currencies, Validator, HashFunctions, NetTypes, Validators };
