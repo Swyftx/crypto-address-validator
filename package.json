@@ -1,5 +1,5 @@
 {
-  "name": "@ramp/api-crypto-address-validator",
+  "name": "@ramp-network/crypto-address-validator",
   "description": "Wallet address validator for Bitcoin and other Altcoins.",
   "main": "dist/ramp-crypto-address-validator.umd.js",
   "module": "dist/ramp-crypto-address-validator.es5.js",
