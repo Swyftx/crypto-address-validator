@@ -12,12 +12,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "contributors": [
-    {
-      "name": "Tomek Kolasa",
-      "email": "tomek@kolasa.me"
-    }
-  ],
   "homepage": "https://github.com/RampNetwork/crypto-address-validator",
   "license": "MIT",
   "repository": {
