@@ -3,11 +3,11 @@
   "description": "Wallet address validator for Bitcoin and other Altcoins.",
   "main": "dist/ramp-crypto-address-validator.umd.js",
   "module": "dist/ramp-crypto-address-validator.es5.js",
-  "typings": "dist/types/wallet_address_validator.d.ts",
+  "typings": "dist/wallet_address_validator.d.ts",
   "files": [
     "dist/**"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Ramp Network <contact@ramp.network>",
   "publishConfig": {
     "access": "public"

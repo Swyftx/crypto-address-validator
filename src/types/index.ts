@@ -1,7 +1,7 @@
 import * as Currencies from "./currencies.types";
-import * as HashFunctions from "./hashFunctions.types";
-import * as NetTypes from "./net.types";
-import * as Validator from "./validator.types";
+import { HashFunctions } from "./hashFunctions.types";
+import { NetTypes } from "./net.types";
+import { IValidator } from "./validator.types";
 import * as Validators from "./validators.types";
 
-export { Currencies, HashFunctions, NetTypes, Validator, Validators };
+export type { Currencies, HashFunctions, NetTypes, IValidator, Validators };
