@@ -7,7 +7,7 @@
   "files": [
     "dist/**"
   ],
-  "version": "1.0.1",
+  "version": "1.0.0",
   "author": "Ramp Network <contact@ramp.network>",
   "publishConfig": {
     "access": "public"
