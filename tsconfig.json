@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "declarationDir": "dist",
+      "outDir": "dist/lib",
+      "preserveConstEnums": true,
+      "isolatedModules": true,
+      "sourceMap": true,
+      "declaration": true,
+      "lib": ["ES2015"],
+      // Needed for refactor, change&remove like comments bellow suggest
+      "allowJs": true, // remove
+      "noImplicitAny": false, // true
+      "types": ["mocha", "node"], // remove
+      "esModuleInterop": true, // remove
+      "allowSyntheticDefaultImports": true, // check
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist", "test"]
+  }
