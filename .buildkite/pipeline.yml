@@ -1,0 +1,11 @@
+
+# .buildkite/pipeline.yml
+steps:
+  - label: ":sonarqube: Sonarqube"
+    branches: "master" # only report on the master branch
+    plugins:
+      - wayfair-incubator/sonarscanner#v0.1.1:
+          sonarqube_host: https://sonarqube.example.com
+          project_key: sonarqube_project_key
+    soft_fail: # Ensures a Sonarqube error does not fail the pipeline
+      - exit_status: "*"

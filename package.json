@@ -270,7 +270,7 @@
   "scripts": {
     "bundle": "browserify src/wallet_address_validator.js --standalone WAValidator --outfile dist/wallet-address-validator.js",
     "minify": "uglifyjs -c -m -o dist/wallet-address-validator.min.js -- dist/wallet-address-validator.js",
-    "test:node": "nyc --reporter=text-lcov mocha | coveralls",
+    "test:node": "mocha test && nyc --reporter=text-lcov mocha | coveralls",
     "test:browser": "echo Temp bypass until jenkins setup",
     "test:browser_": "karma start",
     "test": "yarn run bundle && yarn run minify && npm run test:node && npm run test:browser",

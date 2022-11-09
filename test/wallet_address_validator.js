@@ -856,5 +856,29 @@ describe('WAValidator.validate()', function () {
       // invalid('sys1qzpuka2847ecyf62xw0996v7wh2ehkdaegf6annn', 'sys')
       invalid('dsfasys1qzpuka2847ecyf62xw0996v7wh2ehkdaegf6annn', 'sys')
     })
+
+    it('should return false for incorrect Lisk addresses', function () {
+      commonTests('lisk')
+    })
+
+    it('should return true for correct Lisk addresses', function () {
+      valid('0923742653827L', 'lisk')
+    })
+
+    it('should return false for incorrect EOS addresses', function () {
+      commonTests('eos')
+    })
+
+    it('should return true for correct EOS addresses', function () {
+      valid('a37d98202fe3', 'eos')
+    })
+
+    it('should return false for incorrect ADA addresses', function () {
+      commonTests('ada')
+    })
+
+    it('should return true for correct ADA addresses', function () {
+      valid('2cWKMJemoBaho4EjxKEBGJtrAg6bzdrW7NiGEDohzfXh1VPZgn32MMJCuo2oG4sQoQvoM', 'ada')
+    })
   })
 })
