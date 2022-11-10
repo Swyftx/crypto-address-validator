@@ -2,7 +2,6 @@
 # .buildkite/pipeline.yml
 steps:
   - label: ":sonarqube: Sonarqube"
-    branches: "master" # only report on the master branch
     plugins:
       - wayfair-incubator/sonarscanner#v0.1.1:
           sonarqube_host: https://sonarqube.example.com
