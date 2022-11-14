@@ -4,7 +4,7 @@ steps:
   - label: ":sonarqube: Sonarqube"
     plugins:
       - wayfair-incubator/sonarscanner#v0.1.1:
-          sonarqube_host:  http://3.231.166.174:9000
+          sonarqube_host:  http://3.238.160.84:9000
           project_key: Crypto-Address-Validator
           additional_flags: -Dsonar.ws.timeout=120
     soft_fail: # Ensures a Sonarqube error does not fail the pipeline
