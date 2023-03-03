@@ -18,7 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-var bech32 = require('./bech32')
+const { bech32, bech32m } = require('bech32')
 
 function convertbits (data, frombits, tobits, pad) {
   var acc = 0
@@ -47,8 +47,24 @@ function convertbits (data, frombits, tobits, pad) {
   return ret
 }
 
-function decode (hrp, addr) {
-  var dec = bech32.decode(addr)
+function decode (hrp, addr, witnessVersion) {
+  witnessVersion = witnessVersion || 0
+  var dec
+  try {
+    var decoded
+    if (witnessVersion === 0) {
+      decoded = bech32.decode(addr)
+    } else {
+      decoded = bech32m.decode(addr)
+    }
+    dec = {
+      hrp: decoded.prefix,
+      data: decoded.words
+    }
+  }
+  catch (e) {
+    return null
+  }
   if (dec === null || dec.hrp !== hrp || dec.data.length < 1 || dec.data[0] > 16) {
     return null
   }
@@ -62,29 +78,40 @@ function decode (hrp, addr) {
   return { version: dec.data[0], program: res }
 }
 
-function encode (hrp, version, program) {
-  var ret = bech32.encode(hrp, [version].concat(convertbits(program, 8, 5, true)))
-  if (decode(hrp, ret) === null) {
+function encode (hrp, version, program, witnessVersion) {
+  witnessVersion = witnessVersion || 0
+  var words = [version].concat(convertbits(program, 8, 5, true))
+  var encoded
+  if (witnessVersion === 0) {
+    encoded = bech32.encode(hrp, words)
+  } else {
+    encoded = bech32m.encode(hrp, words)
+  }
+  if (decode(hrp, encoded, witnessVersion) === null) {
     return null
   }
-  return ret
+  return encoded
 }
 
-function isValidAddress (address) {
+function isValidAddressByWitnessVersion (address, witnessVersion) {
   var hrp = 'bc'
-  var ret = decode(hrp, address)
+  var ret = decode(hrp, address, witnessVersion)
 
   if (ret === null) {
     hrp = 'tb'
-    ret = decode(hrp, address)
+    ret = decode(hrp, address, witnessVersion)
   }
 
   if (ret === null) {
     return false
   }
 
-  var recreate = encode(hrp, ret.version, ret.program)
+  var recreate = encode(hrp, ret.version, ret.program, witnessVersion)
   return recreate === address.toLowerCase()
+}
+
+function isValidAddress (address) {
+  return isValidAddressByWitnessVersion(address, 0) || isValidAddressByWitnessVersion(address, 1)
 }
 
 module.exports = {
