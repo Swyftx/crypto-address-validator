@@ -48,7 +48,23 @@ describe('WAValidator.validate()', function () {
       valid('tb1qqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesrxh6hy', 'bitcoin')
 
       // taproot addresses
-      valid('bc1py94jgdlxmukjslay06lmsux8xsppyj7pp2zch8j6xggdvfhq0yxqv8lu5w', 'bitcoin')
+      valid('bc1py94jgdlxmukjslay06lmsux8xsppyj7pp2zch8j6xggdvfhq0yxqv8lu5w', 'bitcoin') // from customer
+
+      // valid & invalid BIP350 addresses
+      // https://github.com/bitcoin/bips/blob/master/bip-0350.mediawiki#test-vectors-for-v0-v16-native-segregated-witness-addresses
+      valid('bc1pw508d6qejxtdg4y5r3zarvary0c5xw7kw508d6qejxtdg4y5r3zarvary0c5xw7kt5nd6y', 'bitcoin')
+      valid('BC1SW50QGDZ25J', 'bitcoin')
+      valid('bc1zw508d6qejxtdg4y5r3zarvaryvaxxpcs', 'bitcoin')
+      valid('tb1pqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesf3hn0c', 'bitcoin')
+      valid('bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqzk5jj0', 'bitcoin')
+      invalid('tc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vq5zuyut', 'bitcoin')
+      invalid('bc1p38j9r5y49hruaue7wxjce0updqjuyyx0kh56v8s25huc6995vvpql3jow4', 'bitcoin')
+      invalid('BC130XLXVLHEMJA6C4DQV22UAPCTQUPFHLXM9H8Z3K2E72Q4K9HCZ7VQ7ZWS8R', 'bitcoin')
+      invalid('bc1pw5dgrnzv', 'bitcoin')
+      invalid('bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7v8n0nx0muaewav253zgeav', 'bitcoin')
+      invalid('tb1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vq47Zagq', 'bitcoin')
+      invalid('bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7v07qwwzcrf', 'bitcoin')
+      invalid('tb1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vpggkg4j', 'bitcoin')
 
       invalid('tc1qw508d6qejxtdg4y5r3zarvary0c5xw7kg3g4ty', 'bitcoin')
       invalid('bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t5', 'bitcoin')
