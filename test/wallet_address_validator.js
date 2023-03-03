@@ -48,7 +48,7 @@ describe('WAValidator.validate()', function () {
       valid('tb1qqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesrxh6hy', 'bitcoin')
 
       // taproot addresses
-      valid('bc1pmzfrwwndsqmk5yh69yjr5lfgfg4ev8c0tsc06e', 'bitcoin')
+      valid('bc1py94jgdlxmukjslay06lmsux8xsppyj7pp2zch8j6xggdvfhq0yxqv8lu5w', 'bitcoin')
 
       invalid('tc1qw508d6qejxtdg4y5r3zarvary0c5xw7kg3g4ty', 'bitcoin')
       invalid('bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t5', 'bitcoin')
